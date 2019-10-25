@@ -1,0 +1,17 @@
+
+.content{
+	text-align: center;
+}
+image{
+	width: 700rpx;
+	height: 380rpx;
+	margin: 25rpx auto;
+}
+text{
+	display: block;
+	width: 700rpx;
+	margin: 0 auto;
+	text-align: left;
+	margin-bottom: 20rpx;
+}
+

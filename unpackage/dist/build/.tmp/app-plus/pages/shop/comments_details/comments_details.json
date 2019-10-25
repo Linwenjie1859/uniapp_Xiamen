@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "评论详情",
+  "usingComponents": {
+    "axb-check-box": "/components/axb-checkbox/axb-checkbox"
+  }
+}

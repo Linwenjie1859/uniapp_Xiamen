@@ -1,0 +1,90 @@
+
+page {
+	background-color: #F2F2F2;
+}
+.content {
+	text-align: center;
+}
+.address_info {
+	width: 700rpx;
+	height: 210rpx;
+	margin: 25rpx auto;
+	background-color: #FFFFFF;
+	border-radius: 10rpx;
+}
+.info {
+	width: 650rpx;
+	height: 130rpx;
+	margin: 0 auto;
+	padding-top: 10rpx;
+	border-bottom: 1rpx solid #E5E5E5;
+}
+.address_info text {
+	display: block;
+	width: 650rpx;
+	height: 60rpx;
+	line-height: 75rpx;
+	margin: 0 auto;
+	text-align: left;
+}
+.address_info .info_text {
+	width: 325rpx;
+	display: inline-block;
+}
+.operation {
+	width: 650rpx;
+	height: 70rpx;
+	line-height: 70rpx;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+.operation_list {
+	width: 250rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+.edit {
+	width: 100rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	margin-left: 25rpx;
+}
+.edit image {
+	width: 35rpx;
+	height: 35rpx;
+}
+.edit text {
+	width: 60rpx;
+	height: 35rpx;
+	line-height: 35rpx;
+}
+.btn_green {
+	position: fixed;
+	bottom: 25rpx;
+	left: 50%;
+	margin-left: -300rpx;
+}
+

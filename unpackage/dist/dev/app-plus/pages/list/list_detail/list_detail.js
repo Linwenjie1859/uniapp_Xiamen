@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"content{ text-align: center; }\nwx-image{ width: ",[0,700],"; height: ",[0,380],"; margin: ",[0,25]," auto; }\nwx-text{ display: block; width: ",[0,700],"; margin: 0 auto; text-align: left; margin-bottom: ",[0,20],"; }\n",],undefined,{path:"./pages/list/list_detail/list_detail.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/list/list_detail/list_detail.wxml') } }));

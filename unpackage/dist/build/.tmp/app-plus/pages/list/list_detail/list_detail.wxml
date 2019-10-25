@@ -1,0 +1,1 @@
+<view class="content"><image src="{{article.image_input[0]}}" mode></image><text class="font-32 text_center">{{article.title}}</text><text class="font-28">{{article.synopsis}}</text></view>
