@@ -122,7 +122,17 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 382));};var Tabs = function Tabs() {return __webpack_require__.e(/*! import() | components/wiszx-tabs/tabs */ "components/wiszx-tabs/tabs").then(__webpack_require__.bind(null, /*! ../../../components/wiszx-tabs/tabs.vue */ 389));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 382));};var Tabs = function Tabs() {return __webpack_require__.e(/*! import() | components/wiszx-tabs/tabs */ "components/wiszx-tabs/tabs").then(__webpack_require__.bind(null, /*! ../../../components/wiszx-tabs/tabs.vue */ 389));};var MxDatePicker = function MxDatePicker() {return __webpack_require__.e(/*! import() | components/mx-datepicker/mx-datepicker */ "components/mx-datepicker/mx-datepicker").then(__webpack_require__.bind(null, /*! @/components/mx-datepicker/mx-datepicker.vue */ 396));};var _default =
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -351,10 +361,15 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     uniPopup: uniPopup,
     // tab
-    Tabs: Tabs },
+    Tabs: Tabs,
+    MxDatePicker: MxDatePicker },
 
   data: function data() {
     return {
+      showPicker: false,
+      range: ['2019/01/01', '2019/01/06'],
+      value: '',
+      /******************/
       currentGoodsId: 0,
       goodsInfo: {
         storeInfo: {
@@ -402,6 +417,22 @@ __webpack_require__.r(__webpack_exports__);
     this.getGoodInfo();
   },
   methods: {
+    onShowDatePicker: function onShowDatePicker(type) {//显示
+      this.type = type;
+      this.showPicker = true;
+      console.log(this[type]);
+      this.value = this[type];
+    },
+    onSelected: function onSelected(e) {//选择
+      this.showPicker = false;
+      if (e) {
+        this[this.type] = e.value;
+        //选择的值
+        console.log('value => ' + e.value);
+        //原始的Date对象
+        console.log('date => ' + e.date);
+      }
+    },
     //获取商品的信息
     getGoodInfo: function getGoodInfo() {
       var that = this;
@@ -468,7 +499,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     details: function details(e) {
       uni.navigateTo({
-        url: "/pages/shop/comments_details/comments_details" });
+        url: '/pages/shop/comments_details/comments_details?id=' + this.goodsInfo.storeInfo.id });
 
     },
     // 底部弹出层

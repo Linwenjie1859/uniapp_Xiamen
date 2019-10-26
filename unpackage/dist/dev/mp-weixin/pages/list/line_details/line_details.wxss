@@ -172,6 +172,9 @@ page {
   line-height: 80rpx;
   font-size: 28rpx;
 }
+.margin-left-sm {
+  margin-left: 20rpx;
+}
 .flex {
   display: -webkit-box;
   display: -webkit-flex;
@@ -224,9 +227,15 @@ page {
           justify-content: space-between;
   padding-bottom: 25rpx;
 }
+.align-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
 .shop_view .static {
   padding: 0rpx 20rpx;
-  background-color: #FCE0C8;
+  background-color: #fce0c8;
   border-radius: 25rpx;
   color: #f66d3c;
   margin-left: 10rpx;

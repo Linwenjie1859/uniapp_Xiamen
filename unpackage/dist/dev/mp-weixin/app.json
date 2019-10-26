@@ -93,6 +93,5 @@
   "usingComponents": {
     "sunui-star": "/components/sunui-star/sunui-star",
     "uni-load-more": "/components/uni-load-more/uni-load-more"
-  },
-  "sitemapLocation": "sitemap44.json"
+  }
 }
