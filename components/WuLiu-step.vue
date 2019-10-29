@@ -64,7 +64,6 @@
 		methods: {
 			//判断哪个该展示关键字--还是默认
 			Type(item) {
-
 				let Info;
 				let Phone = /\d{11}/;
 				if (Phone.test(item) && item.includes('正在派')) {

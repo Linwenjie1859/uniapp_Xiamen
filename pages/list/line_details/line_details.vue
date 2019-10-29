@@ -9,7 +9,7 @@
 						<view class="text">店铺</view>
 					</view>
 					<view class="box" @tap="cart">
-						<image src="/static/shop_cart_gray.png" mode=""></image>
+						<image src="/static/waiter.png" mode=""></image>
 						<view class="text">客服</view>
 					</view>
 					<view class="box" @tap="keep">
@@ -65,7 +65,7 @@
 		
 			<mx-date-picker
 				:show="showPicker"
-				type="range"
+				type="date"
 				:value="value"
 				show-tips="true"
 				begin-text="预订"
@@ -78,8 +78,8 @@
 			<view class="list_top">
 				<view class="flex align-center">
 					<image src="/static/time.png" mode=""></image>
-					<text class="font-28">日期</text>
-					<text class="font-28 margin-left-sm" @click="onShowDatePicker('range')">{{ range[0] }} - {{ range[1] }}</text>
+					<text class="font-28">出行日期</text>
+					<text class="font-28 margin-left-sm" @click="onShowDatePicker()">{{ date}}</text>
 				</view>
 				<!-- <view class="time_list">
 					<scroll-view class="scroll-view" scroll-x="true" @scroll="scroll" scroll-left="0">
@@ -111,36 +111,36 @@
 
 			<!-- 详情 -->
 			<view class="list_top">
-				<Tabs :TabList="TabList" :currentTab="current" @tabs="tabsChange">
+				<Tabs :TabList="TabList" :currentTab="current" @tabs="tabsChange" >
 					<!-- 行程 -->
-					<view class="list_top">
+					<view class="list_top" slot="trip">
 						<view class="flex">
 							<image src="/static/sc_icon.png" mode=""></image>
-							<text class="font-28">产品特色</text>
+							<text class="font-28">行程路线</text>
 						</view>
 						<view class="product_trait gray">
 							<view class="trait_list">
-								<text class="font-32">1</text>
+								<text class="font-32">{{goodsInfo.storeInfo.trip_id.view}}</text>
 								<text class="font-28">景点</text>
 							</view>
 							<view class="trait_list">
-								<text class="font-32">1</text>
+								<text class="font-32">{{goodsInfo.storeInfo.trip_id.eat}}</text>
 								<text class="font-28">餐食</text>
 							</view>
 							<view class="trait_list">
-								<text class="font-32">1</text>
+								<text class="font-32">{{goodsInfo.storeInfo.trip_id.item}}</text>
 								<text class="font-28">自费项目</text>
 							</view>
 						</view>
 						<view class="trip_list">
-							<view class="list_view">
-								<view class="flex">
-									<image src="/static/collection_icon.png" mode=""></image>
-									<text class="font-32">07:20</text>
+							<view class="list_view" v-for="(item,index) in goodsInfo.storeInfo.trip_id.process" :key="index" >
+								<view class="flex"> 
+									<image src="/static/collection_icon.png" mode="" v-if="item[1]"></image>
+									<text class="font-32">{{item[1]}}</text>
 								</view>
-								<text class="detailed font-28 gray">上车地点 五一广场（福州市区）</text>
+								<text class="detailed font-28 gray">{{item[0]}}</text>
 							</view>
-							<view class="list_view">
+							<!-- <view class="list_view">
 								<view class="flex">
 									<image src="/static/che.png" mode=""></image>
 									<text class="font-32">07:50</text>
@@ -167,28 +167,32 @@
 									<text class="font-32">18：30</text>
 								</view>
 								<text class="detailed font-28 gray">无住宿</text>
-							</view>
+							</view> -->
 						</view>
 					</view>
 
-					<!-- 产品特色 -->
-					<!-- <view class="list_top">
-					* <view class="flex">
+					<!-- 产品详情 -->
+					<view class="list_top" slot="features">
+						<view class="flex">
 							<image src="/static/sc_icon.png" mode=""></image>
-							<text class="font-28">产品特色</text>
+							<text class="font-28">产品详情</text>
 						</view>
-						<view class="font-28 product_info">而对于旅游网站来说，与酒店合作开发旅游产品成为现今最常见的方式。据小编得知，高端酒店行业媒体平台七星酒店网联合北京周边20家以上特色酒店推出全新旅游产品--京郊度假卡。该产品以预付费计次形式售出酒店产品。整合了酒店住房+特色餐饮+特色娱乐+周边景点等资源，为中高端消费人群提供一站式的优质服务及消费指南。从目前的市场上来看，此类旅游消费产品尚不多见，面对庞大的市场需求来说，发展前景见喜。但是否能够经受的住市场的考验，还需时间的见证</view>
-					</view> -->
+						<view class="font-28 product_info">
+							<rich-text :nodes="goodsInfo.storeInfo.description"></rich-text>
+						</view>
+					</view>
 
 					<!-- 费用须知 -->
-					<!-- <view class="list_top">
+					<view class="list_top" slot='cost'>
 						<view class="flex">
 							<image src="/static/sc_icon.png" mode=""></image>
 							<text class="font-28">费用须知</text>
 						</view>
-						<view class="font-28 product_info">1.大巴车 往返旅游巴士</view>
+						<view class="font-28 product_info" v-for="(item,index) in goodsInfo.storeInfo.attention" :key="index">
+							{{item}}
+						</view>
 					</view>
-				 -->
+				
 				</Tabs>
 			</view>
 
@@ -243,7 +247,8 @@ export default {
 	data() {
 		return {
 			showPicker: false,
-			range: ['2019/01/01','2019/01/06'],
+			date: '2019-01-01',
+			// range: ['2019-01-01','2019-01-06'],
 			value: '',
 			/******************/
 			currentGoodsId: 0,
@@ -276,13 +281,14 @@ export default {
 
 			// tab
 			current: 0,
-			TabList: [{
+			TabList: [
+				{
 					title: '行程'
 				},
 				{
-					title: '产品特色'
+					title: '产品详情'
 				},
-				{
+				{	
 					title: '用费须知'
 				}
 			]
@@ -293,20 +299,17 @@ export default {
 		this.getGoodInfo();
 	},
 	methods: {
-		onShowDatePicker(type){//显示
-			this.type = type;
+		onShowDatePicker(){//显示
 			this.showPicker = true;
-			console.log(this[type]);
-			this.value = this[type];
+			this.value = this.date;
+			console.log(this);
 		},
 		onSelected(e) {//选择
 			this.showPicker = false;
 			if(e) {
-				this[this.type] = e.value;
+				this.date = e.value;
 				//选择的值
-				console.log('value => '+ e.value);
-				//原始的Date对象
-				console.log('date => ' + e.date);
+				console.log(e.value);
 			}
 		},
 		//获取商品的信息

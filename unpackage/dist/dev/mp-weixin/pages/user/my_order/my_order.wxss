@@ -278,7 +278,6 @@ page {
           align-content: center;
 }
 .order_list .list_info image {
-  width: 150rpx;
   height: 150rpx;
   margin-right: 20rpx;
 }

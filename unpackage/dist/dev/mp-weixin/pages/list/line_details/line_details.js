@@ -357,6 +357,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
 {
   components: {
     uniPopup: uniPopup,
@@ -367,7 +371,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       showPicker: false,
-      range: ['2019/01/01', '2019/01/06'],
+      date: '2019-01-01',
+      // range: ['2019-01-01','2019-01-06'],
       value: '',
       /******************/
       currentGoodsId: 0,
@@ -400,11 +405,12 @@ __webpack_require__.r(__webpack_exports__);
 
       // tab
       current: 0,
-      TabList: [{
+      TabList: [
+      {
         title: '行程' },
 
       {
-        title: '产品特色' },
+        title: '产品详情' },
 
       {
         title: '用费须知' }] };
@@ -417,20 +423,17 @@ __webpack_require__.r(__webpack_exports__);
     this.getGoodInfo();
   },
   methods: {
-    onShowDatePicker: function onShowDatePicker(type) {//显示
-      this.type = type;
+    onShowDatePicker: function onShowDatePicker() {//显示
       this.showPicker = true;
-      console.log(this[type]);
-      this.value = this[type];
+      this.value = this.date;
+      console.log(this);
     },
     onSelected: function onSelected(e) {//选择
       this.showPicker = false;
       if (e) {
-        this[this.type] = e.value;
+        this.date = e.value;
         //选择的值
-        console.log('value => ' + e.value);
-        //原始的Date对象
-        console.log('date => ' + e.date);
+        console.log(e.value);
       }
     },
     //获取商品的信息

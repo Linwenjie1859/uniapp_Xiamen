@@ -10,8 +10,10 @@
 			</view>
 		</scroll-view>
 		<view class="tab-pane-view" @touchstart='touchstart' @touchend='touchend'>
-			<view class="tab-pane-group" :style="{transform:transformXx}">
-				<slot></slot>
+			<view class="tab-pane-group" >
+				<slot name="trip" v-if="currentTab==0"></slot>
+				<slot name="features" v-if="currentTab==1"></slot>
+				<slot name="cost" v-if="currentTab==2"></slot>
 			</view>
 		</view>
 	</view>
@@ -26,6 +28,7 @@
 			}
 		},
 		props: {
+			
 			TabList: {
 				default: () => {
 					return []

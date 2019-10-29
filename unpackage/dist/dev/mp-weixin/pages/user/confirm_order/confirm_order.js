@@ -189,10 +189,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
+      open_address: [],
+      date: '',
       array: [
       {
         coupon_title: '未选择',
@@ -230,8 +240,17 @@ var _default =
     this.listId = e.listId;
     this.getAddressList();
     this.getOrderInfo();
+    this.getUserChooseTime();
   },
   methods: {
+    getUserChooseTime: function getUserChooseTime() {
+      var pages = getCurrentPages(); //获取所有页面栈实例列表
+      var prevPage = pages[pages.length - 2]; //上一页页面实例
+      this.date = prevPage.$vm.date;
+      this.open_address = prevPage.$vm.goodsInfo.storeInfo.open_address;
+      console.log(prevPage.$vm);
+    },
+
     // 处理接口数据将价钱转成浮点型
     dealData: function dealData(data) {
       for (var i = 0; i < data.length; i++) {
@@ -247,7 +266,6 @@ var _default =
 
       function (res) {
         that.array = [].concat(_toConsumableArray(that.array), _toConsumableArray(that.dealData(res.data)));
-        console.log(that.array);
       },
       function (res) {
         console.log(res);
@@ -302,7 +320,6 @@ var _default =
 
       function (res) {
         that.cartInfo = that.SortData(res.data.cartInfo);
-        console.log(that.cartInfo);
         for (var j = 0; j < that.cartInfo.length; j++) {
           that.sumNum += that.cartInfo[j].data.length;
           for (var i = 0; i < that.cartInfo[j].data.length; i++) {
@@ -341,7 +358,10 @@ var _default =
         addressId: that.defaultAddress.id,
         couponId: that.array[that.couponIndex].id,
         userIntegral: that.createOrder.userIntegral,
-        mark: that.createOrder.mark },
+        mark: that.createOrder.mark,
+        type: that.open_address ? 2 : 1,
+        date: that.date,
+        open_address: that.open_address ? that.open_address[0] + "," + that.open_address[1] : '' },
 
       function (res) {
         var orderInfo = {

@@ -195,7 +195,6 @@ var _default =
   methods: {
     //判断哪个该展示关键字--还是默认
     Type: function Type(item) {
-
       var Info;
       var Phone = /\d{11}/;
       if (Phone.test(item) && item.includes('正在派')) {

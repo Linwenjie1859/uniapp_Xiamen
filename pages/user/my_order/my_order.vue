@@ -36,9 +36,11 @@
 							<view class="list_info" @tap="details(item.order_id)" v-for="(ite, ind) in item.cartInfo" :key="ind">
 								<image :src="ite.productInfo.image" mode=""></image>
 								<view class="info_view">
-									<text class="text_limit  font-28">{{ ite.productInfo.store_name }}</text>
-									<text class="gray  font-24">规格：500g</text>
-									<text class="gray text_right  font-24">￥{{ ite.productInfo.price }}</text>
+									<text class="text_limit font-28">{{ ite.productInfo.store_name }}</text>
+									<text class="gray  font-24" v-if="item.open_address" style="margin: 10rpx 0 0 0;">地点:{{item.open_address}}</text>
+									<text class="gray  font-24" v-if="!item.open_address" style="margin: 10rpx 0 0 0;">规格:500g</text>
+									<text class="gray text_right  font-24" style="margin: 10rpx 0 0 0;">￥{{ ite.productInfo.price }}</text>
+									<text class="font-24 gray" style="margin: 0;" v-if="item.date">出发日期:{{item.date}}</text> 
 								</view>
 							</view>
 							<view style="display: flex; justify-content:flex-end;">
@@ -204,7 +206,6 @@ export default {
 					}
 					that.newsList[index].data = [...that.newsList[index].data, ...res.data];
 					that.newsList[index].currentPage++;
-					console.log("newsList:",that.newsList);
 				},
 				function(res) {
 					console.log(res);
@@ -490,7 +491,6 @@ page {
 }
 
 .order_list .list_info image {
-	width: 150upx;
 	height: 150upx;
 	margin-right: 20upx;
 }

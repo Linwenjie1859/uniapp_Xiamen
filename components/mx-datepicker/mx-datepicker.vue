@@ -233,7 +233,6 @@
 			return r.join(':');
 		}
 	};
-
 	export default {
 		props: {
 			//颜色
@@ -492,7 +491,7 @@
 				};
 				//定义默认格式
 				let defaultFormat = {
-					'date': 'yyyy/mm/dd',
+					'date': 'yyyy-mm-dd',
 					'time': 'hh:ii' + (this.showSeconds ? ':ss' : ''),
 					'datetime': ''
 				};
@@ -543,12 +542,12 @@
 		computed: {
 			BeginTitle() {
 				let value = '未选择';
-				if (this.checkeds.length) value = DateTools.format(this.checkeds[0], 'yy/mm/dd');
+				if (this.checkeds.length) value = DateTools.format(this.checkeds[0], 'yy-mm-dd');
 				return value;
 			},
 			EndTitle() {
 				let value = '未选择';
-				if (this.checkeds.length == 2) value = DateTools.format(this.checkeds[1], 'yy/mm/dd');
+				if (this.checkeds.length == 2) value = DateTools.format(this.checkeds[1], 'yy-mm-dd');
 				return value;
 			},
 			PickerTimeTitle() {

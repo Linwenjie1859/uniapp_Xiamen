@@ -123,6 +123,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
 var _default2 =
 {
   name: 'Tabs',
@@ -133,6 +135,7 @@ var _default2 =
 
   },
   props: {
+
     TabList: {
       default: function _default() {
         return [];

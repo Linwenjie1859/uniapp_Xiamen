@@ -202,6 +202,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 {
   components: {
     uniLoadMore: uniLoadMore },
@@ -328,7 +330,6 @@ __webpack_require__.r(__webpack_exports__);
         }
         that.newsList[index].data = [].concat(_toConsumableArray(that.newsList[index].data), _toConsumableArray(res.data));
         that.newsList[index].currentPage++;
-        console.log("newsList:", that.newsList);
       },
       function (res) {
         console.log(res);
