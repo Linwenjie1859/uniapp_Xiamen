@@ -34,7 +34,7 @@
 					<text>出行日期</text>
 					<text class="text_right gray">{{date}}</text>
 				</view>
-				<view class="info_list" v-if="open_address">
+				<view class="info_list" v-if="open_address.length>0">
 					<text>游玩地点</text>
 					<text class="text_right gray">{{open_address}}</text>
 				</view>

@@ -14,22 +14,22 @@
 						<view class="order_list">
 							<!-- 待发货 -->
 							<view class="list_top" v-if="item.status == 0 && item.paid == 1">
-								<text class="font-32">葡萄园</text>
+								<text class="font-32">{{item.store_name}}</text>
 								<text class="font-28 orange">等待卖家发货</text>
 							</view>
 							<!-- 待付款 -->
 							<view class="list_top" v-if="item.status == 0 && item.paid == 0">
-								<text class="font-32">葡萄园</text>
+								<text class="font-32">{{item.store_name}}</text>
 								<text class="font-28 orange">等待买家付款</text>
 							</view>
 							<!-- 待收货 -->
 							<view class="list_top" v-if="item.status == 1 && item.paid == 1">
-								<text class="font-32">葡萄园</text>
+								<text class="font-32">{{item.store_name}}</text>
 								<text class="font-28 orange">卖家已发货</text>
 							</view>
 							<!-- 待评价 -->
 							<view class="list_top" v-if="(item.status == 2 || item.status == 3)&& item.paid == 1">
-								<text class="font-32">葡萄园</text>
+								<text class="font-32">{{item.store_name}}</text>
 								<text class="font-28 orange">交易成功</text>
 							</view>
 							<!-- 公共部分 -->

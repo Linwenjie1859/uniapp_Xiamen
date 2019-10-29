@@ -29,7 +29,6 @@
 				<swiper-item class="swiper-item">
 					<scroll-view class="scroll-v" scroll-y @scrolltolower="loadMore(index1)">
 						<!-- 店铺首页 -->
-
 						<view class="home_info ">
 							<image src="/static/shop_banner.png" mode=""></image>
 							<text class="font-28 text_info">

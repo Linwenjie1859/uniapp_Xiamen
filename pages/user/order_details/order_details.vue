@@ -12,9 +12,9 @@
 		</view>
 		<view class="order_list">
 			<view class="list_top">
-				<text class="font-32">葡萄园</text>
-				<text class="font-28 orange">等待卖家发货</text>
-			</view>
+				<text class="font-32">{{orderInfo.store_name}}</text>
+				<text class="font-28 orange">{{orderStatus}}</text>
+			</view> 
 			<view class="list_info" v-for="(item,index) in orderInfo.cartInfo" :key="index">
 				<image :src="item.productInfo.image" mode=""></image>
 				<view class="info_view">
@@ -50,7 +50,7 @@
 			</view>
 			<view class="info_view">
 				<text>付款时间：</text>
-				<text class="text_right gray">{{orderInfo.pay_time==null?'未支付':orderInfo.pay_time}}</text>
+				<text class="text_right gray">{{orderInfo._pay_time==null?'未支付':orderInfo._pay_time}}</text>
 			</view>
 			<view class="info_view">
 				<text>发货时间：</text>
@@ -75,6 +75,7 @@
 	export default {
 		data() {
 			return {
+				orderStatus:'等待买家付款',
 				orderInfo:{},
 			}
 		},
@@ -108,7 +109,7 @@
 					},
 					function(res) {
 						that.orderInfo=res.data;
-						console.log(that.orderInfo);
+						that.orderStatus=res.data.paid==0?that.orderStatus:res.data.paid==1&&res.data.status==0?'等待卖家发货':res.data.status==1?'等待买家收货':'订单已完成';
 					},
 					function(res) {
 						console.log(res);

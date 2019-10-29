@@ -199,6 +199,7 @@ var _default =
 {
   data: function data() {
     return {
+      orderStatus: '等待买家付款',
       orderInfo: {} };
 
   },
@@ -232,7 +233,7 @@ var _default =
 
       function (res) {
         that.orderInfo = res.data;
-        console.log(that.orderInfo);
+        that.orderStatus = res.data.paid == 0 ? that.orderStatus : res.data.paid == 1 && res.data.status == 0 ? '等待卖家发货' : res.data.status == 1 ? '等待买家收货' : '订单已完成';
       },
       function (res) {
         console.log(res);
