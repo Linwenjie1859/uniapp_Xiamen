@@ -320,47 +320,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {
   components: {
     uniPopup: uniPopup,
@@ -423,12 +382,14 @@ __webpack_require__.r(__webpack_exports__);
     this.getGoodInfo();
   },
   methods: {
-    onShowDatePicker: function onShowDatePicker() {//显示
+    onShowDatePicker: function onShowDatePicker() {
+      //显示
       this.showPicker = true;
       this.value = this.date;
       console.log(this);
     },
-    onSelected: function onSelected(e) {//选择
+    onSelected: function onSelected(e) {
+      //选择
       this.showPicker = false;
       if (e) {
         this.date = e.value;
@@ -482,7 +443,7 @@ __webpack_require__.r(__webpack_exports__);
 
       },
       function (res) {
-        if (res.msg.indexOf("该产品库存不足") != -1) {
+        if (res.msg.indexOf('该产品库存不足') != -1) {
           that.Tips({ title: res.msg });
         }
       },
@@ -497,7 +458,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     cart: function cart(e) {
       uni.navigateTo({
-        url: "/pages/tabber/shopping_cart/shopping_cart" });
+        url: '/pages/tabber/shopping_cart/shopping_cart' });
 
     },
     details: function details(e) {
@@ -556,8 +517,8 @@ __webpack_require__.r(__webpack_exports__);
         this.scrollTop = 0;
       });
       uni.showToast({
-        icon: "none",
-        title: "纵向滚动 scrollTop 值已被修改为 0" });
+        icon: 'none',
+        title: '纵向滚动 scrollTop 值已被修改为 0' });
 
     },
 

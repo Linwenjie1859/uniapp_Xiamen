@@ -20,6 +20,10 @@
 				<text class="font-32 font-weight">{{userInfo.collect_merchant}}</text>
 				<text class="font-28 green">关注店铺</text>
 			</view>
+			<view class="list_view" @tap="shopcol">
+				<text class="font-32 font-weight">{{userInfo.collect_merchant}}</text>
+				<text class="font-28 green">我的足迹</text>
+			</view>
 		</view>
 		<view class="order_list">
 			<view class="title" @tap="order(0)">

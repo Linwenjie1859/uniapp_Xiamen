@@ -109,6 +109,7 @@ export default {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
+  text-overflow: ellipsis;
 }
 .loading-more {
 	align-items: center;

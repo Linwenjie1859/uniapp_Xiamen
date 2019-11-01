@@ -11,8 +11,8 @@
 						<text class="font-32 block">{{ storeInfo.merInfo.store_name }}</text>
 						<text class="font-24 block">福建省宁德市寿宁县</text>
 						<view class="num">
-							<text class="font-24 gray">{{ storeInfo.merInfo.views }}人收藏</text>
-							<text class="font-24 gray">销售量6件</text>
+							<text class="font-24 gray">{{ storeInfo.merInfo.fav_count }}人收藏</text>
+							<text class="font-24 gray">销售量{{ storeInfo.merInfo.sale_count}}件</text>
 						</view>
 					</view>
 					<button class="btn_collection_green" @click="keep">{{ isKeep != null ? '已' : '' }}收藏</button>
@@ -41,9 +41,9 @@
 								<text class="font-28">换一换</text>
 							</view>
 							<view class="goods_list">
-								<view class="list_view" :data-id="item.id" @tap="detail" v-for="(item, index) in storeInfo.similarity" :key="index">
+								<view class="list_view"  @tap="detail(item)" v-for="(item, index) in storeInfo.similarity" :key="index">
 									<image :src="item.image" mode=""></image>
-									<text class="font-28 text_limit">{{ item.store_name }}</text>
+									<text class="font-28 text_limit " style="text-align: left;">{{ item.store_name }}</text>
 									<view class="list_info">
 										<text class="font-24 orange">￥{{ item.price }}</text>
 										<text class="font-24">月售{{ item.sales }}件</text>
@@ -62,9 +62,9 @@
 						<!-- 全部宝贝 -->
 						<view class="home_info">
 							<view class="goods_list">
-								<view class="list_view" :data-id="item.id" @click="detail" v-for="(item, index) in newsList[ind + 1].data" :key="index">
+								<view class="list_view"  @click="detail(item)" v-for="(item, index) in newsList[ind + 1].data" :key="index">
 									<image :src="item.image" mode="" class="has-margin-top"></image>
-									<text class="font-28 text_limit">{{ item.store_name }}</text>
+									<text class="font-28 text_limit" style="text-align: left;">{{ item.store_name }}</text>
 									<view class="list_info">
 										<text class="font-24 orange">￥{{ item.price }}</text>
 										<text class="font-24">月售{{ item.sales }}件</text>
@@ -283,10 +283,16 @@ export default {
 		},
 		// 商品详情
 		detail(e) {
-			var id = e.currentTarget.dataset.id
-			uni.navigateTo({
-				url: '/pages/list/goode_details/goode_details?id='+id
-			});
+			if(e.type==2){
+				uni.navigateTo({
+					url: '/pages/list/line_details/line_details?id='+e.id
+				});
+			}else{
+				uni.navigateTo({
+					url: '/pages/list/goode_details/goode_details?id='+e.id
+				});
+			}
+			
 		},
 	}
 };

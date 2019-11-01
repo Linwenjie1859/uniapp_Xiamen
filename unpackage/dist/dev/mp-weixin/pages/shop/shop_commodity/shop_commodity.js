@@ -407,9 +407,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     // 商品详情
     detail: function detail(e) {
-      var id = e.currentTarget.dataset.id;
-      uni.navigateTo({
-        url: '/pages/list/goode_details/goode_details?id=' + id });
+      if (e.type == 2) {
+        uni.navigateTo({
+          url: '/pages/list/line_details/line_details?id=' + e.id });
+
+      } else {
+        uni.navigateTo({
+          url: '/pages/list/goode_details/goode_details?id=' + e.id });
+
+      }
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

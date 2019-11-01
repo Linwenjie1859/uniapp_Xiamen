@@ -37,8 +37,8 @@
 					<image :src="item.image" mode="" @tap="shopDetail(item.id)"></image>
 					<view class="list_right">
 						<view class="list_top" @tap="shopDetail(item.id)">
-							<text class="font-28">{{ item.store_name }}</text>
-							<text class="font-28 gray">{{ item.store_info }}</text>
+							<text class="font-28 text_limit">{{ item.store_name }}</text>
+							<text class="font-28 gray" style="height: 80rpx;">{{ item.store_info }}</text>
 						</view>
 						<text class="font-24 static">特价优惠</text>
 						<view class="list_down">

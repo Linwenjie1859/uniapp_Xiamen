@@ -14,7 +14,7 @@
 		</view>
 		<view class="order_list" v-for="(item,index) in cartInfo" :key="index">
 			<view class="list_top">
-				<text class="font-32">{{item.data[0].productInfo.store_name}}</text>
+				<text class="font-32 text_limit">{{item.data[0].productInfo.store_name}}</text>
 			</view>
 			<view class="list_info" v-for="(ite,ind) in item.data" :key="ind">
 				<image :src="ite.productInfo.image" mode=""></image>
@@ -227,9 +227,13 @@
 			settlement(){
 				//创建订单编号
 				let that = this;
+				let pages = getCurrentPages();  //获取所有页面栈实例列表
+				let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
+				
 				that.basePost(
 					that.U({ c: 'auth_api', a: 'create_order'}),
 					{
+						mer_id:prevPage.$vm.goodsInfo.mer_id,
 						key:that.orderKey,
 						addressId:that.defaultAddress.id,
 						couponId:that.array[that.couponIndex].id,
@@ -412,7 +416,7 @@
 		display: flex;
 		align-items: center;
 		justify-content:flex-end;
-		margin-left: 350upx;
+		margin-left: 400upx;
 	}
 	.order_btn button{
 		margin-left: 25upx;

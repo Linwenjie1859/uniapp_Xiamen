@@ -4854,6 +4854,7 @@ scroll-view.cu-steps .cu-item {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
+  text-overflow: ellipsis;
 }
 .loading-more {
 	-webkit-box-align: center;

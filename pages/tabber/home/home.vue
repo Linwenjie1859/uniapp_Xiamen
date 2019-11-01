@@ -70,7 +70,7 @@
 			<view class="product_list font-28">
 				<view class="prod_view" @tap="goodeDetails" :data-id="item.id" v-for="(item, index) in allInfo.info.bastList" :key="index">
 					<image :src="item.image" mode=""></image>
-					<text class="font-28 text_limit" style="width: 335rpx; display: block;">{{ item.store_name }}</text>
+					<text class="font-28 text_limit" style="width: 335rpx; display: block; text-align: left;">{{ item.store_name }}</text>
 					<view class="list_info">
 						<text class="font-24 orange">￥{{ item.ot_price }}</text>
 						<text class="font-24">月售{{ item.sales }}件</text>

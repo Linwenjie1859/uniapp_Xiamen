@@ -351,9 +351,13 @@ var _default =
     settlement: function settlement() {
       //创建订单编号
       var that = this;
+      var pages = getCurrentPages(); //获取所有页面栈实例列表
+      var prevPage = pages[pages.length - 2]; //上一页页面实例
+
       that.basePost(
       that.U({ c: 'auth_api', a: 'create_order' }),
       {
+        mer_id: prevPage.$vm.goodsInfo.mer_id,
         key: that.orderKey,
         addressId: that.defaultAddress.id,
         couponId: that.array[that.couponIndex].id,

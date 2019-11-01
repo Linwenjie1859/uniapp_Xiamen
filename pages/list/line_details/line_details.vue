@@ -62,14 +62,14 @@
 				</view>
 			</view>
 			<!-- 日期 -->
-		
+
 			<mx-date-picker
 				:show="showPicker"
 				type="date"
 				:value="value"
 				show-tips="true"
 				begin-text="预订"
-				end-text="离开" 
+				end-text="离开"
 				show-seconds="true"
 				@confirm="onSelected"
 				@cancel="onSelected"
@@ -79,7 +79,7 @@
 				<view class="flex align-center">
 					<image src="/static/time.png" mode=""></image>
 					<text class="font-28">出行日期</text>
-					<text class="font-28 margin-left-sm" @click="onShowDatePicker()">{{ date}}</text>
+					<text class="font-28 margin-left-sm" @click="onShowDatePicker()">{{ date }}</text>
 				</view>
 				<!-- <view class="time_list">
 					<scroll-view class="scroll-view" scroll-x="true" @scroll="scroll" scroll-left="0">
@@ -111,7 +111,7 @@
 
 			<!-- 详情 -->
 			<view class="list_top">
-				<Tabs :TabList="TabList" :currentTab="current" @tabs="tabsChange" >
+				<Tabs :TabList="TabList" :currentTab="current" @tabs="tabsChange">
 					<!-- 行程 -->
 					<view class="list_top" slot="trip">
 						<view class="flex">
@@ -120,55 +120,19 @@
 						</view>
 						<view class="product_trait gray">
 							<view class="trait_list">
-								<text class="font-32">{{goodsInfo.storeInfo.trip_id.view}}</text>
+								<text class="font-32">{{ goodsInfo.storeInfo.trip_id.view }}</text>
 								<text class="font-28">景点</text>
 							</view>
 							<view class="trait_list">
-								<text class="font-32">{{goodsInfo.storeInfo.trip_id.eat}}</text>
+								<text class="font-32">{{ goodsInfo.storeInfo.trip_id.eat }}</text>
 								<text class="font-28">餐食</text>
 							</view>
 							<view class="trait_list">
-								<text class="font-32">{{goodsInfo.storeInfo.trip_id.item}}</text>
+								<text class="font-32">{{ goodsInfo.storeInfo.trip_id.item }}</text>
 								<text class="font-28">自费项目</text>
 							</view>
 						</view>
-						<view class="trip_list">
-							<view class="list_view" v-for="(item,index) in goodsInfo.storeInfo.trip_id.process" :key="index" >
-								<view class="flex"> 
-									<image src="/static/collection_icon.png" mode="" v-if="item[1]"></image>
-									<text class="font-32">{{item[1]}}</text>
-								</view>
-								<text class="detailed font-28 gray">{{item[0]}}</text>
-							</view>
-							<!-- <view class="list_view">
-								<view class="flex">
-									<image src="/static/che.png" mode=""></image>
-									<text class="font-32">07:50</text>
-								</view>
-								<text class="detailed font-28 gray">前往风阳镇葡萄庄园</text>
-							</view>
-							<view class="list_view">
-								<view class="flex">
-									<image src="/static/destination.png" mode=""></image>
-									<text class="font-32">08：30</text>
-								</view>
-								<text class="detailed font-28 gray">到达风阳镇葡萄庄园</text>
-							</view>
-							<view class="list_view">
-								<view class="flex">
-									<image src="/static/destination.png" mode=""></image>
-									<text class="font-32">11：30</text>
-								</view>
-								<text class="detailed font-28 gray">包午餐，不包早晚餐</text>
-							</view>
-							<view class="list_view">
-								<view class="flex">
-									<image src="/static/destination.png" mode=""></image>
-									<text class="font-32">18：30</text>
-								</view>
-								<text class="detailed font-28 gray">无住宿</text>
-							</view> -->
-						</view>
+						<view class="font-28 product_info"><rich-text :nodes="goodsInfo.storeInfo.process"></rich-text></view>
 					</view>
 
 					<!-- 产品详情 -->
@@ -177,22 +141,17 @@
 							<image src="/static/sc_icon.png" mode=""></image>
 							<text class="font-28">产品详情</text>
 						</view>
-						<view class="font-28 product_info">
-							<rich-text :nodes="goodsInfo.storeInfo.description"></rich-text>
-						</view>
+						<view class="font-28 product_info"><rich-text :nodes="goodsInfo.storeInfo.description"></rich-text></view>
 					</view>
 
 					<!-- 费用须知 -->
-					<view class="list_top" slot='cost'>
+					<view class="list_top" slot="cost">
 						<view class="flex">
 							<image src="/static/sc_icon.png" mode=""></image>
 							<text class="font-28">费用须知</text>
 						</view>
-						<view class="font-28 product_info" v-for="(item,index) in goodsInfo.storeInfo.attention" :key="index">
-							{{item}}
-						</view>
+						<view class="font-28 product_info"><rich-text :nodes="goodsInfo.storeInfo.attention"></rich-text></view>
 					</view>
-				
 				</Tabs>
 			</view>
 
@@ -231,18 +190,18 @@
 
 <script>
 // 底部弹出层
-import uniPopup from '@/components/uni-popup/uni-popup.vue'
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 // tab
-import Tabs from '../../../components/wiszx-tabs/tabs.vue'
+import Tabs from '../../../components/wiszx-tabs/tabs.vue';
 
-import MxDatePicker from "@/components/mx-datepicker/mx-datepicker.vue";
+import MxDatePicker from '@/components/mx-datepicker/mx-datepicker.vue';
 
 export default {
 	components: {
 		uniPopup,
 		// tab
 		Tabs,
-		MxDatePicker,
+		MxDatePicker
 	},
 	data() {
 		return {
@@ -288,7 +247,7 @@ export default {
 				{
 					title: '产品详情'
 				},
-				{	
+				{
 					title: '用费须知'
 				}
 			]
@@ -299,14 +258,16 @@ export default {
 		this.getGoodInfo();
 	},
 	methods: {
-		onShowDatePicker(){//显示
+		onShowDatePicker() {
+			//显示
 			this.showPicker = true;
 			this.value = this.date;
 			console.log(this);
 		},
-		onSelected(e) {//选择
+		onSelected(e) {
+			//选择
 			this.showPicker = false;
-			if(e) {
+			if (e) {
 				this.date = e.value;
 				//选择的值
 				console.log(e.value);
@@ -358,8 +319,8 @@ export default {
 					});
 				},
 				function(res) {
-					if(res.msg.indexOf("该产品库存不足")!=-1){
-						that.Tips({title:res.msg});
+					if (res.msg.indexOf('该产品库存不足') != -1) {
+						that.Tips({ title: res.msg });
 					}
 				},
 				true
@@ -373,44 +334,44 @@ export default {
 		},
 		cart(e) {
 			uni.navigateTo({
-				url: "/pages/tabber/shopping_cart/shopping_cart"
-			})
+				url: '/pages/tabber/shopping_cart/shopping_cart'
+			});
 		},
 		details(e) {
 			uni.navigateTo({
-				url: '/pages/shop/comments_details/comments_details?id='+this.goodsInfo.storeInfo.id
-			})
+				url: '/pages/shop/comments_details/comments_details?id=' + this.goodsInfo.storeInfo.id
+			});
 		},
 		// 底部弹出层
 		togglePopup(type, open) {
 			switch (type) {
 				case 'top':
-					this.content = '顶部弹出 popup'
-					break
+					this.content = '顶部弹出 popup';
+					break;
 
 				case 'bottom':
-					this.content = '底部弹出 popup'
-					break
+					this.content = '底部弹出 popup';
+					break;
 				case 'center':
-					this.content = '居中弹出 popup'
-					break
+					this.content = '居中弹出 popup';
+					break;
 			}
-			this.type = type
+			this.type = type;
 			if (open === 'tip') {
-				this.show = true
+				this.show = true;
 			} else {
-				this.$refs[open].open()
+				this.$refs[open].open();
 			}
 		},
 		cancel(type) {
 			if (type === 'tip') {
-				this.show = false
-				return
+				this.show = false;
+				return;
 			}
-			this.$refs[type].close()
+			this.$refs[type].close();
 		},
 		change(e) {
-			console.log(e.show)
+			console.log(e.show);
 		},
 		//加购商品数量增减
 		addSubNum(num) {
@@ -422,27 +383,25 @@ export default {
 		},
 		// time_list
 		scroll: function(e) {
-			console.log(e)
-			this.old.scrollTop = e.detail.scrollTop
+			console.log(e);
+			this.old.scrollTop = e.detail.scrollTop;
 		},
 		goTop: function(e) {
 			// 解决view层不同步的问题
-			this.scrollTop = this.old.scrollTop
+			this.scrollTop = this.old.scrollTop;
 			this.$nextTick(function() {
-				this.scrollTop = 0
+				this.scrollTop = 0;
 			});
 			uni.showToast({
-				icon: "none",
-				title: "纵向滚动 scrollTop 值已被修改为 0"
-			})
+				icon: 'none',
+				title: '纵向滚动 scrollTop 值已被修改为 0'
+			});
 		},
 
 		// tab
 		tabsChange(index) {
-			this.current = index
+			this.current = index;
 		}
-
-
 	}
 };
 </script>
@@ -568,7 +527,7 @@ page {
 	font-size: 28rpx;
 }
 
-.margin-left-sm{
+.margin-left-sm {
 	margin-left: 20rpx;
 }
 // 商品
@@ -617,7 +576,7 @@ page {
 	justify-content: space-between;
 	padding-bottom: 25upx;
 }
-.align-center{
+.align-center {
 	align-items: center;
 }
 .shop_view .static {

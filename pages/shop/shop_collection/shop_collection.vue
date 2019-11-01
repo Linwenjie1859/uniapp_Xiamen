@@ -21,7 +21,7 @@
 								<text class="font-32 block" @tap="enterShop(item.mid)">{{item.store_name}}</text>
 								<view class="num">
 									<text class="font-24 gray">销量{{item.sale_count}}</text>
-									<text class="font-24 gray">访问量{{item.views}}次</text>
+									<text class="font-24 gray">收藏量{{item.fav_count}}次</text>
 								</view>
 							</view>
 							<button class="btn_collection_green" @tap="enterShop(item.mid)">进店逛逛</button>
