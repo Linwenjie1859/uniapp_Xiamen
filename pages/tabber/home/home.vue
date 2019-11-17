@@ -1,11 +1,11 @@
 <template>
 	<view class="content">
 		<view class="header">
-			<view class="input_view" @tap="search"><text class="font-28 gray">搜索商品</text></view>
+			<view class="input_view round" @tap="search"><text class="text-lg text-grey">搜索商品</text></view>
 			<!-- 头部-滚动渐变显示 -->
-			<view class="after" :style="{ opacity: afterHeaderOpacity, zIndex: afterHeaderzIndex }"></view>
+			<view class="after" :style="{ opacity: afterHeaderOpacity, zIndex: afterHeaderzIndex ,height:StatusAddNav+'px'}"></view>
 		</view>
-
+		<!-- 首页头部轮播图 Start -->
 		<view class="banner">
 			<view class="uni-padding-wrap">
 				<view class="page-section swiper">
@@ -25,15 +25,20 @@
 				</view>
 			</view>
 		</view>
+		<!-- 首页头部轮播图 End -->
+		
+		<!-- 首页消息通知 Start -->
 		<view class="notice">
-			<image src="/static/notice.png" mode=""></image>
+			<text class="cuIcon-notificationfill text-orange margin-left margin-right-xs"></text>
 			<swiper class="notice_view" vertical="true" autoplay="true" circular="true" interval="3000">
 				<swiper-item v-for="(item, index) in allInfo.roll" :key="index">
-					<navigator class="font-28 text_limit">{{ item.info }}</navigator>
+					<navigator :url="item.url" class="font-28 text_limit">{{ item.info }}</navigator>
 				</swiper-item>
 			</swiper>
 		</view>
-
+		<!-- 首页消息通知 End -->
+		
+		<!-- 首页导航栏 Start -->
 		<view class="home_list">
 			<view class="list_top font-28">
 				<view class="top_view" @tap="fengyangScenery" v-for="(item, index) in allInfo.menus" :key="index">
@@ -41,13 +46,17 @@
 					<text>{{ item.name }}</text>
 				</view>
 			</view>
-			<image class="home_pic2" :src="allInfo.article_category[0].image" mode=""></image>
+			
+			<image class="radius home_pic2" :src="allInfo.banner[1].pic" mode=""></image>
+			
 			<view class="list_down">
 				<image :src="allInfo.article_menus[0].pic" mode="" @tap="fengyang_scenery"></image>
 				<image :src="allInfo.article_menus[1].pic" mode="" @tap="flowering_seasons"></image>
 				<image :src="allInfo.article_menus[2].pic" mode="" @tap="fruit_garden"></image>
 			</view>
 		</view>
+		<!-- 首页导航栏 End -->
+		
 		<view class="home_list">
 			<view class="title">
 				<text class="font-32">玩转凤阳</text>
@@ -87,6 +96,9 @@ export default {
 	data() {
 		return {
 			//所有参数
+			StatusBarHeight:this.StatusBarHeight,
+			NavigationBar:this.NavigationBar,
+			StatusAddNav:this.StatusAddNav,	
 			allInfo: {},
 			// banner
 			indicatorDots: true,
@@ -205,7 +217,7 @@ page {
 /* 头部 */
 .header {
 	width: 100%;
-	height: 170upx;
+	height: 150upx;
 	display: flex;
 	align-items: center;
 	position: fixed;
@@ -213,31 +225,29 @@ page {
 	z-index: 10;
 }
 .input_view {
-	width: 580upx;
-	height: 70upx;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 10upx;
+	width: 450upx;
+	height: 60upx;
+	background-color: rgba(255, 255, 255, 0.7);
 	position: absolute;
-	left: 50%;
-	margin-left: -290upx;
-	bottom: 25upx;
-	z-index: 100;
+	left: 20%;
+	z-index: 1024;
+	border: 1px solid rgba(135, 153, 163, 0.3);
+	bottom: 39rpx;
 }
 
 .input_view text {
 	display: block;
-	width: 580upx;
-	height: 70upx;
-	line-height: 70upx;
+	width: 450upx;
+	height: 60upx;
+	line-height: 60upx;
 	text-align: center;
 }
 .after {
 	width: 100%;
-	height: 170upx;
 	position: fixed;
 	top: 0upx;
+	background: #39b54a;
 	transition: opacity 0.05s linear;
-	background-color: #51c77d;
 	color: #fff;
 }
 
@@ -281,9 +291,9 @@ page {
 
 .notice_view {
 	text-align: left;
-	width: 640upx;
-	height: 90upx;
-	line-height: 90upx;
+	width: 650upx;
+	height: 75upx;
+	line-height: 75upx;
 }
 
 .home_list {
@@ -314,7 +324,7 @@ page {
 
 .home_pic2 {
 	width: 700upx;
-	height: 290upx;
+	height: 300upx;
 	margin: 25upx auto;
 }
 

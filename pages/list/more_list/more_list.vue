@@ -3,10 +3,10 @@
 		<view class="scenery_list">
 			<view class="list_view">
 				<view class="scenery" @tap="detail" :data-id="article.id" v-for="(article, index) in list" :key="index">
-					<image class="scenery_img" :src="article.image_input[0]" mode=""></image>
+					<image class="scenery_img radius" :src="article.image_input[0]" mode=""></image>
 					<view class="info_list">
-						<text class="font-32 text_limit">{{ article.title }}</text>
-						<text class="font-28 text_info">{{ article.synopsis }}</text>
+						<text class="text-lg text_limit text-black">{{article.title}}</text>
+						<text class="text-df text_info text-gray">{{article.synopsis}}</text>
 						<view class="see_list">
 							<text class="font-24 gray">{{ article.add_time }}</text>
 							<view class="num">
@@ -114,7 +114,7 @@ export default {
 }
 .scenery_list {
 	width: 700upx;
-	margin: 25upx auto;
+	margin: 0upx auto;
 }
 .scenery_pic {
 	width: 700upx !important;
@@ -167,8 +167,6 @@ export default {
 .info_list .text_info {
 	width: 430upx;
 	display: block;
-	height: 80upx;
-	ine-height: 30px;
 	text-align: left;
 	text-overflow: ellipsis;
 	display: -webkit-box;

@@ -1,31 +1,26 @@
 <template>
-	<view class="content">
+	<view>
 		<view class="loading-more"><uni-load-more :status="loadingStatus" v-if="refreshFlag" /></view>
-		<!-- 未登录页面 -->
-		<view class="no_data" style="display: none;">
-			<image src="/static/no_data.png" mode=""></image>
-			<text class="font-28 gray">空空如也~</text>
-			<button class="btn_login_green" style="margin: 50upx auto;">登陆</button>
-		</view>
 		<!-- 商品列表 -->
-		<view class="goods-list">
-			<view class="no_data" v-if="noDateFlag">
-				<image src="/static/no_data.png" mode=""></image>
-				<text class="font-28 gray">购物车空空如也~</text>
-			</view>
-			<view class="goods" v-for="(row, index) in goodsList" :key="index">
-				<view class="shop_top">
-					<!-- checkbox -->
-					<view class="checkbox-box" @tap="setCheckedList(index)">
-						<view class="checkbox"><view :class="[checkedList.indexOf(index) != -1 ? 'on' : '']"></view></view>
+		<view class="margin-lr-sm">
+			<view class="flex flex-direction has-radius bg-white margin-top-sm" v-for="(row, index) in goodsList" :key="index" >
+				<!-- 店铺名称标题 Start -->
+				<view class="flex justify-between align-center padding-top-sm margin-lr-sm">
+					<view class="flex align-center">
+						<view class="checkbox-box" @tap="setCheckedList(index)">
+							<view class="checkbox"><view :class="[checkedList.indexOf(index) != -1 ? 'on' : '']"></view></view>
+						</view>
+						<text class="cuIcon-shop margin-lr-xs" style="font-size: 44rpx;" ></text>
+						<text class="text-df">{{ row.name }}</text>
 					</view>
-					<image class="shop_img" src="/static/dp_icon.png" mode=""></image>
-					<text class="font-32">{{ row.name }}</text>
-					<text class="font-28" @tap="getCupon">领券</text>
+					<text class="text-sm" @tap="getCupon">领券</text>
 				</view>
-				<view class="row" v-for="(rows, ind) in row.list" :key="ind">
+				<!-- 店铺名称标题 End -->
+				
+				
+				<view class="flex has-radius view-is-position" v-for="(rows, ind) in row.list" :key="ind">
 					<!-- 删除按钮 -->
-					<view class="menu" @tap.stop="deleteGood(rows.id,index,ind)"><image src="/static/del_white.png" mode=""></image></view>
+					<view class="menu" @tap.stop="deleteGood(rows.id,index,ind)"><text class="cuIcon-delete" style="font-size: 36rpx;"></text></view>
 					<!-- 商品 -->
 					<view 
 						class="carrier"
@@ -35,17 +30,18 @@
 						@touchend="touchEnd(rows.id ,  $event)"
 					>
 						<!-- 商品信息 -->
-						<view class="goods-info">
+						<view class="goods-info margin-lr-sm">
 							<!-- checkbox -->
 							<view class="checkbox-box" @tap="setCheckedItem(index, ind)">
 								<view class="checkbox"><view :class="[rows.checked ? 'on' : '']"></view></view>
 							</view>
-							<image :src="rows.productInfo.image" @tap="goodDetail(rows.productInfo.id)"></image>
-							<view class="info">
-								<text class="title font-28 text_limit" >{{ rows.productInfo.store_name }}</text>
+							<image class="margin-left-xs radius" :src="rows.productInfo.image" @tap="goodDetail(rows.productInfo.id)"></image>
+							
+							<view class="info margin-left-sm">
+								<text class="text-has-omit" style="font-size: 25rpx;" >{{ rows.productInfo.store_name }}</text>
 								<text class="spec font-24">已售{{ rows.productInfo.sales }}件</text>
 								<view class="price-number">
-									<text class="price font-32 orange">￥{{ rows.productInfo.price }}</text>
+									<text class="text-price text-df text-bold orange">{{ rows.productInfo.price }}</text>
 									<view class="number"> 
 										<view class="sub font-32" @tap="addSubNum(index, ind, -1)"><text class="icon jian">-</text></view>
 										<input type="number" class="input font-28" v-model.number="rows.cart_num" @blur="addSubNum(index,ind,0)"/>
@@ -58,20 +54,22 @@
 				</view>
 			</view>
 		</view>
-		<view class="clear" style="height: 100upx;"></view>
-		<!-- 脚部菜单 -->
-		<view class="footer" :style="{ bottom: footerbottom }">
-			<view class="checkbox-box" @tap="setCheckedFlag">
-				<view class="checkbox"><view :class="[checkedAllFlag ? 'on' : '']"></view></view>
+		
+		<view style="height: 110upx;"></view>
+		<!-- 脚部菜单 Start-->
+		<view class="footer">
+			<view class="flex">
+				<view class="margin-left-sm" @tap="setCheckedFlag">
+					<view class="checkbox"><view :class="[checkedAllFlag ? 'on' : '']"></view></view>
+				</view>
+				<view class="text-df margin-left-xs">全选</view>
 			</view>
-			<view class="text font-28">全选</view>
-			<!-- <view class="delBtn" @tap="deleteList" v-if="selectedList.length>0">删除</view> -->
-			<view class="sum font-28">
-				合计:
-				<view class="money font-32 orange">￥{{ sumAllPrice }}</view>
+			<view class="flex align-center text-df">
+				合计:<view class="text-sm orange text-price margin-left-xs">{{ sumAllPrice }}</view>
+				<button class="bg-green text-df margin-lr-sm" @tap="purchase">结算{{ checkedNum==0?'':'('+checkedNum+')' }}</button>
 			</view>
-			<button class="btn_pur_green btn" @tap="purchase">结算{{ checkedNum==0?'':'('+checkedNum+')' }}</button>
 		</view>
+		<!-- 脚部菜单 End-->
 	</view>
 </template>
 
@@ -83,6 +81,7 @@ export default {
 	},
 	data() {
 		return {
+			
 			//加载loading标记
 			refreshFlag: true,
 			loadingStatus:'loading',
@@ -409,50 +408,24 @@ export default {
 };
 </script>
 <style lang="scss">
+	.has-radius{
+		border-radius: 12upx;
+	}
 page {
 	background-color: #f2f2f2;
 }
 
-.btn_login_green {
-	width: 120upx;
-	height: 50upx;
-	font-size: 24upx;
-	background-color: rgba(0, 0, 0, 0);
-	color: #999999;
-	border-radius: 10upx;
-	border: 2upx solid #999999;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-	line-height: 44upx;
-}
 
-.goods-list {
-	width: 700upx;
-	margin: 25upx auto;
-}
-
-.goods {
-	width: 700upx;
-	margin-top: 25upx;
-	background-color: #ffffff;
-	border-radius: 10upx;
-}
-
-.goods-list .row {
-	width: 700upx;
-	height: 180upx;
-	margin: 0 auto;
-	border-radius: 10upx;
-	// margin-bottom: 25upx;
+ .view-is-position {
+	height: 200upx;
 	position: relative;
 	overflow: hidden;
 	z-index: 4;
 }
 
-.goods-list .row .menu {
+.menu {
 	width: 150upx;
-	height: 180upx;
+	height: 196upx;
 	position: absolute;
 	right: 0;
 	display: flex;
@@ -461,17 +434,17 @@ page {
 	background-color: red;
 	color: #fff;
 	z-index: 2;
+	top: 1px;
+	border-top-right-radius: 12rpx;
+	border-bottom-right-radius: 12rpx;
 }
-
-.goods-list .row .menu image {
-	width: 35upx;
-	height: 35upx;
+ image {
+	width: 160upx;
+	height: 140upx;
 }
-
-.goods-list .row .carrier {
-	width: 700upx;
-	margin: 0 auto;
-	border-radius: 10upx;
+.carrier {
+	display: flex;
+	border-radius: 12upx;
 }
 
 .carrier {
@@ -511,19 +484,7 @@ page {
 	z-index: 3;
 }
 
-.goods-list .shop_top {
-	width: 650upx;
-	margin: 0upx 25upx;
-	padding-top: 25upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.shop_top .shop_img {
-	width: 70upx !important;
-	height: 70upx !important;
-	margin: 0upx 10upx 0upx 25upx;
-}
+
 
 .loading-more {
 	align-items: center;
@@ -532,16 +493,13 @@ page {
 	// padding-bottom: 10px;
 	text-align: center;
 }
-
-.goods-list .shop_top .font-32 {
+.font-32 {
 	width: 450upx;
 	display: block;
 	text-align: left;
 }
-
-.goods-list .row .carrier .checkbox-box {
+.carrier .checkbox-box {
 	height: 35upx;
-	margin-right: 25rpx;
 }
 
 .checkbox {
@@ -566,32 +524,19 @@ page {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC+ElEQVRYR8WXy2vUUBTGv5OZpCIqRexDp8miYpOBurEuFLQKirR26wsKgv4F/gW2de9G16IbQbFrW0TEtjtfiKiT6dQuklatuJCWgk0mcySxHSeTTPMYYbLL5J7v+91zz9x7LqHFD7XYH7EBSkAbK9lBh2kIhOME6gI4xwyHiFYA/sqMVwBPO2b5ZT9gxZlcLICiLF1m4jsAdcYRZeC7wLihmtbjqPHbAix2ostqk+6DMBwlFPqdMSVtWNd6f2ClUXxDgPlcZqQiCA9AtC+V+VYQ808Gj+bN8rMwnVCAgpw9R6BpEMVaokhAZgbzeW2pPF0/NmBQ7EGOBfEjQO2RwokG8C+q2P3qEpZrwwIAuizOguhkIu24g5nnNNMebAig5zIXkMk8iauXapzjXNSWncmtWF8GdEX6AqA3lXBNEDOXiagEIB+itagZ1sEAQEERBwj0pllzgFeJcVY17de6LM6B6ES9JoOP5g37rft7NQMFRRonYKw5AF4VHJzqW7bfl7rR4YjiJxB1BAEwkTescR+ArojPATqTHqDOXJJmAWjhevxCM2zP618GZKlIhL50AEnMAWbM501LrQMQ14loZwhAIbthnXYkcZSB28HNKZm5q8/M63nT3lW/BKsA7Q4DUA3rMAFOURGvMsPdnjczl9z8rz6vaYa9pw5A0gF4aQl5JlXDuuKHwJqv4LZd84BiUTMsrz6qNRCjCH0Q5OBDtdqTmbsZCBZhsSd7kwVhIqIIqxDuOO+vltgcoEplTF0q3/JloLRfPOKI5G0OcSAWurE3jbmrnbF54NA3+50PwH3RZWkBhOo22QiEgc/EaAfhQBRtyPfwrdgDaPVh5EIUZHGGiHxHZopZhodEHcduVMsbEm8perJDEISp/zhztycbCusLG/Z8m33hw5Y0pVszd9vyjR3SPQJGUmbjqfTbup6qLa811BXpEsB3419MeEVgci8mj6LAY7fdNVezYRCONbqaZYinLKM881+vZlGzaOZ77Aw0Y7Jd7B9C42gwboolDgAAAABJRU5ErkJggg==);
 }
 
-.goods-list .row .carrier .goods-info {
-	width: 650upx;
+.carrier .goods-info {
 	display: flex;
 	align-items: center;
-	margin: 0upx 25upx;
-	margin-top: 25upx;
 }
 
-.goods-info image {
-	width: 130upx;
-	height: 130upx;
+
+.info {
+	width: 460upx;
 }
 
-.goods-info .info {
-	width: 430upx;
-	height: 130upx;
-	margin: 0upx 0upx 0upx 25upx;
-}
 
-.goods-info .info .title {
-	display: block;
-	width: 430upx;
-	overflow: hidden;
-}
 
-.goods-info .info .spec {
+.info .spec {
 	display: block;
 	width: 150upx;
 	text-align: center;
@@ -603,14 +548,14 @@ page {
 	margin: 10upx 0upx;
 }
 
-.goods-info .info .price-number {
+ .info .price-number {
 	width: 430upx;
 	display: flex;
 	align-items: flex-end;
 	justify-content: space-between;
 }
 
-.goods-info .info .number {
+.info .number {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -649,56 +594,7 @@ input {
 	position: fixed;
 	bottom: 0upx;
 	z-index: 5;
-	// padding-bottom: 30upx;
 }
 
-.footer .checkbox-box {
-	margin-left: 50upx;
-}
 
-.footer .text {
-	margin-left: 25upx;
-}
-
-// .delBtn {
-// 	border: solid 1upx #f06c7a;
-// 	color: #f06c7a;
-// 	padding: 0 30upx;
-// 	height: 50upx;
-// 	border-radius: 30upx;
-// 	display: flex;
-// 	justify-content: center;
-// 	align-items: center;
-// }
-.sum {
-	width: 330upx;
-	text-align: right;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-.btn {
-	margin: 0upx 50upx 0upx 25upx;
-}
-
-.no_data {
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-	margin-top: 300upx;
-}
-
-.no_data image {
-	width: 200upx;
-	height: 200upx;
-	margin: 0 auto;
-}
-
-.no_data text {
-	display: block;
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-}
 </style>

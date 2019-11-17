@@ -75,6 +75,35 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*每个页面公共css */
 /*
   ColorUi for uniApp  v2.1.6 | by 文晓港 2019-05-31 10:44:24
@@ -4841,6 +4870,7 @@ scroll-view.cu-steps .cu-item {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
+  display: block;
 }
 .text-has-omit {
   display: -webkit-box;
@@ -4852,6 +4882,8 @@ scroll-view.cu-steps .cu-item {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
+  text-overflow: ellipsis;
+  display: block;
 }
 .loading-more {
 	-webkit-box-align: center;
@@ -5046,14 +5078,5 @@ scroll-view.cu-steps .cu-item {
 	width: 35rpx !important;
 	height: 35rpx !important;
 }
-.flex {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
+
 

@@ -4,7 +4,7 @@
 }
 .scenery_list.data-v-29007f5e {
 	width: 700rpx;
-	margin: 25rpx auto;
+	margin: 0rpx auto;
 }
 .scenery_pic.data-v-29007f5e {
 	width: 700rpx !important;
@@ -58,8 +58,6 @@
 .info_list .text_info.data-v-29007f5e {
 	width: 430rpx;
 	display: block;
-	height: 80rpx;
-	ine-height: 30px;
 	text-align: left;
 	-o-text-overflow: ellipsis;
 	   text-overflow: ellipsis;

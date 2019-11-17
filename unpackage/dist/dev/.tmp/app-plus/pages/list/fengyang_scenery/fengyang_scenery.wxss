@@ -3,14 +3,11 @@
 	text-align: center;
 }
 .scenery_list {
-	width: 700rpx;
-	margin: 25rpx auto;
+	margin: 0 auto;
 }
 .scenery_pic{
-	width: 700rpx!important;
-	height: 250rpx!important;
-	margin: 0 auto;
-	border-radius: 10rpx;
+	width: 750rpx!important;
+	height: 300rpx!important;
 }
 .scenery_list .title {
 	display: block;
@@ -21,6 +18,7 @@
 	width: 700rpx;
 	background-color: #FFFFFF;
 	border-radius: 10rpx;
+	margin: 0 auto;
 	/* margin-top: 25upx; */
 }
 .scenery_list .scenery {
@@ -58,8 +56,6 @@
 .info_list .text_info {
 	width: 430rpx;
 	display: block;
-	height: 80rpx;
-	ine-height: 30px;
 	text-align: left;
 	-o-text-overflow: ellipsis;
 	   text-overflow: ellipsis;

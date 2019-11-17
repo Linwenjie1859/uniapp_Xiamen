@@ -9,7 +9,7 @@
 					"titleNView": false
 				}
 			}
-		},{
+		},{ 
 			"path": "pages/login/code_login/code_login",
 			"style": {
 				"navigationStyle": "custom",
@@ -37,7 +37,7 @@
 			}
 		},
 		{
-			"path": "pages/tabber/user/user",
+			"path": "pages/tabber/user/user", 
 			"style": {
 				"navigationStyle": "custom",
 				"app-plus": {
@@ -121,7 +121,7 @@
 		}, {
 			"path": "pages/list/fengyang_scenery/fengyang_scenery",
 			"style": {
-				"navigationBarTitleText": "凤阳风光"
+				"navigationBarTitleText": "漫游厦门"
 			}
 		},
 		{
@@ -268,7 +268,7 @@
         }
         ,{
             "path" : "pages/list/list_detail/list_detail",
-            "style" : {"navigationBarTitleText": "详情"}
+            "style" : {"navigationBarTitleText": "文章详情"}
         }
         ,{
             "path" : "pages/map/map",
@@ -277,43 +277,44 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "",
-		"navigationBarBackgroundColor": "#51C77D",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#39b54a",
+		"backgroundColor": "#39b54a",
+		"backgroundTextStyle":"light"
 	},
 	"tabBar": {
 		"color": "#999999",
-		"selectedColor": "#51C77D",
+		"selectedColor": "#1296db",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{
 				"pagePath": "pages/tabber/home/home",
-				"iconPath": "/static/home_2.png",
-				"selectedIconPath": "/static/home_1.png",
+				"iconPath": "/static/index_default.png",
+				"selectedIconPath": "/static/index_check.png",
 				"text": "主页" 
 			},
 			{
 				"pagePath": "pages/tabber/fengyang_fair/fengyang_fair",
-				"iconPath": "/static/fengyang_2.png",
-				"selectedIconPath": "/static/fengyang_1.png",
-				"text": "凤阳集市"
+				"iconPath": "/static/basket_default.png",
+				"selectedIconPath": "/static/basket_check.png",
+				"text": "购物场"
 			},
 			{
 				"pagePath": "pages/tabber/shopping_cart/shopping_cart",
-				"iconPath": "/static/cart_2.png",
-				"selectedIconPath": "/static/cart_1.png",
+				"iconPath": "/static/cart_default.png",
+				"selectedIconPath": "/static/cart_check.png",
 				"text": "购物车"
 			},
 			{
-				"pagePath": "pages/tabber/benefit_products/benefit_products",
-				"iconPath": "/static/huinong_2.png",
-				"selectedIconPath": "/static/huinong_1.png",
-				"text": "惠农产品"
+				// "pagePath": "pages/tabber/benefit_products/benefit_products",
+				"pagePath": "pages/list/fengyang_scenery/fengyang_scenery",
+				"iconPath": "/static/play_default.png",
+				"selectedIconPath": "/static/play_check.png",
+				"text": "漫游厦门"
 			},
 			{
 				"pagePath": "pages/tabber/user/user",
-				"iconPath": "/static/my_2.png",
-				"selectedIconPath": "/static/my_1.png",
+				"iconPath": "/static/people_default.png",
+				"selectedIconPath": "/static/people_check.png",
 				"text": "我的"
 			}
 		]
@@ -322,7 +323,7 @@
 		"current": 0, //当前激活的模式（list 的索引项）
 		"list": [{
 			"name": "Vineyard", //模式名称  
-			"path": "pages/tabber/fengyang_fair/fengyang_fair" //启动页面，必选
+			"path": "pages/tabber/shopping_cart/shopping_cart" //启动页面，必选
 		}]
 	} 
 }

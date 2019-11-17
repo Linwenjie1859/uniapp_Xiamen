@@ -1,9 +1,8 @@
 <script>
+import Vue from 'vue'
 import util from 'common/util.js';
 import { mapState, mapMutations } from 'vuex';
 
-// const URL = 'http://fyang.shcmall.cn/index.php';
-// const URL = 'http://www.fyang.com';
 export default {
 	computed: {
 		...mapState(['navHeight']),
@@ -34,28 +33,58 @@ export default {
 			);
 		}
 
-		// if (URL == '') {
-		// 	console.error('请配置请求url\n请修改开发者工具中【详情】->【AppID】改为自己的Appid\n请前往后台【小程序】->【小程序配置】填写自己的 appId and AppSecret');
-		// 	return false;
-		// }
-		// if (option.query.hasOwnProperty('scene') && option.scene == 1047) this.globalData.code = option.query.scene;
-		// if (option.query.hasOwnProperty('scene') && option.scene == 1001) this.globalData.spid = option.query.scene;
-		// this.getMyMenus();
 		// 展示本地存储能力
 		var logs = uni.getStorageSync('logs') || [];
 		logs.unshift(Date.now());
-		// wx.setStorageSync('logs', logs);
 		// 获取导航高度；
 		uni.getSystemInfo({
-			success: res => {
+			success: e => {
+				console.log("getSystemInfo:",e);
 				//导航高度
-				// console.log("app",res);
-				// console.log(res.statusBarHeight * (750 / res.windowWidth) + 97);
-				// console.log(this.navHeight);
-				this.navHeight = res.statusBarHeight * (750 / res.windowWidth) + 97;
+				this.navHeight = e.statusBarHeight * (750 / e.windowWidth) + 97;
 				that.setNavHeight({
 					navHeight: this.navHeight
 				});
+				
+				Vue.prototype.ScreentHeight = e.screenHeight;	//四个总和的高度
+				Vue.prototype.StatusBarHeight = e.statusBarHeight;	//时间状态高度
+				Vue.prototype.NavigationBar = 44;	//导航栏高度
+				Vue.prototype.StatusAddNav = 44+e.statusBarHeight;	//导航栏高度+时间状态高度
+				
+				Vue.prototype.WindowHeight = e.windowHeight;	//中心部分高度
+				Vue.prototype.TabBar = 50;	//底部选项卡高度
+				
+				// // #ifdef APP-PLUS || MP-WEIXIN
+				// Vue.prototype.screentHeight = e.screenHeight
+				// Vue.prototype.windowHeight = e.windowHeight - 50;
+				// // #endif
+				
+				// // #ifdef H5
+				// Vue.prototype.screentHeight = e.windowHeight + 50;
+				// // #endif
+				
+				// /*******以下是colorUI***********/
+				// // #ifndef MP
+				// Vue.prototype.StatusBar = e.statusBarHeight;
+				// if (e.platform == 'android') {
+				// 	Vue.prototype.CustomBar = e.statusBarHeight + 50;
+				// } else {
+				// 	Vue.prototype.CustomBar = e.statusBarHeight + 45;
+				// };
+				// // #endif
+				
+				// // #ifdef MP-WEIXIN
+				// Vue.prototype.StatusBar = e.statusBarHeight;
+				// let custom = wx.getMenuButtonBoundingClientRect();
+				// Vue.prototype.Custom = custom;
+				// Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+				// // #endif		
+				
+				// // #ifdef MP-ALIPAY
+				// Vue.prototype.StatusBar = e.statusBarHeight;
+				// Vue.prototype.CustomBar = e.statusBarHeight + e.titleBarHeight;
+				// // #endif
+				
 			},
 			fail(err) {
 				console.log(err);
@@ -98,6 +127,7 @@ export default {
   -moz-box-orient: vertical;
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
+  display: block;
 }
 .text-has-omit {
   display: -webkit-box;
@@ -110,6 +140,8 @@ export default {
   -webkit-box-orient: vertical;
   /*! autoprefixer: on */
   text-overflow: ellipsis;
+  display: block;
+
 }
 .loading-more {
 	align-items: center;
@@ -327,8 +359,4 @@ export default {
 	height: 35upx !important;
 }
 
-.flex {
-	display: flex;
-	align-items: center;
-}
 </style>

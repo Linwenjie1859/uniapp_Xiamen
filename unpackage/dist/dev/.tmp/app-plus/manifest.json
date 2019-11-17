@@ -42,7 +42,7 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "light",
-      "background": "#51C77D"
+      "background": "#39b54a"
     },
     "usingComponents": true,
     "distribute": {
@@ -81,7 +81,7 @@
         }
       }
     },
-    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/fengyang_fair/fengyang_fair\"}",
+    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/shopping_cart/shopping_cart\"}",
     "allowsInlineMediaPlayback": true,
     "safearea": {
       "background": "#ffffff",
@@ -90,45 +90,48 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.3.6",
+      "compilerVersion": "2.4.2",
       "control": "v8",
-      "nvueCompiler": "weex",
-      "renderer": "auto"
+      "nvueCompiler": "uni-app",
+      "renderer": "auto",
+      "nvue": {
+        "flex-direction": "column"
+      }
     },
     "tabBar": {
       "color": "#999999",
-      "selectedColor": "#51C77D",
+      "selectedColor": "#1296db",
       "borderStyle": "rgba(0,0,0,0.4)",
       "backgroundColor": "#ffffff",
       "list": [
         {
           "pagePath": "pages/tabber/home/home",
-          "iconPath": "/static/home_2.png",
-          "selectedIconPath": "/static/home_1.png",
+          "iconPath": "/static/index_default.png",
+          "selectedIconPath": "/static/index_check.png",
           "text": "主页"
         },
         {
           "pagePath": "pages/tabber/fengyang_fair/fengyang_fair",
-          "iconPath": "/static/fengyang_2.png",
-          "selectedIconPath": "/static/fengyang_1.png",
-          "text": "凤阳集市"
+          "iconPath": "/static/basket_default.png",
+          "selectedIconPath": "/static/basket_check.png",
+          "text": "购物场"
         },
         {
           "pagePath": "pages/tabber/shopping_cart/shopping_cart",
-          "iconPath": "/static/cart_2.png",
-          "selectedIconPath": "/static/cart_1.png",
+          "iconPath": "/static/cart_default.png",
+          "selectedIconPath": "/static/cart_check.png",
           "text": "购物车"
         },
         {
-          "pagePath": "pages/tabber/benefit_products/benefit_products",
-          "iconPath": "/static/huinong_2.png",
-          "selectedIconPath": "/static/huinong_1.png",
-          "text": "惠农产品"
+          "pagePath": "pages/list/fengyang_scenery/fengyang_scenery",
+          "iconPath": "/static/play_default.png",
+          "selectedIconPath": "/static/play_check.png",
+          "text": "漫游厦门"
         },
         {
           "pagePath": "pages/tabber/user/user",
-          "iconPath": "/static/my_2.png",
-          "selectedIconPath": "/static/my_1.png",
+          "iconPath": "/static/people_default.png",
+          "selectedIconPath": "/static/people_check.png",
           "text": "我的"
         }
       ],
@@ -136,7 +139,7 @@
       "child": [
         "lauchwebview"
       ],
-      "selected": 1
+      "selected": 2
     }
   }
 }

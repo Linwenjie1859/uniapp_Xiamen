@@ -1,17 +1,18 @@
 
-.content{
-	text-align: center;
+.has-bg.data-v-3896e932{
+	background: rgba(135,153,163,0.1);
 }
-image{
-	width: 700rpx;
+.view-has-icon.data-v-3896e932{
+	width: 310rpx;
+	margin:10rpx 7rpx;
+}
+.view-has-padding.data-v-3896e932{
+	padding: 3rpx 8rpx;
+}
+.img-has-height.data-v-3896e932{
 	height: 380rpx;
-	margin: 25rpx auto;
+	width: 710rpx;
+	margin:10rpx 0 15rpx;
 }
-text{
-	display: block;
-	width: 700rpx;
-	margin: 0 auto;
-	text-align: left;
-	margin-bottom: 20rpx;
-}
+
 

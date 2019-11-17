@@ -52,6 +52,7 @@ export default {
 						},
 						success: function(res) {
 							var data = JSON.parse(res.data);
+							console.log(data.data.url);
 							_self.userInfo.avatar='http://www.fyang.com' + data.data.url;
 							uni.showToast({
 								title: '上传进度：' + 1 + '/' + imagePathArr.length,

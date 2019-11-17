@@ -1,10 +1,11 @@
 <template>
 	<view class="content">
 		<view class="header">
-			<view class="input_view" @tap="search"><text class="font-28 gray">搜索商品</text></view>
-			<!-- <image src="/static/search.png" mode=""></image> -->
+			<view class="input_view round" @tap="search"><text class="text-lg text-grey">搜索商品</text></view>
+			<!-- 头部-滚动渐变显示 -->
+			<view class="after" :style="{height:StatusAddNav+'px'}"></view>
 		</view>
-		<view class="fair_list">
+		<view class="fair_list" :style="{'margin-top':StatusAddNav+'px'}">
 			<view class="title_list font-28 white">
 				<view class="text" @click="changeAllRank">
 					<text :class="[allOrder == 0 ? '' : 'orange']">综合</text>
@@ -43,7 +44,7 @@
 					<view class="list_right">
 						<view class="list_top" @tap="goodeDetails" :data-id="item.id">
 							<text class="font-28 text_limit">{{ item.store_name }}</text>
-							<text class="font-28 gray text_limit_two" style="height: 80rpx;">{{ item.store_info }}</text>
+							<text class="font-28 gray text-has-omit" >{{ item.store_info }}</text>
 						</view>
 						<text class="font-24 static">特价优惠</text>
 						<view class="list_down">
@@ -115,6 +116,7 @@ function bezier(pots, amount) {
 export default {
 	data() {
 		return {
+			StatusAddNav:this.StatusAddNav,
 			// 购物车小球动画start
 			hide_good_box: false,
 			bus_x: 0,
@@ -343,18 +345,27 @@ export default {
 </script>
 
 <style>
+	.after {
+		width: 100%;
+		position: fixed;
+		top: 0upx;
+		background: #39b54a;
+		transition: opacity 0.05s linear;
+		color: #fff;
+	}
 	.img_40{
 		height: 40rpx !important;
 		width: 40rpx !important;
 	}
 /* 头部 */
 .header {
-	background-color: #51c77d;
 	width: 100%;
-	height: 170upx;
+	height: 150upx;
+	display: flex;
+	align-items: center;
 	position: fixed;
 	top: 0;
-	z-index: 10000;
+	z-index: 10;
 }
 .header image {
 	width: 35upx;
@@ -364,21 +375,21 @@ export default {
 	bottom: 45upx;
 }
 .input_view {
-	width: 580upx;
-	height: 70upx;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 10upx;
+	width: 450upx;
+	height: 60upx;
+	background-color: rgba(255, 255, 255, 0.7);
 	position: absolute;
-	left: 50%;
-	margin-left: -290upx;
-	bottom: 25upx;
+	left: 20%;
+	z-index: 1024;
+	border: 1px solid rgba(135, 153, 163, 0.3);
+	bottom: 39rpx;
 }
 
 .input_view text {
 	display: block;
-	width: 580upx;
-	height: 70upx;
-	line-height: 70upx;
+	width: 450upx;
+	height: 60upx;
+	line-height: 60upx;
 	text-align: center;
 }
 .cart {
@@ -413,10 +424,9 @@ export default {
 .fair_list {
 	width: 100%;
 	height: 80upx;
-	background-color: #51c77d;
+	background-color: #39b54a;
 	display: flex;
 	align-items: center;
-	margin-top: 170upx;
 }
 /*抛物线小球*/
 .good_box {
@@ -460,7 +470,7 @@ export default {
 	background-color: #f2f2f2;
 	position: absolute;
 	bottom: 0upx;
-	top: 250upx;
+	top: 210upx;
 }
 
 .row {
@@ -487,7 +497,7 @@ export default {
 
 .right {
 	position: absolute;
-	top: 250upx;
+	top: 210upx;
 	bottom: 0upx;
 	width: 570upx;
 	left: 180upx;

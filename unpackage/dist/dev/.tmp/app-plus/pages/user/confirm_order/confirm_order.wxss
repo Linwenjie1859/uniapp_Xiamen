@@ -208,7 +208,7 @@ page{
 	-webkit-justify-content:flex-end;
 	    -ms-flex-pack:end;
 	        justify-content:flex-end;
-	margin-left: 350rpx;
+	margin-left: 400rpx;
 }
 .order_btn button{
 	margin-left: 25rpx;
