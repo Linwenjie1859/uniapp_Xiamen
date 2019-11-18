@@ -37,20 +37,16 @@
 							</view>
 							<image class="margin-left-xs radius" :src="rows.productInfo.image" @tap="goodDetail(rows.productInfo.id)"></image>
 							
-							<view class="info margin-left-sm">
-								
+							<view class="margin-left-sm flex flex-direction" style="width: 460rpx;"> 
 								<text class="text-cut-two text-df" >{{ rows.productInfo.store_name }}</text>
-								<text class="spec font-24">已售{{ rows.productInfo.sales }}件</text>
-								<view class="price-number">
-									<text class="text-price text-df text-bold orange">{{ rows.productInfo.price }}</text>
-									<view class="number"> 
-										<view class="sub font-32" @tap="addSubNum(index, ind, -1)"><text class="icon jian">-</text></view>
-										<input type="number" class="input font-28" v-model.number="rows.cart_num" @blur="addSubNum(index,ind,0)"/>
-										<view class="add font-32" @tap="addSubNum(index, ind, 1)"><text class="icon jia">+</text></view>
-									</view>
+								<view class="flex justify-between margin-top-sm">
+									<text class="text-red text-price text-df">{{ rows.productInfo.price }}</text>
+									<view class="text-grey flex">
+										<text class="text-has-border-left" @tap="addSubNum(index, ind, -1)">-</text>
+										<input type="number" class="text-df text-has-border" v-model.number="rows.cart_num" @blur="addSubNum(index,ind,0)"/>
+										<text class="text-has-border-right" @tap="addSubNum(index, ind, 1)">+</text>
+									</view> 
 								</view>
-								
-								
 							</view> 
 						</view>
 					</view>
@@ -411,20 +407,39 @@ export default {
 };
 </script>
 <style lang="scss">
+	.text-has-border { 
+		width: 70rpx;
+		text-align: center;
+		border-top: 1px solid #e0e0e0;
+		border-bottom: 1px solid #e0e0e0;
+		padding: 5upx 10upx;
+	}
+	
+	.text-has-border-right {
+		border: 1px solid #e0e0e0;
+		border-top-right-radius: 8upx;
+		border-bottom-right-radius: 8upx;
+		padding: 5upx 15upx;
+	}
+	
+	.text-has-border-left {
+		border: 1px solid #e0e0e0;
+		border-top-left-radius: 8upx;
+		border-bottom-left-radius: 8upx;
+		padding: 5upx 15upx;
+	}
 	.has-radius{
 		border-radius: 12upx;
 	}
-page {
-	background-color: #f2f2f2;
-}
-
-
  .view-is-position {
 	height: 200upx;
 	position: relative;
 	overflow: hidden;
 	z-index: 4;
 }
+/* ==================
+        原始代码
+ ==================== */
 .menu {
 	width: 150upx;
 	height: 196upx;
@@ -532,59 +547,8 @@ page {
 }
 
 
-.info {
-	width: 460upx;
-}
 
 
-
-.info .spec {
-	display: block;
-	width: 150upx;
-	text-align: center;
-	background-color: #f2f2f2;
-	color: #999;
-	height: 30upx;
-	line-height: 30upx;
-	border-radius: 15upx;
-	margin: 10upx 0upx;
-}
-
- .info .price-number {
-	width: 430upx;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-}
-
-.info .number {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.input {
-	width: 45upx;
-	height: 45upx;
-	line-height: 50upx;
-	text-align: center;
-	margin: 0 10upx;
-	background-color: #f2f2f2;
-}
-
-input {
-	margin-top: -5upx;
-}
-
-.sub,
-.add {
-	width: 59upx;
-	height: 47upx;
-	text-align: center;
-	line-height: 47upx;
-	background-color: #f2f2f2;
-	border-radius: 5upx;
-}
 
 .footer {
 	width: 100%;

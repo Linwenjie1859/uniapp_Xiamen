@@ -27,23 +27,27 @@
 		</view>
 		<!-- 首页头部轮播图 End -->
 		
-		<!-- 首页消息通知 Start -->
+		<!-- 首页滚动消息通知 Start -->
 		<view class="notice">
 			<text class="cuIcon-notificationfill text-orange margin-left margin-right-xs"></text>
 			<swiper class="notice_view" vertical="true" autoplay="true" circular="true" interval="3000">
 				<swiper-item v-for="(item, index) in allInfo.roll" :key="index">
-					<navigator :url="item.url" class="font-28 text_limit">{{ item.info }}</navigator>
+					<navigator :url="item.url" open-type="switchTab">
+						<text class="font-28 text_limit" >{{ item.info }}</text>
+					</navigator>
 				</swiper-item>
 			</swiper>
 		</view>
-		<!-- 首页消息通知 End -->
+		<!-- 首页滚动消息通知 End -->
 		
 		<!-- 首页导航栏 Start -->
 		<view class="home_list">
 			<view class="list_top font-28">
 				<view class="top_view" @tap="fengyangScenery" v-for="(item, index) in allInfo.menus" :key="index">
-					<image :src="item.pic" mode=""></image>
-					<text>{{ item.name }}</text>
+					<navigator :url="item.url">
+						<image :src="item.pic" mode=""></image>
+						<text>{{ item.name }}</text>
+					</navigator>
 				</view>
 			</view>
 			
@@ -200,7 +204,8 @@ export default {
 			uni.navigateTo({
 				url: '/pages/list/line_details/line_details?id='+e.currentTarget.dataset.id
 			});
-		}
+		},
+	
 	}
 };
 </script>

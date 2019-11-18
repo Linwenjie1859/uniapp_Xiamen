@@ -1,5 +1,5 @@
 <template>
-	<view class="content">
+	<view>
 		<view class="header">
 			<view class="input_view round" @tap="search"><text class="text-lg text-grey">搜索商品</text></view>
 			<!-- 头部-滚动渐变显示 -->
@@ -8,22 +8,23 @@
 		<view class="fair_list" :style="{'margin-top':StatusAddNav+'px'}">
 			<view class="title_list font-28 white">
 				<view class="text" @click="changeAllRank">
-					<text :class="[allOrder == 0 ? '' : 'orange']">综合</text>
+					<text :class="[allOrder == 0 ? '' : 'text-orange']">综合</text>
 					<image :src="`/static/sort${index}.png`" v-if="allOrder == index" v-for="(item, index) in 3" :key="index"></image>
 				</view>
 				<view class="text" @click="changeSalesRank">
-					<text :class="[salesOrder == 0 ? '' : 'orange']">销量</text>
+					<text :class="[salesOrder == 0 ? '' : 'text-orange']">销量</text>
 					<image :src="`/static/sort${index}.png`" v-if="salesOrder == index" v-for="(item, index) in 3" :key="index"></image>
 				</view>
 				<view class="text" @click="changePriceRank">
-					<text :class="[priceOrder == 0 ? '' : 'orange']">价格</text>
+					<text :class="[priceOrder == 0 ? '' : 'text-orange']">价格</text>
 					<image :src="`/static/sort${index}.png`" v-if="priceOrder == index" v-for="(item, index) in 3" :key="index"></image>
 				</view>
 			</view>
 		</view>
-		<view class="category-list">
+		
+		<view class="flex">
 			<!-- 左侧分类导航 -->
-			<scroll-view scroll-y="true" class="left font-28">
+			<scroll-view scroll-y="true" class="left text-df">
 				<view
 					class="row"
 					v-for="(category, index) in categoryList"
@@ -39,44 +40,27 @@
 			</scroll-view>
 			<!-- 右侧子导航 -->
 			<scroll-view scroll-y="true" class="right">
-				<!-- <view class="flex align-center" v-for="(item, index) in goodsList" :key="index">
-					<image :src="item.image" class="radius" mode="" @tap="goodeDetails" :data-id="item.id"></image>
-					<view class="flex flex-direction justify-between">
-						<text class="text-df text-cut">{{ item.store_name }}</text>
-						<text class="text-df text-grey text-cut-two">{{ item.store_info }}</text>
-						<view class="flex justify-between">
-							<view class="flex">
-								<text class="text-df text-orange text-price">{{ item.price }}</text>
-								<text class="text-sm text-grey text-line-through text-price margin-left-xs">{{ item.ot_price }}</text>
-							</view>
-							<text class="cuIcon-add"></text>
-						</view>
+				<view class="flex align-center padding-sm solid-bottom" v-for="(item, index) in goodsList" :key="index">
+					<view class="flex">
+						<image :src="item.image" class="radius img-has-size" mode="" @tap="goodeDetails" :data-id="item.id"></image>
 					</view>
-				</view> -->
-				<view class="list_view" v-for="(item, index) in goodsList" :key="index">
-					<image :src="item.image" class="radius" mode="" @tap="goodeDetails" :data-id="item.id"></image>
-					<view class="list_right">
-						<view class="list_top" @tap="goodeDetails" :data-id="item.id">
-							<text class="font-28 text_limit">{{ item.store_name }}</text>
-							<text class="font-28 gray text-cut-two" >{{ item.store_info }}</text>
-						</view>
-						<view class="list_down">
-							<view class="down_text">
+					<view class="flex flex-direction justify-between margin-left-sm" style="width: 330rpx;">
+						<text class="text-df text-cut" @tap="goodeDetails" :data-id="item.id">{{ item.store_name }}</text>
+						<text class="text-df text-grey text-cut-two" @tap="goodeDetails" :data-id="item.id">{{ item.store_info }}</text>
+						<view class="flex justify-between margin-top-xs align-center">
+							<view class="flex align-center">
 								<text class="text-df text-orange text-price">{{ item.price }}</text>
 								<text class="text-sm text-grey text-line-through text-price margin-left-xs">{{ item.ot_price }}</text>
 							</view>
-							
-							<image class="img_40" src="/static/add_shop_icon.png" mode="" @tap="touchOnGoods($event, item.id)"></image>
+							<text class="cuIcon-roundadd text-green text-xl" @tap="touchOnGoods($event, item.id)"></text>
 						</view>
 					</view>
 				</view>
 			</scroll-view>
 			
-			
-			<view class="cart" @tap="cart_detail">
-				<text class="num">{{carNum}}</text>
-				<image class="img_40" src="/static/shop_cart_gray.png" mode=""></image>
-			</view>
+			<view class="cart cu-avatar round lg" @tap="cart_detail">
+				<view class="cu-tag badge bg-blue padding-xs">{{carNum}}</view>
+			</view> 
 			<!-- 抛物线小球 -->
 			<view class="good_box" v-show="hide_good_box" :style="'left:' + bus_x + 'px;top:' + bus_y + 'px'"></view>
 		</view>
@@ -360,7 +344,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+	.img-has-size {
+		width: 180upx;
+		height: 170upx;
+	}
 	.after {
 		width: 100%;
 		position: fixed;
@@ -369,10 +357,7 @@ export default {
 		transition: opacity 0.05s linear;
 		color: #fff;
 	}
-	.img_40{
-		height: 40rpx !important;
-		width: 40rpx !important;
-	}
+	
 /* 头部 */
 .header {
 	width: 100%;
@@ -383,13 +368,7 @@ export default {
 	top: 0;
 	z-index: 10;
 }
-.header image {
-	width: 35upx;
-	height: 35upx;
-	position: absolute;
-	right: 25upx;
-	bottom: 45upx;
-}
+
 .input_view {
 	width: 450upx;
 	height: 60upx;
@@ -409,34 +388,17 @@ export default {
 	text-align: center;
 }
 .cart {
-		position: fixed;
-		bottom: 100upx;
-		right: 25upx;
-		width: 90upx;
-		height: 90upx;
-		background-color: #F2F2F2;
-		border-radius: 50%;
-		text-align: center;
-		z-index: 9999;
-	}
+	position: fixed;
+	bottom: 100upx;
+	right: 25upx;
+	text-align: center;
+	z-index: 9999;
+	background-size: 20rpx 20rpx;
+	background: url(../../../static/address.png);
+}
 
-	.cart image {
-		margin: 25upx auto;
-	}
 
-	.cart .num {
-		width: 35upx;
-		height: 35upx;
-		line-height: 35upx;
-		font-size: 28upx;
-		border-radius: 50%;
-		color: #FFFFFF;
-		display: block;
-		position: absolute;
-		top: -5upx;
-		left: 55upx;
-		background: #FF4B3E;
-	}
+	
 .fair_list {
 	width: 100%;
 	height: 80upx;
@@ -454,7 +416,7 @@ export default {
 	left: 50%;
 	top: 50%;
 	z-index: +99;
-	background: #ff4b3e;
+	background: #0081ff;
 }
 .fair_list .title_list {
 	width: 545upx;
@@ -474,16 +436,12 @@ export default {
 	width: 30upx;
 	height: 30upx;
 }
-.category-list {
-	width: 100%;
-	background-color: #fff;
-	display: flex;
-}
+
 
 .left {
 	width: 180upx;
 	left: 0upx;
-	background-color: #f2f2f2;
+	background: rgba(255,255,255,0.1);
 	position: absolute;
 	bottom: 0upx;
 	top: 210upx;
@@ -502,8 +460,8 @@ export default {
 
 .on {
 	height: 100upx;
-	background-color: #fff;
-	border-left: 10upx solid #51c77d;
+	background: #fff;
+	border-left: 10upx solid #39b54a;
 }
 
 .on .text {
@@ -517,50 +475,13 @@ export default {
 	bottom: 0upx;
 	width: 570upx;
 	left: 180upx;
+	background: #FFFFFF;
 }
 
-.list_view {
-	width: 520upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	padding: 25upx 0upx;
-	border-bottom: 1upx solid #e5e5e5;
-}
 
-.list_view image {
-	width: 150upx;
-	height: 150upx;
-	margin-right: 25upx;
-}
 
-.list_top text {
-	width: 340upx;
-	display: block;
-}
 
-.static {
-	padding: 0upx 20upx;
-	background-color: #fce0c8;
-	border-radius: 25upx;
-	color: #f66d3c;
-}
 
-.list_down {
-	width: 340upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
 
-.list_down image {
-	width: 45upx !important;
-	height: 45upx !important;
-	margin-right: 0upx;
-}
 
-.list_down .old {
-	margin-left: 20upx;
-	text-decoration: line-through;
-}
 </style>

@@ -68,7 +68,7 @@
         "pagePath": "pages/tabber/fengyang_fair/fengyang_fair",
         "iconPath": "/static/basket_default.png",
         "selectedIconPath": "/static/basket_check.png",
-        "text": "购物场"
+        "text": "分类栏"
       },
       {
         "pagePath": "pages/tabber/shopping_cart/shopping_cart",

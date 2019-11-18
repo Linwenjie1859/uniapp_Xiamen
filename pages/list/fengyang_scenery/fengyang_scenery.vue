@@ -1,6 +1,6 @@
 <template>
 	<view class="bg-white">
-		<view class="flex flex-direction margin-bottom-sm" v-for="(item, index) in articleList" :key="index">
+		<view class="flex flex-direction padding-bottom-sm" v-for="(item, index) in articleList" :key="index">
 			<!-- 文章的标题 Start -->
 			<view class="flex align-center justify-between margin-bottom-xs solid-top solid-bottom"  @click="getList" :data-id="item.id">
 				<view class="flex align-center">
