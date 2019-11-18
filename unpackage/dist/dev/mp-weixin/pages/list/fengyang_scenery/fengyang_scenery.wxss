@@ -1,103 +1,11 @@
 
-.content{
-	text-align: center;
-}
-.scenery_list {
-	margin: 0 auto;
-}
-.scenery_pic{
-	width: 750rpx!important;
-	height: 300rpx!important;
-}
-.scenery_list .title {
-	display: block;
-	width: 700rpx;
-	text-align: center;
-}
-.scenery_list .list_view {
-	width: 700rpx;
-	background-color: #FFFFFF;
-	border-radius: 10rpx;
-	margin: 0 auto;
-	/* margin-top: 25upx; */
-}
-.scenery_list .scenery {
-	width: 700rpx;
-	margin: 0 auto;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	border-bottom: 1rpx solid #E5E5E5;
-}
-.scenery_list .scenery_img {
-	width: 240rpx !important;
-	height: 180rpx !important;
-	margin-right: 25rpx;
-}
-.scenery_list .info_list {
-	width: 430rpx;
+.img-has-small-size.data-v-72470fa8{
+	width: 240rpx;
 	height: 180rpx;
-	margin: 25rpx 0rpx;
 }
-.info_list text{
-	text-align: left!important;
+.img-has-size.data-v-72470fa8{
+	width: 750rpx;
+	height: 300rpx;
 }
-.info_list .text_limit {
-	width: 430rpx;
-	display: block;
-	margin-top: -5rpx;
-	margin-bottom: 10rpx;
-}
-.info_list .text_info {
-	width: 430rpx;
-	display: block;
-	text-align: left;
-	-o-text-overflow: ellipsis;
-	   text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-.see_list {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-box-pack: justify;
-	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between;
-	margin-top: 20rpx;
-}
-.see_list .num {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-webkit-align-items: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-.see_list .num image {
-	width: 30rpx;
-	height: 22rpx;
-	margin-right: 10rpx;
-}
-.more{
-	display: block;
-	width: 700rpx;
-	text-align: center;
-	margin: 15rpx 0rpx 35rpx 0rpx;
-}
+
 

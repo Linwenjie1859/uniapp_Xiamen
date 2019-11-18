@@ -1,64 +1,73 @@
 <template>
-	<view class="content">
-		<view class="user_info flex">
-			<image :src="userInfo.avatar?userInfo.avatar:'/static/pic.png'" mode="" @tap="edit"></image>
-			<view class="info" v-if="!isLoginFlag" @tap="toLogin">
+	<view class="flex flex-direction bg-green" :style="[{ height: 'calc(' + StatusAddNav + 'px + 150rpx)' }]">
+		<view class="flex justify-end padding-top-xl">
+			<text class="cuIcon-message text-xxl" @tap="news" ></text>
+			<text class="cuIcon-settings text-xxl margin-lr-sm" ></text>
+		</view>
+		<view class="flex margin-lr-sm align-center">
+			<view class="cu-avatar round xl" @tap="edit" :style="[{ backgroundImage:'url(' + userInfo.avatar + ')' }]">
+				<view class="cu-tag badge cuIcon-crownfill bg-blue"></view>
+			</view> 
+			<view class="" v-if="!isLoginFlag" @tap="toLogin">
 				<view class="login_btn"><button class="btn_login_green">登录</button></view>
-			</view>
-			<view class="info" v-if="isLoginFlag">
-				<text class="font-36 white">ID:{{userInfo.phone}}</text>
-				<text class="font-28 white" @tap="edit">编辑个人资料</text>
-			</view>
-			<image class="news" src="/static/news_white.png" mode="" @tap="news"></image>
-		</view>
-		<view class="collection_list">
-			<view class="list_view" @tap="mycol">
-				<text class="font-32 font-weight">{{userInfo.collect_product}}</text>
-				<text class="font-28 green">我的收藏</text>
-			</view>
-			<view class="list_view" @tap="shopcol">
-				<text class="font-32 font-weight">{{userInfo.collect_merchant}}</text>
-				<text class="font-28 green">关注店铺</text>
-			</view>
-			<view class="list_view" @tap="shopcol">
-				<text class="font-32 font-weight">{{userInfo.collect_merchant}}</text>
-				<text class="font-28 green">我的足迹</text>
+			</view> 
+			<view class="flex flex-direction margin-left self-end" v-if="isLoginFlag">
+				<text class="text-lg white text-bold">脏兮兮</text>
+				<text class="text-lg white margin-top-xs">{{userInfo.phone}}</text>
 			</view>
 		</view>
-		<view class="order_list">
-			<view class="title" @tap="order(0)">
-				<text class="font-32">我的订单</text>
-				<image class="right_icon" src="/static/right.png" mode=""></image>
+		<view class="flex justify-between bg-white radius margin-lr-sm padding margin-top-sm">
+			<view class="flex flex-direction align-center" @tap="mycol">
+				<text class="text-lg text-bold">{{userInfo.collect_product}}</text>
+				<text class="text-df">我的收藏</text>
 			</view>
-			<view class="order_view">
-				<view class="list_view"  @tap="order(1)">
-					<image src="/static/state1.png" mode=""></image>
-					<text class="font-28">待付款</text>
+			<view class="flex flex-direction align-center" @tap="shopcol">
+				<text class="text-lg text-bold">{{userInfo.collect_merchant}}</text>
+				<text class="text-df">关注店铺</text>
+			</view>
+			<view class="flex flex-direction align-center" @tap="shopcol">
+				<text class="text-lg text-bold">{{userInfo.collect_merchant}}</text>
+				<text class="text-df">我的足迹</text>
+			</view>
+		</view>
+		<view class="flex flex-direction bg-white margin-lr-sm padding-sm margin-top-sm radius">
+			<view class="flex text-grey justify-between solid-bottom padding-sm" @tap="order(0)">
+				<text class="text-df">我的订单</text>
+				<text class="cuIcon-right"></text>
+			</view>
+			<view class="flex justify-between padding-sm">
+				<view class="flex flex-direction align-center"  @tap="order(1)">
+					<text class="cuIcon-pay text-xxl text-orange"></text>
+					<text class="text-df">待付款</text>
 				</view>
-				<view class="list_view"  @tap="order(2)">
-					<image src="/static/state2.png" mode=""></image>
-					<text class="font-28">待发货</text>
+				<view class="flex flex-direction align-center"  @tap="order(2)">
+					<text class="cuIcon-send text-xxl text-orange"></text>
+					<text class="text-df">待发货</text>
 				</view>
-				<view class="list_view"  @tap="order(3)">
-					<image src="/static/state3.png" mode=""></image>
-					<text class="font-28">待收货</text>
+				<view class="flex flex-direction align-center"  @tap="order(3)">
+					<text class="cuIcon-deliver text-xxl text-orange"></text>
+					<text class="text-df">待收货</text>
 				</view>
-				<view class="list_view"  @tap="order(4)">
-					<image src="/static/state4.png" mode=""></image>
-					<text class="font-28">待评价</text>
+				<view class="flex flex-direction align-center"  @tap="order(4)">
+					<text class="cuIcon-comment text-xxl text-orange"></text>
+					<text class="text-df">待评价</text>
 				</view>
 			</view>
 		</view>
-		<view class="operation_list">
-			<view class="title" @tap="coupon">
-				<image class="left_icon" src="/static/coupon.png" mode=""></image>
-				<text class="font-32">优惠券</text>
-				<image class="right_icon" src="/static/right.png" mode=""></image>
+		<view class="flex flex-direction bg-white margin-lr-sm padding-sm margin-top-sm radius">
+			<view class="flex justify-between align-center padding-sm" @tap="coupon">
+				<view class="flex align-center">
+					<text class="cuIcon-ticket text-xxl margin-right-xs text-orange"></text>
+					<text class="text-df">优惠券</text>
+				</view>
+				<text class="cuIcon-right"></text>
 			</view>
-			<view class="title" style="border-bottom: none;" @tap="info">
-				<image class="left_icon" src="/static/set_up.png" mode=""></image>
-				<text class="font-32">设置</text>
-				<image class="right_icon" src="/static/right.png" mode=""></image>
+			<view class="flex justify-between align-center padding-sm" @tap="info">
+				<view class="flex align-center">
+					<text class="cuIcon-settings text-xxl margin-right-xs text-orange"></text>
+					<text class="text-df">设置</text>
+				</view>
+				<text class="cuIcon-right"></text>
 			</view>
 		</view>
 	</view>
@@ -68,6 +77,7 @@
 export default {
 	data() {
 		return {
+			StatusAddNav:this.StatusAddNav,
 			// 是否登录标志
 			isLoginFlag: false,
 			/******************/
@@ -85,8 +95,10 @@ export default {
 	},
  
 	onShow() {
-		this.isLoginFlag=this.isLogin()?true:false;
-		this.getUserInfo();
+		setTimeout(()=>{
+			this.isLoginFlag=this.isLogin();
+			this.getUserInfo();
+		},800);
 	},
 	methods: {
 		//获取用户的信息
@@ -149,128 +161,6 @@ export default {
 };
 </script>
 
-<style>
-page {
-	background-color: #f2f2f2;
-}
-.login_btn {
-	width: 350upx;
-}
-.btn_login_green {
-	width: 120upx;
-	height: 50upx;
-	font-size: 24upx;
-	background-color: rgba(0, 0, 0, 0);
-	color: #ffffff;
-	border-radius: 10upx;
-	border: 2upx solid #ffffff;
-	padding: 0;
-	margin: 0 !important;
-	text-align: center;
-	line-height: 44upx;
-}
-.user_info {
-	width: 100%;
-	height: 320upx;
-	display: flex;
-	align-items: center;
-	background-color: #51c77d;
-}
+<style scoped>
 
-.user_info image {
-	width: 145upx;
-	height: 145upx;
-	margin: 0upx 45upx;
-	border-radius: 50%;
-}
-
-.user_info .news {
-	width: 84upx;
-	height: 80upx;
-	margin-top: -100upx;
-	margin-left: 40upx;
-}
-
-.user_info text {
-	display: block;
-	width: 350upx;
-}
-
-.collection_list {
-	width: 650upx;
-	height: 180upx;
-	border-radius: 10upx;
-	background-color: #ffffff;
-	position: absolute;
-	top: 270upx;
-	left: 50%;
-	margin-left: -350upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0upx 25upx;
-}
-
-.list_view text {
-	display: block;
-	width: 150upx;
-	text-align: center;
-	margin: 20upx 0upx;
-}
-
-.order_list {
-	width: 650upx;
-	height: 300upx;
-	margin: 0 auto;
-	margin-top: 160upx;
-	border-radius: 10upx;
-	background-color: #ffffff;
-	padding: 0upx 25upx;
-}
-
-.title {
-	height: 100upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	border-bottom: 1upx solid #e5e5e5;
-}
-
-.order_list .order_view {
-	margin-top: 40upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.list_view {
-	width: 150upx;
-	text-align: center;
-}
-
-.order_list .list_view image {
-	width: 50upx;
-	height: 46upx;
-}
-
-.operation_list {
-	width: 650upx;
-	height: 200upx;
-	margin: 0 auto;
-	margin-top: 25upx;
-	border-radius: 10upx;
-	background-color: #ffffff;
-	padding: 0upx 25upx;
-}
-
-.operation_list .left_icon {
-	width: 50upx;
-	height: 50upx;
-}
-
-.operation_list text {
-	width: 520upx;
-	text-align: left;
-	display: block;
-}
 </style>

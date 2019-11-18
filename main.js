@@ -47,9 +47,7 @@ Vue.prototype.isLogin = function() {
 	if (store.state.token) {
 		return true;
 	}else{
-		uni.navigateTo({
-			url: "/pages/login/pwd_login/pwd_login",
-		})
+		return false;
 	}
 }
 

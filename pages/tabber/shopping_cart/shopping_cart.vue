@@ -11,9 +11,9 @@
 							<view class="checkbox"><view :class="[checkedList.indexOf(index) != -1 ? 'on' : '']"></view></view>
 						</view>
 						<text class="cuIcon-shop margin-lr-xs" style="font-size: 44rpx;" ></text>
-						<text class="text-df">{{ row.name }}</text>
+						<text class="text-lg">{{ row.name }}</text>
 					</view>
-					<text class="text-sm" @tap="getCupon">领券</text>
+					<text class="text-df" @tap="getCupon">领券</text>
 				</view>
 				<!-- 店铺名称标题 End -->
 				
@@ -38,7 +38,8 @@
 							<image class="margin-left-xs radius" :src="rows.productInfo.image" @tap="goodDetail(rows.productInfo.id)"></image>
 							
 							<view class="info margin-left-sm">
-								<text class="text-has-omit" style="font-size: 25rpx;" >{{ rows.productInfo.store_name }}</text>
+								
+								<text class="text-cut-two text-df" >{{ rows.productInfo.store_name }}</text>
 								<text class="spec font-24">已售{{ rows.productInfo.sales }}件</text>
 								<view class="price-number">
 									<text class="text-price text-df text-bold orange">{{ rows.productInfo.price }}</text>
@@ -48,6 +49,8 @@
 										<view class="add font-32" @tap="addSubNum(index, ind, 1)"><text class="icon jia">+</text></view>
 									</view>
 								</view>
+								
+								
 							</view> 
 						</view>
 					</view>
@@ -422,7 +425,6 @@ page {
 	overflow: hidden;
 	z-index: 4;
 }
-
 .menu {
 	width: 150upx;
 	height: 196upx;

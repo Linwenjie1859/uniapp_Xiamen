@@ -39,24 +39,40 @@
 			</scroll-view>
 			<!-- 右侧子导航 -->
 			<scroll-view scroll-y="true" class="right">
+				<!-- <view class="flex align-center" v-for="(item, index) in goodsList" :key="index">
+					<image :src="item.image" class="radius" mode="" @tap="goodeDetails" :data-id="item.id"></image>
+					<view class="flex flex-direction justify-between">
+						<text class="text-df text-cut">{{ item.store_name }}</text>
+						<text class="text-df text-grey text-cut-two">{{ item.store_info }}</text>
+						<view class="flex justify-between">
+							<view class="flex">
+								<text class="text-df text-orange text-price">{{ item.price }}</text>
+								<text class="text-sm text-grey text-line-through text-price margin-left-xs">{{ item.ot_price }}</text>
+							</view>
+							<text class="cuIcon-add"></text>
+						</view>
+					</view>
+				</view> -->
 				<view class="list_view" v-for="(item, index) in goodsList" :key="index">
-					<image :src="item.image" mode="" @tap="goodeDetails" :data-id="item.id"></image>
+					<image :src="item.image" class="radius" mode="" @tap="goodeDetails" :data-id="item.id"></image>
 					<view class="list_right">
 						<view class="list_top" @tap="goodeDetails" :data-id="item.id">
 							<text class="font-28 text_limit">{{ item.store_name }}</text>
-							<text class="font-28 gray text-has-omit" >{{ item.store_info }}</text>
+							<text class="font-28 gray text-cut-two" >{{ item.store_info }}</text>
 						</view>
-						<text class="font-24 static">特价优惠</text>
 						<view class="list_down">
 							<view class="down_text">
-								<text class="font-28 orange">￥{{ item.price }}</text>
-								<text class="font-24 gray old">￥{{ item.ot_price }}</text>
+								<text class="text-df text-orange text-price">{{ item.price }}</text>
+								<text class="text-sm text-grey text-line-through text-price margin-left-xs">{{ item.ot_price }}</text>
 							</view>
+							
 							<image class="img_40" src="/static/add_shop_icon.png" mode="" @tap="touchOnGoods($event, item.id)"></image>
 						</view>
 					</view>
 				</view>
 			</scroll-view>
+			
+			
 			<view class="cart" @tap="cart_detail">
 				<text class="num">{{carNum}}</text>
 				<image class="img_40" src="/static/shop_cart_gray.png" mode=""></image>

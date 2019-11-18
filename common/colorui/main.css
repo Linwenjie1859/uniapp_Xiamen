@@ -6,20 +6,65 @@
   
   （QQ交流群：240787041）
 */
+/* ==================
+        更改代码
+ ==================== */
+.radius {
+	border-radius: 12upx;
+}
 
+
+/* ==================
+        补充代码
+ ==================== */
+ .text-indent{
+	 text-indent:4rpx;
+ }
+.text-line-through {
+	text-decoration: line-through;
+}
+.text-cut-three {
+	display: block;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.text-cut-two {
+	display: block;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 /* ==================
         初始化
  ==================== */
+body {
+	background-color: #f1f1f1;
+	font-size: 28upx;
+	color: #333333;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+}
 
-
+view,
+scroll-view,
+swiper,
+button,
+input,
+textarea,
+label,
+navigator,
+image {
+	box-sizing: border-box;
+}
 
 .round {
 	border-radius: 5000upx;
 }
 
-.radius {
-	border-radius: 6upx;
-}
 
 /* ==================
           图片
@@ -3730,35 +3775,35 @@ scroll-view.cu-steps .cu-item {
  ==================== */
 
 .text-xs {
-	font-size: 20upx;
+	font-size: 20upx !important ;
 }
 
 .text-sm {
-	font-size: 24upx;
+	font-size: 24upx !important;
 }
 
 .text-df {
-	font-size: 28upx;
+	font-size: 28upx !important;
 }
 
 .text-lg {
-	font-size: 32upx ;
+	font-size: 32upx !important;
 }
 
 .text-xl {
-	font-size: 36upx;
+	font-size: 36upx !important;
 }
 
 .text-xxl {
-	font-size: 44upx;
+	font-size: 44upx !important;
 }
 
 .text-sl {
-	font-size: 80upx;
+	font-size: 80upx !important;
 }
 
 .text-xsl {
-	font-size: 120upx;
+	font-size: 120upx !important;
 }
 
 .text-Abc {
