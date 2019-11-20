@@ -29,6 +29,12 @@ Vue.prototype.header = {
 	'token': ''
 };
 
+
+Vue.filter('numIsInteger',function(value){
+	return parseInt(value+''.toString());
+})
+
+
 App.mpType = 'app'
 
 Vue.prototype.getMyMenus = function() {
@@ -47,7 +53,9 @@ Vue.prototype.isLogin = function() {
 	if (store.state.token) {
 		return true;
 	}else{
-		return false;
+		uni.navigateTo({
+			url: "/pages/login/pwd_login/pwd_login",
+		})
 	}
 }
 

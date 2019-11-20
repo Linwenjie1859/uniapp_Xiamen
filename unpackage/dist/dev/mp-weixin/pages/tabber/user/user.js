@@ -195,6 +195,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -217,8 +237,8 @@ var _default =
   },
 
   onShow: function onShow() {var _this = this;
+    this.isLoginFlag = this.isLogin();
     setTimeout(function () {
-      _this.isLoginFlag = _this.isLogin();
       _this.getUserInfo();
     }, 800);
   },

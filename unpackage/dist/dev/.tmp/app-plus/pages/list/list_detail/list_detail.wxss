@@ -12,7 +12,7 @@
 .img-has-height.data-v-3896e932{
 	height: 380rpx;
 	width: 710rpx;
-	margin:10rpx 0 15rpx;
+	margin:10rpx 0;
 }
 
 

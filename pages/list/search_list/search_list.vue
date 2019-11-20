@@ -1,31 +1,31 @@
 <template>
-	<view class="content">
+	<view style="height: 100vh;" class="bg-white">
 		<view class="header">
-			<image class="black" src="/static/left_white.png" mode="" @tap="back" v-if="showBack"></image>
-			<view class="input_view"><input class="font-28" type="text" v-model="keyWord" placeholder="搜索商品" /></view>
-			<image class="search" src="/static/search.png" mode="" @click="setSearchHistory"></image>
+			<view class="view-is-absolute flex justify-between align-center">
+				<text class="cuIcon-back text-white text-xxl margin-top-sm margin-left" @tap="back"></text>
+				<view class="input_view round padding-lr-sm padding-tb-xs">
+					<input class="text-df round text-center" type="text" v-model.trim="keyWord" placeholder="搜索商品" />
+				</view>
+				<text class="cuIcon-search text-white text-xxl margin-top-sm margin-right" @click="searchGoods"></text>
+			</view>
 		</view>
-		
-		<view class="search_list"> 
-			<view class="home_info">
-				<view class="goods_list">
-					<view class="list_view" @tap="detail(item.id)" v-for="(item, index) in goodsList" :key="index">
-						<image :src="item.image" mode=""></image>
-						<text class="font-28 text_limit">{{ item.store_name }}</text>
-						<view class="list_info">
-							<text class="font-24 orange">￥{{ item.price }}</text>
-							<text class="font-24">月售{{ item.sales }}件</text>
-						</view>
+		<view style="padding-top: 170rpx;" class="padding-lr-sm">
+			<view class="flex text-df flex-wrap">
+				<view class="flex flex-direction has-margin-right-sm margin-bottom-sm"  style="width: 347rpx;" @tap="detail(item.id)" v-for="(item, index) in goodsList" :key="index">
+					<image :src="item.image" mode="scaleToFill" style="width: 347rpx; height: 320rpx;"></image>
+					<view class="flex text-left">
+						<text class="text-df text-cut-two">{{ item.store_name }}</text>
+					</view>
+					<view class="flex justify-between align-center margin-top-xs">
+						<text class="text-sm text-price text-orange">{{ item.price }}</text>
+						<text class="text-sm text-grey">月售{{ item.sales }}件</text>
 					</view>
 				</view>
-				<text class="no_more font-28 gray" v-if="loadMoreFlag">
-					{{loadMoreText}}
-				</text>
 			</view>
-			<view class="no_data" v-if="noData">
-				<image src="/static/no_data.png" mode=""></image>
-				<text class="font-28 gray">没有找到相关商品~</text>
-			</view>
+		</view>
+		<view class="flex flex-direction align-center" v-if="noData">
+			<image src="/static/no_data.png" mode="scaleToFill" style="height: 240rpx; width: 280rpx;"></image>
+			<text class="text-df text-grey">没有找到相关商品~</text>
 		</view>
 	</view>
 </template>
@@ -150,147 +150,33 @@ export default {
 </script>
 
 <style scoped>
-	
-page {
-	background-color: #f2f2f2;
-}
+	.has-margin-right-sm:nth-child(odd){
+		margin-right: 15rpx;
+	}
+	/* 头部 */
+	.header {
+		background-color: #39b54a;
+		width: 100%;
+		height: 160upx;
+		position: fixed;
+		z-index: 10000;
+	}
+	.view-is-absolute{
+		position: absolute;
+		top:0;
+		width: 100%;
+		height: 100%;
+		
+	}
+	.input_view {
+		width: 450upx;
+		height: 60upx;
+		background-color: rgba(255, 255, 255, 0.7);
+		position: absolute;
+		left: 20%;
+		z-index: 1024;
+		border: 1px solid rgba(135, 153, 163, 0.3);
+		bottom: 39rpx;
+	}
 
-/* 头部 */
-.header {
-	background-color: #51c77d;
-	width: 100%;
-	height: 170upx;
-	position: fixed;
-	top: 0;
-	z-index: 10000;
-}
-
-.header .black {
-	width: 35upx;
-	height: 35upx;
-	position: absolute;
-	left: 25upx;
-	bottom: 45upx;
-}
-.header .search {
-	width: 35upx;
-	height: 35upx;
-	position: absolute;
-	right: 25upx;
-	bottom: 45upx;
-}
-
-.input_view {
-	width: 580upx;
-	height: 70upx;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 10upx;
-	position: absolute;
-	left: 50%;
-	margin-left: -290upx;
-	bottom: 25upx;
-	display: flex;
-	align-items: center;
-}
-
-.input_view input {
-	width: 580upx;
-	text-align: center;
-}
-
-.search_list {
-	margin-top: 195upx;
-}
-
-.home_info {
-	width: 700upx;
-	margin: 25upx auto;
-	background-color: #ffffff;
-	border-radius: 10upx;
-	padding: 25upx 0upx;
-}
-
-.home_info image {
-	width: 650upx;
-	height: 350upx;
-	border-radius: 10upx;
-}
-
-.home_info .text_info {
-	display: block;
-	width: 650upx;
-	margin: 0 auto;
-	text-align: left;
-}
-
-.title {
-	width: 650upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 25upx;
-}
-
-.goods_list {
-	width: 650upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	margin-bottom: 25upx;
-}
-
-.goods_list .list_view {
-	width: 310upx;
-	margin-bottom: 25upx;
-}
-
-.goods_list .list_view .text_limit {
-	display: block;
-	width: 310upx;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-.goods_list .list_view image {
-	width: 310upx;
-	height: 310upx;
-}
-
-.goods_list .list_view .list_info {
-	width: 310upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-.no_data {
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-	margin-top: 500upx;
-}
-
-.no_data image {
-	width: 200upx;
-	height: 200upx;
-	margin: 0 auto;
-}
-
-.no_data text {
-	display: block;
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-}
-.no_more {
-	width: 700upx;
-	display: block;
-	margin: 0upx auto;
-	text-align: center;
-}
 </style>

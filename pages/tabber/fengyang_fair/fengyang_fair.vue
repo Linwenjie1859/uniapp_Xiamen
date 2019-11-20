@@ -35,7 +35,7 @@
 					<view class="text">
 						<view class="block"></view>
 						{{ category.cate_name }}
-					</view>
+					</view> 
 				</view>
 			</scroll-view>
 			<!-- 右侧子导航 -->
@@ -59,10 +59,10 @@
 			</scroll-view>
 			
 			<view class="cart cu-avatar round lg" @tap="cart_detail">
-				<view class="cu-tag badge bg-blue padding-xs">{{carNum}}</view>
+				<view class="cu-tag badge bg-blue padding-xs">{{carNum}}</view> 
 			</view> 
 			<!-- 抛物线小球 -->
-			<view class="good_box" v-show="hide_good_box" :style="'left:' + bus_x + 'px;top:' + bus_y + 'px'"></view>
+			<!-- <view class="good_box" v-show="hide_good_box" :style="'left:' + bus_x + 'px;top:' + bus_y + 'px'"></view> -->
 		</view>
 	</view>
 </template>
@@ -272,7 +272,7 @@ export default {
 		getCategoryList() {
 			var that = this;
 			that.baseGet(
-				that.U({ c: 'store_api', a: 'get_pid_cate' }),
+				that.U({ c: 'store_api', a: 'get_id_cate' }),
 				function(res) {
 					//获取分类列表中的第一个id来获取goods数据
 					that.showCategory(0, res.data[0].id);

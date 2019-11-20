@@ -7,7 +7,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
+/* WEBPACK VAR INJECTION */(function(uni, createApp) {__webpack_require__(/*! uni-pages */ 4);__webpack_require__(/*! @dcloudio/uni-stat */ 5);
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));
 
@@ -16,7 +16,7 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));
 
 var _util = _interopRequireDefault(__webpack_require__(/*! @/common/util.js */ 12));
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var sunUiStar = function sunUiStar() {return __webpack_require__.e(/*! import() | components/sunui-star/sunui-star */ "components/sunui-star/sunui-star").then(__webpack_require__.bind(null, /*! ./components/sunui-star/sunui-star.vue */ 368));};var uniLoadMore = function uniLoadMore() {return __webpack_require__.e(/*! import() | components/uni-load-more/uni-load-more */ "components/uni-load-more/uni-load-more").then(__webpack_require__.bind(null, /*! @/components/uni-load-more/uni-load-more.vue */ 375));};
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var sunUiStar = function sunUiStar() {return __webpack_require__.e(/*! import() | components/sunui-star/sunui-star */ "components/sunui-star/sunui-star").then(__webpack_require__.bind(null, /*! ./components/sunui-star/sunui-star.vue */ 366));};var uniLoadMore = function uniLoadMore() {return __webpack_require__.e(/*! import() | components/uni-load-more/uni-load-more */ "components/uni-load-more/uni-load-more").then(__webpack_require__.bind(null, /*! @/components/uni-load-more/uni-load-more.vue */ 373));};
 _vue.default.prototype.$store = _store.default;
 
 _vue.default.config.productionTip = false;
@@ -39,6 +39,12 @@ _vue.default.prototype.header = {
   'token': '' };
 
 
+
+_vue.default.filter('numIsInteger', function (value) {
+  return parseInt(value + ''.toString());
+});
+
+
 _App.default.mpType = 'app';
 
 _vue.default.prototype.getMyMenus = function () {
@@ -57,7 +63,9 @@ _vue.default.prototype.isLogin = function () {
   if (_store.default.state.token) {
     return true;
   } else {
-    return false;
+    uni.navigateTo({
+      url: "/pages/login/pwd_login/pwd_login" });
+
   }
 };
 
@@ -158,7 +166,7 @@ var app = new _vue.default(_objectSpread({
 _App.default));
 
 createApp(app).$mount();
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))
 
 /***/ }),
 /* 1 */,
@@ -271,7 +279,6 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
     // 获取导航高度；
     uni.getSystemInfo({
       success: function success(e) {
-        console.log("getSystemInfo:", e);
         //导航高度
         _this.navHeight = e.statusBarHeight * (750 / e.windowWidth) + 97;
         that.setNavHeight({
@@ -285,35 +292,6 @@ var _vuex = __webpack_require__(/*! vuex */ 13);function _interopRequireDefault(
 
         _vue.default.prototype.WindowHeight = e.windowHeight; //中心部分高度
         _vue.default.prototype.TabBar = 50; //底部选项卡高度
-
-        //
-        // Vue.prototype.screentHeight = e.screenHeight
-        // Vue.prototype.windowHeight = e.windowHeight - 50;
-        //
-
-        //
-
-
-
-        // /*******以下是colorUI***********/
-        //
-
-
-
-
-
-
-
-
-        //
-        // Vue.prototype.StatusBar = e.statusBarHeight;
-        // let custom = wx.getMenuButtonBoundingClientRect();
-        // Vue.prototype.Custom = custom;
-        // Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
-        //
-
-        //
-
 
 
 

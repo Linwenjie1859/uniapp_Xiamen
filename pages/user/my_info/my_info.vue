@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="info_edit">
-			<image class="portrait" src="/static/logo.png" mode=""></image>
+			<image class="portrait" :src="userInfo.avatar" mode=""></image>
 			<text class="font-32">{{userInfo.nickname}}</text>
 				<button class="btn_edit_green" @tap="edit">编辑</button>
 		</view>

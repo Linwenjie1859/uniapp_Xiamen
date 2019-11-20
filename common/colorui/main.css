@@ -6,17 +6,16 @@
   
   （QQ交流群：240787041）
 */
-/* ==================
-        更改代码
- ==================== */
-.radius {
-	border-radius: 12upx;
-}
+
+
 
 
 /* ==================
         补充代码
  ==================== */
+ .radius- {
+ 	border-radius: 12upx;
+ }
  .text-indent{
 	 text-indent:4rpx;
  }
@@ -64,7 +63,9 @@ image {
 .round {
 	border-radius: 5000upx;
 }
-
+.radius {
+	border-radius: 8upx;
+}
 
 /* ==================
           图片

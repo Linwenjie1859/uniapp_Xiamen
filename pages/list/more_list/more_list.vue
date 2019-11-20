@@ -1,25 +1,27 @@
 <template>
-	<view class="content">
-		<view class="scenery_list">
-			<view class="list_view">
-				<view class="scenery" @tap="detail" :data-id="article.id" v-for="(article, index) in list" :key="index">
-					<image class="scenery_img radius" :src="article.image_input[0]" mode=""></image>
-					<view class="info_list">
-						<text class="text-lg text_limit text-black">{{article.title}}</text>
-						<text class="text-df text_info text-gray">{{article.synopsis}}</text>
-						<view class="see_list">
-							<text class="font-24 gray">{{ article.add_time }}</text>
-							<view class="num">
-								<image src="/static/see.png" mode=""></image>
-								<text class="font-24 gray">{{ article.visit }}</text>
-							</view>
+
+	<view class="bg-white padding-sm">
+		<!-- 大致文章显示 Start -->
+		<view class="flex flex-direction">
+			<view class="flex justify-between margin-bottom-sm solid-bottom" @tap="detail" :data-id="article.id" v-for="(article, index) in list" :key="index">
+				<image class="img-has-small-size radius margin-bottom-xs" :src="article.image_input[0]" ></image>
+				<view class="flex flex-direction justify-around" style="width: 450rpx;">
+					<text class="text-df text-black text-cut">{{article.title}}</text>
+					<text class="text-df text-cut-two text-gray">{{article.synopsis}}</text>
+					<view class="flex justify-between">
+						<text class="text-sm text-grey">{{article.add_time}}</text>
+						<view class="flex text-grey">
+							<text class="cuIcon-attention margin-right-xs"></text>
+							<text class="text-sm">{{article.visit}}</text>
 						</view>
 					</view>
 				</view>
-				<uni-load-more :status="loadingMore" v-if="loadingMoreFlag"/>
 			</view>
 		</view>
+		<!-- 大致文章显示 End -->
+		<uni-load-more :status="loadingMore" v-if="loadingMoreFlag"/>
 	</view>
+
 </template>
 
 <script>
@@ -108,93 +110,14 @@ export default {
 };
 </script>
 
-<style scoped>
-.content {
-	text-align: center;
-}
-.scenery_list {
-	width: 700upx;
-	margin: 0upx auto;
-}
-.scenery_pic {
-	width: 700upx !important;
-	height: 250upx !important;
-	margin: 0 auto;
-	border-radius: 10upx;
-}
-.scenery_list .title {
-	display: block;
-	width: 700upx;
-	text-align: center;
-}
+<style scopeds>
+	.img-has-small-size{
+		width: 240rpx;
+		height: 180rpx;
+	}
+	.img-has-size{
+		width: 750rpx;
+		height: 300rpx;
+	}
 
-.scenery_list .list_view {
-	width: 700upx;
-	background-color: #ffffff;
-	border-radius: 10upx;
-	/* margin-top: 25upx; */
-}
-
-.scenery_list .scenery {
-	width: 700upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: center;
-	border-bottom: 1upx solid #e5e5e5;
-}
-
-.scenery_list .scenery_img {
-	width: 240upx !important;
-	height: 180upx !important;
-	margin-right: 25upx;
-}
-
-.scenery_list .info_list {
-	width: 430upx;
-	height: 180upx;
-	margin: 25upx 0upx;
-}
-.info_list text {
-	text-align: left !important;
-}
-.info_list .text_limit {
-	width: 430upx;
-	display: block;
-	margin-top: -5upx;
-	margin-bottom: 10upx;
-}
-
-.info_list .text_info {
-	width: 430upx;
-	display: block;
-	text-align: left;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-
-.see_list {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 20upx;
-}
-
-.see_list .num {
-	display: flex;
-	align-items: center;
-}
-.see_list .num image {
-	width: 30upx;
-	height: 22upx;
-	margin-right: 10upx;
-}
-.more {
-	display: block;
-	width: 700upx;
-	text-align: center;
-	margin: 15upx 0upx 35upx 0upx;
-}
 </style>

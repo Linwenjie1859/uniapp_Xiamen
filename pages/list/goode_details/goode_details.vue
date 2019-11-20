@@ -1,7 +1,7 @@
 <template>
-	<view class="content">
+	<view class="flex flex-direction">
 		<view class="header">
-			<image src="/static/left_white.png" mode="" @tap="back" v-if="showBack"></image>
+			<text class="cuIcon-back cuIcon-has-absolute text-white" @tap="back"></text>
 			<!-- 头部-滚动渐变显示 -->
 			<view class="after" :style="{ opacity: afterHeaderOpacity, zIndex: afterHeaderzIndex }">
 				<view class="middle font-32">
@@ -9,129 +9,171 @@
 				</view>
 			</view>
 		</view>
+		<!-- 商品轮播图 Start -->
+		<swiper
+			indicator-color="#fff"
+			indicator-active-color="#51c77d"
+			:indicator-dots="indicatorDots"
+			:autoplay="autoplay"
+			:interval="interval"
+			:duration="duration"
+			class="has-height-width"
+		>
+			<swiper-item v-for="(item, index) in goodsInfo.storeInfo.slider_image" :key="index" >
+				<image :src="item" style="width: 750rpx;height: 500rpx;"></image>
+			</swiper-item>
+		</swiper>
+		<!-- 商品轮播图 End -->
+		
+		<!-- 商品名称、售价、销量 Start -->
+		<view class="flex flex-direction padding-sm bg-white">
+			<text class="text-bold text-cut-two text-lg">{{ goodsInfo.storeInfo.store_name }}</text>
+			<view class="flex justify-between margin-top-sm">
+				<text class="text-price text-orange text-xl">{{ goodsInfo.storeInfo.price}}</text>
+				<text>已售：{{goodsInfo.storeInfo.ficti}}{{goodsInfo.storeInfo.unit_name}}</text>
+			</view>
+		</view>
+		<!-- 商品名称、售价、销量 End -->
+		
+		<!-- 活动、发货 Start -->
+		<view class="flex flex-direction margin-tb-xs padding-sm bg-white">
+			<view class="flex margin-bottom-sm align-center text-df text-grey">
+				<text class="margin-right">活动</text>
+				<view class="flex align-center">
+					<text class="cuIcon-sponsor margin-right-xs text-xl"></text>
+					<text class="text-black">购买可获得 {{goodsInfo.storeInfo.give_integral}} 积分</text>
+				</view>
+			</view>
+			<view class="flex margin-bottom-sm align-center text-df text-grey">
+				<text class="margin-right">发货</text>
+				<view class="flex align-center">
+					<text class="cuIcon-location margin-right-xs text-xl"></text>
+					<text class="text-black">福建寿宁 | 快递：{{goodsInfo.storeInfo.postage==0?'免运费':goodsInfo.storeInfo.postage}}</text>
+				</view>
+			</view>
+		</view>
+		<!-- 活动、发货 End -->
+		
+		
+		<!-- 宝贝评价 Start -->
+		<view class="flex flex-direction padding-sm bg-white" id="comments">
+			<view class="flex align-center justify-between">
+				<view class="flex align-center">
+					<text class="cuIcon-message"></text>
+					<text>宝贝评价({{ goodsInfo.reply.count_num ? goodsInfo.reply.count_num : 0}})</text>
+				</view>
+				<view class="flex align-center text-grey"  @tap="details">
+					<text> 查看全部</text>
+					<text class="cuIcon-right"></text>
+				</view>
+			</view>
+			<view class="flex align-center margin-top-sm margin-bottom-xs" v-if="goodsInfo.reply">
+				<view class="cu-avatar round lg" @tap="edit" :style="{backgroundImage:'url(' +goodsInfo.reply.avatar + ')'}">
+					<view class="cu-tag badge cuIcon-crownfill bg-blue"></view>
+				</view> 
+				<text class="text-sm">{{goodsInfo.reply.nickname}}</text>
+			</view>
+			<view class="flex">
+				<text class="text-cut-two">{{goodsInfo.reply.comment}}</text>
+			</view>
+		</view>
+		<!-- 宝贝评价 End -->
+		
+		<!-- 店铺商家信息 Start -->
+		<view class="margin-tb-xs padding bg-white">
+			<view class="flex justify-between text-black text-sm align-center">
+				<view class="flex-sub flex align-center">
+					<image
+						class="radius"
+						:src="goodsInfo.merInfo.store_logo"
+						mode="scaleToFill"
+						style="width: 140rpx; height: 140rpx;"
+					></image>
+					<view class="flex flex-direction margin-left-sm">
+						<text class="text-df text-bold">{{goodsInfo.merInfo.store_name}}</text>
+						<view class="flex margin-tb-sm text-xs">
+							<view class="bg-gray light round inline-block padding-lr-xs">
+								<text class="text-sm">
+									综合体验
+									<text class="text-red cuIcon-favorfill" v-for="index in 5" :key="index"></text>
+								</text>
+							</view>
+						</view>
+						<view class="flex justify-between text-grey">
+							<text>收藏{{goodsInfo.merInfo.fav_count}}</text>
+							<text>销量{{goodsInfo.merInfo.sale_count}}</text>
+							<text>访问量{{goodsInfo.merInfo.views}}</text>
+						</view>
+					</view>
+				</view>
+				<view class="flex align-center self-end">
+					<view class="bg-orange round cu-tag line-orange"><text class="text-white text-sm" @tap="commodity">进店逛逛</text></view>
+				</view>
+			</view>
+		</view>
+		<!-- 店铺商家信息 End -->
+		
+		<!-- 商品详情 Start -->
+		<view class="flex flex-direction bg-white">
+			<view class="flex align-center detail-has-border">
+				<text class="margin-tb-xs margin-left-sm text-df  text-black text-bold">商品详情</text>
+			</view>
+			<view style="width: 750rpx;overflow: auto;"><rich-text :nodes="goodsInfo.storeInfo.description"></rich-text></view>
+		</view>
+		<!-- 商品详情 End -->
+	
+		<!-- 底部弹窗 -->
+		<uni-popup ref="share" :type="type" :custom="true" @change="change">
+			<view class="uni-share">
+				<view class="goods-info">
+					<image :src="goodsInfo.storeInfo.slider_image[0]"></image>
+					<view class="info">
+						<view class="flex">
+							<text class="price font-36 orange">￥{{ goodsInfo.storeInfo.price }}</text>
+							<text class="spec font-24">规格：500g</text>
+						</view>
+						<text class="title font-28 text_limit_two">{{ goodsInfo.storeInfo.store_name }}</text>
+						<view class="price-number">
+							<text class="spec font-24">库存:{{ goodsInfo.storeInfo.stock }}件</text>
+							<view class="number">
+								<view class="sub font-32" @tap.stop="addSubNum(-1)"><text class="icon jian">-</text></view>
+								<view class="input font-28"><input type="number" v-model="currentNum" /></view>
+								<view class="add font-32" @tap.stop="addSubNum(1)"><text class="icon jia">+</text></view>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="cancel" @click="cancel('share')"><image src="/static/cancel.png" mode=""></image></view>
+				<view class="btn flex">
+					<button class="font-28 bg-green white" @click="addGoodToCar">加入购物车</button>
+					<button class="font-28 bg-orange white" @tap="purchase">立即购买</button>
+				</view>
+				<view class="clear" style="height: 50upx;"></view>
+			</view>
+		</uni-popup>
+		<view style="padding-top: 110upx;" class="bg-white"></view>
 		<!-- 底部菜单 -->
 		<view class="footer">
 			<view class="footer_list">
 				<view class="icons font-24 gray">
 					<view class="box" @tap="commodity">
-						<image src="/static/dp_icon.png" mode=""></image>
+						<text class="cuIcon-shop text-xxl"></text>
 						<view class="text">店铺</view>
 					</view>
 					<view class="box" @tap="cart">
-						<image src="/static/shop_cart_gray.png" mode=""></image>
+						<text class="cuIcon-cart text-xxl"></text>
 						<view class="text">购物车</view>
 					</view>
 					<view class="box" @tap="collectGood">
-						<image class="icon" :class="[isKeep ? 'shoucangsel' : 'shoucang']"></image>
+						<text class="text-xxl" :class="[isKeep ? ' text-orange cuIcon-favorfill' : 'text-gray cuIcon-favor']"></text>
 						<view class="text">{{ isKeep ? '已' : '' }}收藏</view>
 					</view>
 				</view>
 				<view class="btn font-24">
-					<view class="joinCart bg_green white" @click="togglePopup('bottom', 'share')">加入购物车</view>
-					<view class="buy bg_orange white" @click="togglePopup('bottom', 'share')">立即购买</view>
+					<view class="joinCart bg-green text-white" @click="togglePopup('bottom', 'share')">加入购物车</view>
+					<view class="buy bg-orange text-white" @click="togglePopup('bottom', 'share')">立即购买</view>
 				</view>
 			</view>
-		</view>
-
-		<!-- 商品主图轮播 -->
-		<view class="banner">
-			<view class="uni-padding-wrap">
-				<view class="page-section swiper">
-					<view class="page-section-spacing">
-						<swiper
-							class="swiper"
-							indicator-color="#fff"
-							indicator-active-color="#51c77d"
-							:indicator-dots="indicatorDots"
-							:autoplay="autoplay"
-							:interval="interval"
-							:duration="duration"
-						>
-							<swiper-item v-for="(item, index) in goodsInfo.storeInfo.slider_image" :key="index"><image :src="item" mode=""></image></swiper-item>
-						</swiper>
-					</view>
-				</view>
-			</view>
-		</view>
-
-		<!-- 商品简介 -->
-		<view class="shop_list">
-			<!-- 商品 -->
-			<view class="list_top">
-				<text class="title font-32">{{ goodsInfo.storeInfo.store_name }}</text>
-				<view class="shop_view">
-					<view class="price">
-						<text class="font-36 orange">￥{{ goodsInfo.storeInfo.price }}</text>
-						<text class="font-24 static">特价优惠</text>
-					</view>
-					<!-- 	<view class="time">
-						<text class="font-24">距离结束仅剩</text>
-						<text class="font-36 orange">2天2小时11分28秒</text>
-					</view> -->
-				</view>
-				<view class="shop_view font-24 gray">
-					<text>快递：0.00</text>
-					<text>已售：4件</text>
-					<text>福建寿宁</text>
-				</view>
-			</view>
-			<view class="list_top flex">
-				<image src="/static/integral.png" mode=""></image>
-				<text class="font-28">购买可获得45积分</text>
-			</view>
-			<!-- 评价 -->
-			<view class="list_top" id="comments">
-				<view class="title_view">
-					<view class="view_left flex">
-						<image src="/static/kf_icon.png" mode=""></image>
-						<text class="font-28">宝贝评价({{goodsInfo.reply.count_num?goodsInfo.reply.count_num:0}})</text>
-					</view>
-					<view class="view_right" @tap="details"><text class="font-28 gray">查看全部></text></view>
-				</view>
-				<view class="comments_details flex" v-if="goodsInfo.reply"> 
-					<image :src="goodsInfo.reply.avatar?goodsInfo.reply.avatar:'/static/pic.png'" mode=""></image>
-					<text class="font-24">{{goodsInfo.reply.nickname}}</text>
-				</view>
-				<view class="details_info"><text class="title font-28 text_limit">{{goodsInfo.reply.comment}}</text></view>
-			</view>
-			<!-- 详情 -->
-			<view class="list_top">
-				<view class="title font-32 text_center">————商品详情————</view>
-				<view class="details_content">
-					<rich-text :nodes="goodsInfo.storeInfo.description"></rich-text>
-				</view>
-			</view>
-			<view class="clear" style="height: 100upx;"></view>
-
-			<!-- 底部弹窗 -->
-			<uni-popup ref="share" :type="type" :custom="true" @change="change">
-				<view class="uni-share">
-					<view class="goods-info">
-						<image :src="goodsInfo.storeInfo.slider_image[0]"></image>
-						<view class="info">
-							<view class="flex">
-								<text class="price font-36 orange">￥{{ goodsInfo.storeInfo.price }}</text>
-								<text class="spec font-24">规格：500g</text>
-							</view>
-							<text class="title font-28 text_limit_two">{{ goodsInfo.storeInfo.store_name }}</text>
-							<view class="price-number">
-								<text class="spec font-24">库存:{{ goodsInfo.storeInfo.stock }}件</text>
-								<view class="number">
-									<view class="sub font-32" @tap.stop="addSubNum(-1)"><text class="icon jian">-</text></view>
-									<view class="input font-28"><input type="number" v-model="currentNum" /></view>
-									<view class="add font-32" @tap.stop="addSubNum(1)"><text class="icon jia">+</text></view>
-								</view>
-							</view>
-						</view>
-					</view>
-					<view class="cancel" @click="cancel('share')"><image src="/static/cancel.png" mode=""></image></view>
-					<view class="btn flex">
-						<button class="font-28 bg_green white" @click="addGoodToCar">加入购物车</button>
-						<button class="font-28 bg_orange white" @tap="purchase">立即购买</button>
-					</view>
-					<view class="clear" style="height: 50upx;"></view>
-				</view>
-			</uni-popup>
 		</view>
 	</view>
 </template>
@@ -146,7 +188,6 @@ export default {
 	},
 	data() {
 		return {
-			showBack: true,
 			// banner
 			indicatorDots: true,
 			autoplay: true,
@@ -172,6 +213,9 @@ export default {
 			goodsInfo: {
 				storeInfo: {
 					price: 0.0
+				},
+				reply:{
+					avatar:'/static/pic.png'
 				}
 			},
 			//当前购物车商品数量
@@ -271,6 +315,7 @@ export default {
 				}
 			}
 		},
+		
 		//获取商品的信息
 		getGoodInfo() {
 			let that = this;
@@ -285,7 +330,7 @@ export default {
 				function(res) {
 					that.goodsInfo = res.data;
 					that.isKeep = res.data.storeInfo.userCollect;
-					console.log(that.goodsInfo);
+					
 				},
 				function(res) {
 					console.log(res);
@@ -415,73 +460,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
-page {
-	background-color: #f2f2f2;
+<style scoped>
+	.detail-has-border{
+		border-left: 8rpx solid #f37b1d;
+	}
+.has-height-width{
+	height: 500rpx;
+	width: 750rpx;
 }
 
-.banner {
-	width: 100%;
-	height: 450upx;
-}
-
-.banner .swiper {
-	height: 450upx;
-}
-
-.banner image {
-	width: 100%;
-	height: 450upx;
-}
-
-// tab
-.header {
-	width: 100%;
-	height: 170upx;
-	display: flex;
-	align-items: center;
-	position: fixed;
-	top: 0;
-	z-index: 10;
-}
-
-.header image {
-	width: 35upx;
-	height: 35upx;
-	position: absolute;
-	left: 25upx;
-	bottom: 45upx;
-	z-index: 100000;
-}
-
-.after {
-	width: 100%;
-	height: 170upx;
-	position: fixed;
-	top: 0upx;
-	transition: opacity 0.05s linear;
-	background-color: #51c77d;
-	color: #fff;
-}
-
-.after .middle {
-	display: flex;
-	align-items: center;
-	width: 400upx;
-	padding-top: 90upx;
-	margin: 0 auto;
-	justify-content: space-between;
-}
-
-.on {
-	width: 80upx;
-	text-align: center;
-	margin-bottom: -4upx;
-	color: #f66d3c;
-	border-bottom: solid 4upx #f66d3c;
-}
-
-// foot
 .footer {
 	position: fixed;
 	bottom: 0upx;
@@ -500,7 +487,6 @@ page {
 	align-items: center;
 	margin: 0 auto;
 }
-
 .icons {
 	width: 310upx;
 	display: flex;
@@ -534,88 +520,6 @@ page {
 	width: 180upx;
 	text-align: center;
 	line-height: 80upx;
-}
-
-// 商品
-.flex {
-	display: flex;
-	align-items: center;
-}
-
-.shop_list {
-	width: 700upx;
-	position: absolute;
-	top: 410upx;
-	left: 50%;
-	margin-left: -350upx;
-}
-
-.shop_list .list_top {
-	width: 700upx;
-	background-color: #fff;
-	border-radius: 10upx;
-	margin-bottom: 25upx;
-}
-
-.shop_list .list_top image {
-	width: 35upx;
-	height: 35upx;
-	margin: 25upx 15upx 25upx 25upx;
-}
-
-.shop_list .list_top .title {
-	width: 650upx;
-	display: block;
-	margin: 0 auto;
-	padding-top: 20upx;
-}
-
-.shop_view {
-	width: 650upx;
-	margin: 0 auto;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	padding-bottom: 25upx;
-}
-
-.shop_view .static {
-	padding: 0upx 20upx;
-	background-color: #fce0c8;
-	border-radius: 25upx;
-	color: #f66d3c;
-	margin-left: 10upx;
-}
-
-.shop_view .time text {
-	display: block;
-	text-align: right;
-}
-
-// 评价
-.title_view {
-	width: 675upx;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-right: 25upx;
-}
-
-.comments_details image {
-	width: 80upx !important;
-	height: 80upx !important;
-	border-radius: 50%;
-	margin: 0upx 15upx 0upx 25upx !important;
-}
-
-.details_info {
-	padding-bottom: 25upx;
-}
-
-// 详情
-.details_content image {
-	width: 650upx !important;
-	height: 300upx !important;
 }
 
 /* 底部分享 */
@@ -714,5 +618,48 @@ input {
 	height: 80upx;
 	line-height: 80upx;
 	border-radius: 0upx;
+}
+// tab
+.header {
+	width: 100%;
+	height: 170upx;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	z-index: 10;
+}
+.cuIcon-has-absolute{
+	font-size: 46rpx !important;
+	position: absolute;
+	left: 25upx;
+	z-index: 100000;
+}
+
+.after {
+	width: 100%;
+	height: 64px;
+	position: fixed;
+	top: 0upx;
+	transition: opacity 0.05s linear;
+	background-color: #39b54a;
+	color: #fff;
+}
+
+.after .middle {
+	display: flex;
+	align-items: center;
+	width: 400upx;
+	padding-top: 60upx;
+	margin: 0 auto;
+	justify-content: space-between;
+}
+
+.on {
+	width: 80upx;
+	text-align: center;
+	margin-bottom: -4upx;
+	color: #f66d3c;
+	border-bottom: solid 4upx #f66d3c;
 }
 </style>

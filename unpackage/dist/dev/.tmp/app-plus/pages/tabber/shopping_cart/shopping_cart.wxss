@@ -24,11 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.text-has-border {
+  width: 70rpx;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5rpx 10rpx;
+}
+.text-has-border-right {
+  border: 1px solid #e0e0e0;
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+  padding: 5rpx 15rpx;
+}
+.text-has-border-left {
+  border: 1px solid #e0e0e0;
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+  padding: 5rpx 15rpx;
+}
 .has-radius {
   border-radius: 12rpx;
-}
-page {
-  background-color: #f2f2f2;
 }
 .view-is-position {
   height: 200rpx;
@@ -36,6 +52,9 @@ page {
   overflow: hidden;
   z-index: 4;
 }
+/* ==================
+        原始代码
+ ==================== */
 .menu {
   width: 150rpx;
   height: 196rpx;
@@ -182,69 +201,6 @@ image {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-}
-.info {
-  width: 460rpx;
-}
-.info .spec {
-  display: block;
-  width: 150rpx;
-  text-align: center;
-  background-color: #f2f2f2;
-  color: #999;
-  height: 30rpx;
-  line-height: 30rpx;
-  border-radius: 15rpx;
-  margin: 10rpx 0rpx;
-}
-.info .price-number {
-  width: 430rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-  -webkit-align-items: flex-end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.info .number {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-.input {
-  width: 45rpx;
-  height: 45rpx;
-  line-height: 50rpx;
-  text-align: center;
-  margin: 0 10rpx;
-  background-color: #f2f2f2;
-}
-input {
-  margin-top: -5rpx;
-}
-.sub,
-.add {
-  width: 59rpx;
-  height: 47rpx;
-  text-align: center;
-  line-height: 47rpx;
-  background-color: #f2f2f2;
-  border-radius: 5rpx;
 }
 .footer {
   width: 100%;

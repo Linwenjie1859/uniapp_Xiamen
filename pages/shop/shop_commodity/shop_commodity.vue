@@ -444,7 +444,7 @@ page {
 }
 // 头部
 .header {
-	background-color: #51c77d;
+	background-color: #39b54a;
 	width: 100%;
 	height: 170upx;
 	position: fixed;

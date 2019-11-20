@@ -39,8 +39,8 @@ export default {
 			uni.chooseImage({
 				success: function(e) {
 					var imagePathArr = e.tempFilePaths;
-					uni.uploadFile({
-						url: 'http://www.fyang.com/ebapi/public_api/upload',
+					uni.uploadFile({ 
+						url: _self.url+'/ebapi/public_api/upload',
 						fileType: 'image',
 						formData: {
 							filename: 'keyname'
@@ -53,7 +53,7 @@ export default {
 						success: function(res) {
 							var data = JSON.parse(res.data);
 							console.log(data.data.url);
-							_self.userInfo.avatar='http://www.fyang.com' + data.data.url;
+							_self.userInfo.avatar= data.data.url;
 							uni.showToast({
 								title: '上传进度：' + 1 + '/' + imagePathArr.length,
 								icon: 'none',

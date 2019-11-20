@@ -1,27 +1,35 @@
 <template>
-	<view class="content">
+	<view style="height: 100vh;" class="bg-white">
 		<view class="header">
-			<image class="black" src="/static/left_white.png" mode="" @tap="back" v-if="showBack"></image>
-			<view class="input_view"><input class="font-28" type="text" v-model.trim="keyWord" placeholder="搜索商品" /></view>
-			<image class="search" src="/static/search.png" mode="" @click="searchGoods"></image>
-		</view>
-		<view class="history">
-			<view class="title">
-				<text class="font-32">热门搜索</text>
-			</view>
-			<view class="history_list font-28 gray">
-				<text @tap="toList" :data-key="item.title" v-for="(item, index) in hotSearchList" :key="index">{{ item.title }}</text>
+			<view class="view-is-absolute flex justify-between align-center">
+				<text class="cuIcon-back text-white text-xxl margin-top-sm margin-left" @tap="back"></text>
+				<view class="input_view round padding-lr-sm padding-tb-xs">
+					<input class="text-df round text-center" type="text" v-model.trim="keyWord" placeholder="搜索商品" />
+				</view>
+				<text class="cuIcon-search text-white text-xxl margin-top-sm margin-right" @click="searchGoods"></text>
 			</view>
 		</view>
-		<view class="history">
-			<view class="title">
-				<text class="font-32">历史搜索</text>
-				<image src="/static/del.png" mode="" @click="historyClear"></image>
-			</view>
-			<view class="history_list font-28 gray">
-				<text @tap="toList" :data-key="item" v-for="(item, index) in historyList" :key="index">{{ item }}</text>
+		<!-- 热门搜索结果 Start -->
+		<view class="flex flex-direction padding-lr-sm" style="padding-top: 160rpx;">
+			<text class="text-lg margin-tb-sm" @click="searchGoods">热门搜索</text>
+			<view class="flex flex-wrap align-center margin-top-xs">
+				<view class="flex padding-lr-sm margin-right round view-has-border"  @tap="toList" :data-key="item.title" v-for="(item, index) in hotSearchList" :key="index">
+					<text class="text-grey">{{ item.title }}</text>
+				</view>
 			</view>
 		</view>
+		<!-- 热门搜索结果 End -->
+		
+		<!-- 用户历史搜索结果 Start -->
+		<view class="flex flex-direction padding-lr-sm">
+			<text class="text-lg margin-tb-sm">历史搜索</text>
+			<view class="flex flex-wrap align-center margin-top-xs">
+				<view class="flex padding-lr-sm margin-right round view-has-border"  @tap="toList" :data-key="item" v-for="(item, index) in historyList" :key="index">
+					<text class="text-grey">{{ item }}</text>
+				</view>
+			</view>
+		</view>
+		<!-- 用户历史搜索结果 End -->
 	</view>
 </template>
 
@@ -29,7 +37,6 @@
 export default {
 	data() {
 		return {
-			showBack: true,
 			hotSearchList: [],
 			historyList: [],
 			keyWord: ''
@@ -121,73 +128,35 @@ export default {
 </script>
 
 <style>
+	.view-has-border{
+		border: 2rpx solid #8799a3;
+	}
 /* 头部 */
 .header {
-	background-color: #51c77d;
+	background-color: #39b54a;
 	width: 100%;
-	height: 170upx;
+	height: 160upx;
 	position: fixed;
-	top: 0;
 	z-index: 10000;
 }
-.header .black {
-	width: 35upx;
-	height: 35upx;
+.view-is-absolute{
 	position: absolute;
-	left: 25upx;
-	bottom: 45upx;
-}
-.header .search {
-	width: 35upx;
-	height: 35upx;
-	position: absolute;
-	right: 25upx;
-	bottom: 45upx;
+	top:0;
+	width: 100%;
+	height: 100%;
+	
 }
 .input_view {
-	width: 580upx;
-	height: 70upx;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-radius: 10upx;
+	width: 450upx;
+	height: 60upx;
+	background-color: rgba(255, 255, 255, 0.7);
 	position: absolute;
-	left: 50%;
-	margin-left: -290upx;
-	bottom: 25upx;
-	display: flex;
-	align-items: center;
+	left: 20%;
+	z-index: 1024;
+	border: 1px solid rgba(135, 153, 163, 0.3);
+	bottom: 39rpx;
 }
 
-.input_view input {
-	width: 580upx;
-	text-align: center;
-}
-/* 历史搜索 */
-.history {
-	margin-top: 170upx;
-	width: 100%;
-}
-.history .title {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 700upx;
-	height: 100upx;
-	margin: 0 auto;
-}
-.history .title image {
-	width: 35upx;
-	height: 35upx;
-}
-.history .history_list {
-	width: 700upx;
-	margin: 0 auto;
-}
-.history .history_list text {
-	display: inline-block;
-	padding: 0upx 20upx;
-	margin-right: 25upx;
-	margin-bottom: 25upx;
-	border: 1upx solid #e5e5e5;
-	border-radius: 25upx;
-}
+
+
 </style>

@@ -41,7 +41,7 @@
 								<text class="text-cut-two text-df" >{{ rows.productInfo.store_name }}</text>
 								<view class="flex justify-between margin-top-sm">
 									<text class="text-red text-price text-df">{{ rows.productInfo.price }}</text>
-									<view class="text-grey flex">
+									<view class="text-grey flex margin-right-xs">
 										<text class="text-has-border-left" @tap="addSubNum(index, ind, -1)">-</text>
 										<input type="number" class="text-df text-has-border" v-model.number="rows.cart_num" @blur="addSubNum(index,ind,0)"/>
 										<text class="text-has-border-right" @tap="addSubNum(index, ind, 1)">+</text>

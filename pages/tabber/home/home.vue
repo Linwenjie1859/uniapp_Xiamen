@@ -53,45 +53,111 @@
 			
 			<image class="radius home_pic2" :src="allInfo.banner[1].pic" mode=""></image>
 			
-			<view class="list_down">
+		<!-- 	<view class="list_down">
 				<image :src="allInfo.article_menus[0].pic" mode="" @tap="fengyang_scenery"></image>
 				<image :src="allInfo.article_menus[1].pic" mode="" @tap="flowering_seasons"></image>
 				<image :src="allInfo.article_menus[2].pic" mode="" @tap="fruit_garden"></image>
-			</view>
+			</view> -->
 		</view>
 		<!-- 首页导航栏 End -->
 		
-		<view class="home_list">
-			<view class="title">
-				<text class="font-32">玩转凤阳</text>
-				<text class="font-28 gray" @tap="idealLife">更多></text>
+		<!-- 热门推荐 Start-->
+		<view class="flex flex-direction padding-sm bg-white margin-top-sm">
+			<view class="flex flex-direction">
+				<view class="flex align-center justify-center">
+					<text class="text-lg text-black margin-tb-sm">热门推荐</text>
+					<text class="cuIcon-roundright margin-left-xs" @tap="idealLife"> </text>
+				</view>
+				<text class="text-sm text-yellow margin-bottom-sm">精选线路推荐，体验厦门特色</text>
 			</view>
-			<image class="home_pic3" :src="allInfo.info.otherList[0].image" mode="" :data-id="allInfo.info.otherList[0].id" @tap="line_details"></image>
-			
-			<view class="recommend_list font-28">
-				<view class="list_view" :data-id="item.id" @tap="line_details" v-for="(item, index) in allInfo.info.otherList" :key="index">
-					<image :src="item.image" mode=""></image>
-					<text>{{ item.store_name }}</text>
+			<view class="bg-img bg-mask has-bgimg" :style="{'background-image': 'url('+allInfo.info.otherList[0].image+')'}" :data-id="allInfo.info.otherList[0].id" @tap="line_details">
+				<view class="flex flex-direction justify-between align-center text-white margin-left-sm">
+					<view class="self-start flex flex-direction align-center padding-xs  padding-lr text-black has-bg-radius">
+						<text class="text-df margin-bottom-xs">鼓浪屿</text>
+						<text class="text-xs">世界文化遗产</text>
+					</view>
+				</view>
+			</view>
+			<view class="flex margin-top-xs justify-between">
+				<view class="flex flex-direction has-margin text-left" style="width:230rpx;" v-for="(item, index) in allInfo.info.otherList" :key="index" :data-id="item.id" @tap="line_details">
+					<image :src="item.image" mode="scaleToFill" class="img-has-radius "></image>
+					<text class="text-sm text-black margin-tb-xs">{{item.store_name}}</text>
+					<text class="text-grey text-cut text-xs">{{item.store_info}}</text>
 				</view>
 			</view>
 		</view>
-		<view class="home_list">
-			<view class="title">
-				<text class="font-32">放心农产品</text>
-				<text class="font-28 gray" @tap="agriculturalSpecialty">更多></text>
+		<!-- 热门推荐 End-->
+		
+		<!-- 主题导览 Start -->
+		<view class="flex flex-direction padding-sm bg-white margin-top-sm">
+			<view class="flex flex-direction">
+				<view class="flex align-center justify-center">
+					<text class="text-lg text-black margin-tb-sm">主题导览</text>
+					<text class="cuIcon-roundright margin-left-xs" @tap="idealLife"> </text>
+				</view>
+				<text class="text-sm text-yellow margin-bottom-sm">精选热门主题推荐，欢乐玩厦门</text>
 			</view>
-			<view class="product_list font-28">
-				<view class="prod_view" @tap="goodeDetails" :data-id="item.id" v-for="(item, index) in allInfo.info.bastList" :key="index">
-					<image :src="item.image" mode=""></image>
-					<text class="font-28 text_limit" style="width: 335rpx; display: block; text-align: left;">{{ item.store_name }}</text>
-					<view class="list_info">
-						<text class="font-24 orange">￥{{ item.ot_price }}</text>
-						<text class="font-24">月售{{ item.sales }}件</text>
+			<scroll-view scroll-x="true" >
+				<view class="flex">
+					<view class="flex flex-direction margin-right-sm align-start" style="width: 300rpx; height: 250rpx;" v-for="(item, index) in allInfo.info.otherList" :key="index">
+						<image :src="item.image" mode="scaleToFill" style="width: 300rpx; height: 200rpx;"></image>
+						<text class="text-sm text-black margin-tb-xs">{{item.store_name}}</text>
+						<text class="text-grey text-cut text-xs" style="width: 300rpx;">{{item.store_info}}</text>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+		<!-- 主题导览 End -->
+		
+		<!-- 行程推荐 Start -->
+		<view class="flex flex-direction padding-sm bg-white margin-top-sm">
+			<view class="flex flex-direction">
+				<view class="flex align-center justify-center">
+					<text class="text-lg text-black margin-tb-sm">行程推荐</text>
+				</view>
+				<text class="text-sm text-yellow margin-bottom-sm">精选热门主题推荐，欢乐玩厦门</text>
+			</view>
+			<view class="flex flex-direction margin-tb-sm solid-bottom" v-for="(item,index) in allInfo.article_category" :key="index">
+				<image :src="item.list[0].image_input[0]" mode="scaleToFill" class="trip-has-size"></image>
+				
+				<view class="flex align-center justify-between margin-top-sm margin-bottom-xs">
+					<view class="flex align-center">
+						<text class="cuIcon-titles  text-blue"></text>
+						<text class="text-black text-bold text-sm ">{{item.list[0].title}}</text>
+					</view>
+					<view class="flex align-center text-grey text-sm">
+						<text>{{item.list[0].add_time}} </text>
+						<text class="cuIcon-forwardfill margin-left-xs"></text>
+					</view>
+				</view>
+			</view>
+			
+		</view>
+		<!-- 行程推荐 End -->
+		
+		
+		<view class="flex flex-direction bg-white margin-top-sm padding-sm">
+			<view class="flex justify-between align-center padding-tb-sm">
+				<text class="text-lg">热门商品</text>
+				<view class="flex text-grey text-df align-center" @tap="agriculturalSpecialty">
+					<text>更多</text>
+					<text class="cuIcon-right margin-left-xs"></text>
+				</view>
+			</view>
+			<view class="flex text-df flex-wrap">
+				<view class="flex flex-direction has-margin-right-sm margin-bottom-sm"  style="width: 347rpx;" @tap="goodeDetails" :data-id="item.id" v-for="(item, index) in allInfo.info.bestList" :key="index">
+					<image :src="item.image" mode="scaleToFill" style="width: 347rpx; height: 320rpx;"></image>
+					<view class="flex text-left">
+						<text class="text-df text-cut-two">{{ item.store_name }}</text>
+					</view>
+					<view class="flex justify-between align-center margin-top-xs">
+						<text class="text-sm text-price text-orange">{{ item.price }}</text>
+						<text class="text-sm text-grey">月售{{ item.sales }}件</text>
 					</view>
 				</view>
 			</view>
 		</view>
-		<text class="no_more font-28 gray">————没有更多————</text>
+		
 	</view>
 </template>
 
@@ -211,13 +277,50 @@ export default {
 </script>
 
 <style>
-page {
-	background-color: #f2f2f2;
-}
+	.has-margin-right-sm:nth-child(odd){
+		margin-right: 15rpx;
+	}
+	.trip-has-size{
+		width: 710rpx;
+		height: 400rpx;
+	}
+	.img-has-radius {
+		width:230rpx;
+		height: 160rpx;
+	
+	}
+	.has-margin:nth-of-type(1) image{
+		border-bottom-left-radius: 8rpx;
+	}
+	.has-margin:nth-last-of-type(1) image{
+		border-bottom-right-radius: 8rpx;
+	}
+	
+	.has-bgimg{
+		width:710rpx;
+		height: 300rpx;
+		border-top-right-radius: 8rpx;
+		border-top-left-radius: 8rpx;
+	}
+	.has-bg-radius{
+		background-color: rgba(243,198,68,0.9);
+		border-bottom-right-radius: 8rpx;
+		border-bottom-left-radius: 8rpx;
+	}
+	.has-margin{
+		margin-right: 10rpx;
+	}
+	.has-margin:nth-last-of-type(1){
+		margin-right: 0rpx;
 
-.content {
+	}
+	
+	
+.content{
 	text-align: center;
 }
+
+
 
 /* 头部 */
 .header {
@@ -427,13 +530,6 @@ page {
 	justify-content: space-between;
 	margin-top: 10upx;
 	margin-bottom: 25upx;
-}
-
-.product_list .prod_view text {
-	/* width: 335upx;
-		display: block;
-		text-align: center;
-		/* margin: 15upx 0upx 25upx 0upx; */
 }
 
 .no_more {
