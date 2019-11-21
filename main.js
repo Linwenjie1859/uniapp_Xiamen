@@ -19,8 +19,8 @@ App.mpType = 'app'
 Vue.prototype.routineStyle = '#ffffff';
 Vue.prototype.openPages = '';
 Vue.prototype.urlImages = '';
-Vue.prototype.url = 'http://www.fyang.com';
-// Vue.prototype.url = 'http://xiamen.vswxx.top';
+// Vue.prototype.url = 'http://www.fyang.com';
+Vue.prototype.url = 'http://xiamen.vswxx.top';
 // Vue.prototype.token = '';
 // Vue.prototype.isLog = true;
 // Vue.prototype.MyMenus = [];
@@ -34,6 +34,9 @@ Vue.filter('numIsInteger',function(value){
 	return parseInt(value+''.toString());
 })
 
+Vue.filter('subString',function(value){
+	return value.substring(0,1);
+})
 
 App.mpType = 'app'
 

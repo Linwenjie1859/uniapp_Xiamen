@@ -1,54 +1,51 @@
 <template>
 	<view>
 		<!-- 收货地址信息 -->
-		<view class="margin-sm padding bg-white has-radius">
+		<view class="margin-sm  padding bg-white has-radius">
 			<view class="flex align-center">
 				<view class="bg-gradual-orange round has-padding-sm"><text class="cuIcon-locationfill text-white " style="font-size: 32rpx;"></text></view>
 				<view class="flex flex-direction flex-sub margin-left-sm ">
 					<view class="flex align-center">
-						<text class="text-df margin-right-sm">张媛媛</text>
-						<text class="text-sm self-end text-grey">13075976237</text>
+						<text class="text-lg margin-right-sm">{{defaultAddress.real_name}}</text>
+						<text class="text-df self-end text-grey">{{defaultAddress.phone}}</text>
 					</view>
-					<view class="flex justify-between margin-top-sm">
-						<text class="text-black text-sm">福建省福州市马尾区阳光学院</text>
+					<view class="flex justify-between margin-top-sm" @tap="address">
+						<text class="text-black text-df">{{defaultAddress.province}}{{defaultAddress.city}}{{defaultAddress.district}}{{defaultAddress.detail}}</text>
 						<text class="cuIcon-right text-grey"></text>
 					</view>
-					<text class="margin-top-sm text-orange text-xs">收货不便时，可选择免费暂存服务</text>
+					<text class="margin-top-sm text-orange text-sm">收货不便时，可选择免费暂存服务</text>
 				</view>
 			</view>
 		</view>
 		<!-- 收货地址信息 end-->
 	
 		<!-- 商品确认信息 -->
-		<view class="margin-sm padding bg-white has-radius">
-			<view class="flex flex-direction">
+		<view class="flex flex-direction">
+			<view class="flex flex-direction bg-white has-radius padding-sm margin-lr-sm margin-tb-xs" v-for="(item,index) in cartInfo" :key="index">
 				<!-- 店铺名称 -->
 				<view class="flex align-center">
-					<text class="cuIcon-taoxiaopu text-red "></text>
-					<text class="text-sm text-black margin-left-xs text-bold">英雄联盟官方旗舰店</text>
+					<text class="cuIcon-shop text-red text-xxl"></text>
+					<text class="text-lg text-black margin-left-xs text-bold text-cut">{{item.data[0].productInfo.store_name}}</text>
 				</view>
 				<!-- 店铺名称 end-->
 				<!-- 商品信息 -->
-				<view class="flex justify-between margin-top-sm">
-					<image class="radius" src="http://image4.xyzs.com/upload/cc/c0/922/20150505/143080319236335_0.jpg" mode="" style="width: 160rpx; height: 160rpx;"></image>
-					<view class="flex flex-direction margin-bottom-xs">
-						<text class="text-black text-sm">2019年首款蔚限定皮肤，中秋官网出售</text>
-						<view class="flex margin-top-xs">
-							<view class="bg-gray light padding-xs radius"><text class="text-xs">蔚限定皮肤:虎痴之拳,2019中秋首款</text></view>
-						</view>
+				<view class="flex justify-between margin-top-sm align-center" v-for="(ite,ind) in item.data" :key="ind">
+					<view class="flex margin-right-sm">
+						<image class="radius" :src="ite.productInfo.image" mode="scaleToFill" style="width: 190rpx; height: 180rpx;"></image>
 					</view>
-					<view class="flex flex-direction margin-bottom-sm">
-						<text class="text-price text-black text-xs">138</text>
-						<view class="flex justify-end"><text class="text-grey text-xs margin-top-xs">x1</text></view>
+					<view class="flex flex-direction">
+						<text class="text-black text-df text-cut-two">{{ite.productInfo.store_info}}</text>
+						<view class="flex margin-tb-sm justify-between">
+							<view class="bg-gray light padding-xs radius margin-right-xs"><text class="text-sm text-cut">蔚限定皮肤:虎痴之拳,2019中秋首款</text></view>
+							<text class="text-grey self-end text-xs margin-right-xs">x{{ite.cart_num}}</text>
+						</view>
+						<view class="flex justify-between align-center">
+							<text class="text-grey text-sm">销量：{{ite.productInfo.sales}}{{ite.productInfo.unit_name}}</text>
+							<text class="text-price text-df text-orange">{{ite.productInfo.price}}</text>
+						</view>
 					</view>
 				</view>
 				<!-- 商品信息 end-->
-				<!-- 购买提示信息 -->
-				<view class="flex justify-end margin-top-sm">
-					<view class="bg-orange light margin-right-xs radius padding-lr-xs"><text class="text-orange text-xs">皮肤商品出售一概不能进行退款</text></view>
-					<view class="bg-orange light radius  padding-lr-xs"><text class="text-orange text-xs">Vip专享9.5折</text></view>
-				</view>
-				<!-- 购买提示信息 end-->
 	
 				<view class="flex margin-top align-center text-sm">
 					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">服务类型</text></view>
@@ -59,130 +56,59 @@
 				</view>
 				
 				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">店铺优惠</text></view>
+					<view class="flex flex-treble text-grey align-center justify-end"  >
+						<picker class="text-grey"  mode="selector" @change="bindPickerChange" :value="couponIndex" :range="array" range-key="coupon_title">
+							<view class="uni-input">{{array[couponIndex].coupon_title}}</view>
+						</picker>
+						<text class="cuIcon-right"></text>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center text-sm">
 					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">专享折扣</text></view>
 					<view class="flex flex-treble justify-end text-black align-center">
-						<text>省6.90元；88vip专享9.5折</text>
+						<text>88vip专享9.5折,省{{currentCouponPrice}}元</text>
 						<text class="cuIcon-right"></text>
 					</view>
 				</view>
 				
 				<view class="flex margin-top align-center text-sm">
 					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">配送方式</text></view>
-					<view class="flex flex-treble justify-between text-grey align-center">
-						<text>网上充值</text>
-						<view class="flex">
-							<text>其他类型</text>
-							<text class="cuIcon-right"></text>
-						</view>
-					</view>
-				</view>
-				
-				<view class="flex margin-top align-center text-sm">
-					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">店铺优惠</text></view>
-					<view class="flex flex-treble justify-between text-grey align-center">
-						<text>省69元；小型钜惠活动</text>
+					<view class="flex flex-treble text-grey align-center justify-end">
+						<text class="text-grey">免邮费</text>
 						<text class="cuIcon-right"></text>
 					</view>
 				</view>
 				
+				
 				<view class="flex margin-top align-center text-sm">
-					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">订单备注</text></view>
-					<view class="flex flex-treble justify-start text-grey align-center">
-						<input type="text" value="" placeholder="选填,请先和卖家进行商量"/>
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">买家留言</text></view>
+					<view class="flex flex-treble justify-start text-grey align-center ">
+						<input type="text" v-model="createOrder.mark" placeholder="选填,请先和卖家进行商量"/>
 					</view>
 				</view>
 				
-				<view class="flex margin-top align-center justify-end text-sm">
-					<text class="text-grey margin-right-xs">共1件</text>
+				<view class="flex margin-top align-center justify-end text-df">
+					<text class="text-grey margin-right-xs">共{{sumNum}}件</text>
 					<text class="text-black">小计：</text>
-					<text class="text-price text-orange">62.10</text>
+					<text class="text-price text-orange">{{sumPrice}}</text>
 				</view>
 			</view>
 		</view>
+		<view style="padding-top: 100rpx;"></view>
 		<!-- 商品确认信息 end-->
-		<view class="flex justify-end bg-white cu-bar foot align-center padding-lr">
+		<view class="flex justify-end bg-white cu-bar foot align-center padding-lr" >
 			<view class="flex align-center">
 				<text class="text-grey">共1件，</text>
 				<view class="margin-right-sm text-black">
 					合计
-					<text class="text-price text-red text-df margin-left-xs">599</text>
+					<text class="text-price text-red text-df margin-left-xs">{{sumPrice}}</text>
 				</view>
-				<view class="bg-gradual-green round  cu-btn">提交订单</view>
+				<view class="bg-gradual-green round  cu-btn" @tap="settlement">提交订单</view>
 			</view>
 		</view>
 	</view>
-	<!-- <view>
-		<view class="address_info" @tap="address">
-			<image src="/static/address.png" mode=""></image>
-			<view class="info">
-				<view class="info_top">
-					<text class="font-28 info_text">{{defaultAddress.real_name}}</text>
-					<text class="font-28 info_text">{{defaultAddress.phone}}</text>
-				</view>
-				<text class="info_top font-28 text_limit_two">{{defaultAddress.province}}{{defaultAddress.city}}{{defaultAddress.district}}{{defaultAddress.detail}}</text>
-				<text class="info_top font-24 gray text_limit">（收货不便时，可选择代收货或者门店自提服务）</text>
-			</view>
-			<image src="/static/right.png" mode=""></image>
-		</view>
-		<view class="order_list" v-for="(item,index) in cartInfo" :key="index">
-			<view class="list_top">
-				<text class="font-32 text_limit">{{item.data[0].productInfo.store_name}}</text>
-			</view>
-			<view class="list_info" v-for="(ite,ind) in item.data" :key="ind">
-				<image :src="ite.productInfo.image" mode=""></image>
-				<view class="info_view">
-					 <view class="info_view_cont">
-						<text class="font-28 text_info text_limit_two">{{ite.productInfo.store_info}}</text>
-						<text class="orange font-28">￥{{ite.productInfo.price}}</text>
-					</view>
-					<view class="info_view_cont">
-						<text class="gray font-28">销量：{{ite.productInfo.sales}}{{ite.productInfo.unit_name}}</text>
-						<text class="gray text_right  font-28">×{{ite.cart_num}}</text>
-					</view>
-				</view>
-			</view>
-			<view class="consumption_info font-28">
-				<view class="info_list" v-if="date">
-					<text>出行日期</text>
-					<text class="text_right gray">{{date}}</text>
-				</view>
-				<view class="info_list" v-if="open_address.length>0">
-					<text>游玩地点</text>
-					<text class="text_right gray">{{open_address}}</text>
-				</view>
-				<view class="info_list">
-					<text>已优惠</text>
-					<text class="text_right gray">￥{{currentCouponPrice}}</text>
-				</view>
-				<view class="info_list">
-					<text>配送方式</text>
-					<text class="text_right gray">免邮快递</text>
-				</view>
-				<view class="info_list">
-					<text>优惠券</text>
-					<picker class="text_right gray"  mode="selector" @change="bindPickerChange"  :value="couponIndex" :range="array" range-key="coupon_title">
-						<view class="uni-input">{{array[couponIndex].coupon_title}}></view>
-					</picker>
-				</view>
-				<view class="info_list">
-					<text>买家留言</text>
-					<input class="text_right gray" placeholder="选填" v-model="createOrder.mark" ></input>
-				</view>
-			</view>
-			<view class="btn">
-				<text class="text_right  font-28">共{{sumNum}}件商品 合计</text><text class="orange font-32">￥{{sumPrice}}</text>
-			</view>
-		</view>
-		<view style="height: 120rpx;">
-			
-		</view>
-		<view class="order_btn" >
-			<view class="btn">
-				<text class="font-28">合计</text><text class="orange font-32">￥{{sumPrice}}</text>
-				<button class="btn_pur_green" @tap="settlement">结算</button>
-			</view>
-		</view>
-	</view> -->
 </template>
 
 <script>

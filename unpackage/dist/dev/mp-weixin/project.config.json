@@ -29,7 +29,7 @@
         {
           "name": "Vineyard",
           "id": 0,
-          "pathName": "pages/tabber/shopping_cart/shopping_cart"
+          "pathName": "pages/user/my_info/my_info"
         }
       ]
     }

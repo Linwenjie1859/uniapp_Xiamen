@@ -81,7 +81,7 @@
         }
       }
     },
-    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/fengyang_fair/fengyang_fair\"}",
+    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/shopping_cart/shopping_cart\"}",
     "allowsInlineMediaPlayback": true,
     "safearea": {
       "background": "#ffffff",
@@ -139,7 +139,7 @@
       "child": [
         "lauchwebview"
       ],
-      "selected": 1
+      "selected": 2
     }
   }
 }

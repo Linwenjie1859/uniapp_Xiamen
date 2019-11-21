@@ -65,7 +65,7 @@
 			</view>
 			<view class="flex align-center text-df">
 				合计:<view class="text-sm orange text-price margin-left-xs">{{ sumAllPrice }}</view>
-				<button class="bg-green text-df margin-lr-sm" @tap="purchase">结算{{ checkedNum==0?'':'('+checkedNum+')' }}</button>
+				<button class="bg-gradual-green text-df margin-lr-sm" @tap="purchase">结算{{ checkedNum==0?'':'('+checkedNum+')' }}</button>
 			</view>
 		</view>
 		<!-- 脚部菜单 End-->
