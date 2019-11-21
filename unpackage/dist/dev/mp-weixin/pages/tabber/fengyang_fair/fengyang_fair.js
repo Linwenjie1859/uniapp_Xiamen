@@ -189,8 +189,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 // 抛物线计算
 function bezier(pots, amount) {
@@ -240,6 +238,22 @@ function bezier(pots, amount) {
 {
   data: function data() {
     return {
+      operationList: [
+      {
+        name: '综合',
+        check: 1 },
+
+      {
+        name: '销量',
+        check: 0 },
+
+      {
+        name: '价格',
+        check: 0 }],
+
+
+      //当前选中的操作
+      currentOperation: 0,
       StatusAddNav: this.StatusAddNav,
       // 购物车小球动画start
       hide_good_box: false,
@@ -289,6 +303,15 @@ function bezier(pots, amount) {
   },
 
   methods: {
+    changeOperation: function changeOperation(index) {
+      //当操作的对象改变的时候需要将上次操作的对象check恢复成0
+      if (index != this.currentOperation) {
+        this.operationList[this.currentOperation].check = 0;
+      }
+      this.currentOperation = index;
+      this.operationList[index].check = this.operationList[index].check == 2 ? 1 : this.operationList[index].check + 1;
+      this.getSortGoods();
+    },
     // 加入购物车start
     touchOnGoods: function touchOnGoods(e, id) {
       console.log('点击的坐标:', id);
@@ -424,8 +447,8 @@ function bezier(pots, amount) {
         q: {
           cid: that.sortCurrentId,
           keyword: '',
-          priceOrder: that.priceOrder == 0 ? '' : that.priceOrder == 1 ? 'desc' : 'asc',
-          salesOrder: that.salesOrder == 0 ? '' : that.salesOrder == 1 ? 'desc' : 'asc',
+          priceOrder: that.operationList[2].check == 0 ? '' : that.operationList[2].check == 1 ? 'asc' : 'desc',
+          salesOrder: that.operationList[1].check == 0 ? '' : that.operationList[1].check == 1 ? 'asc' : 'desc',
           news: '',
           page: '',
           limit: '' } }),

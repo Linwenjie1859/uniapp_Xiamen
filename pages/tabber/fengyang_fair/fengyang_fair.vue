@@ -5,22 +5,20 @@
 			<!-- 头部-滚动渐变显示 -->
 			<view class="after" :style="{height:StatusAddNav+'px'}"></view>
 		</view>
-		<view class="fair_list" :style="{'margin-top':StatusAddNav+'px'}">
-			<view class="title_list font-28 white">
-				<view class="text" @click="changeAllRank">
-					<text :class="[allOrder == 0 ? '' : 'text-orange']">综合</text>
-					<image :src="`/static/sort${index}.png`" v-if="allOrder == index" v-for="(item, index) in 3" :key="index"></image>
-				</view>
-				<view class="text" @click="changeSalesRank">
-					<text :class="[salesOrder == 0 ? '' : 'text-orange']">销量</text>
-					<image :src="`/static/sort${index}.png`" v-if="salesOrder == index" v-for="(item, index) in 3" :key="index"></image>
-				</view>
-				<view class="text" @click="changePriceRank">
-					<text :class="[priceOrder == 0 ? '' : 'text-orange']">价格</text>
-					<image :src="`/static/sort${index}.png`" v-if="priceOrder == index" v-for="(item, index) in 3" :key="index"></image>
+		
+		<!-- 操作升降序排列 Start -->
+		<view :style="{'margin-top':StatusAddNav+'px'}" class="bg-green">
+			<view class="flex justify-end padding-lr-sm padding-tb-sm">
+				<view class="flex align-center round margin-left-xl padding-lr-xs" @tap="changeOperation(index)" :class="[{'bg-white text-orange':currentOperation==index}]" v-for="(item,index) in operationList" :key="index">
+					<text class="text-df">{{item.name}}</text>
+					<view class="flex flex-direction">
+						<text class="cuIcon-triangleupfill" :class="[{'text-grey':item.check==2,'text-white':item.check==0}]" style="height: 10rpx;"></text>
+						<text class="cuIcon-triangledownfill" :class="[{'text-grey':item.check==1,'text-white':item.check==0}]" style="height: 24rpx;"></text>
+					</view>
 				</view>
 			</view>
 		</view>
+		<!-- 操作升降序排列 End -->
 		
 		<view class="flex">
 			<!-- 左侧分类导航 -->
@@ -116,6 +114,22 @@ function bezier(pots, amount) {
 export default {
 	data() {
 		return {
+			operationList:[
+				{
+					name:'综合',
+					check:1,
+				},
+				{
+					name:'销量',
+					check:0,
+				},
+				{
+					name:'价格',
+					check:0,
+				},
+			],
+			//当前选中的操作
+			currentOperation:0,
 			StatusAddNav:this.StatusAddNav,
 			// 购物车小球动画start
 			hide_good_box: false,
@@ -165,6 +179,15 @@ export default {
 	},
 
 	methods: {
+		changeOperation(index){
+			//当操作的对象改变的时候需要将上次操作的对象check恢复成0
+			if(index!=this.currentOperation){
+				this.operationList[this.currentOperation].check=0;
+			}
+			this.currentOperation=index;
+			this.operationList[index].check=this.operationList[index].check==2?1:this.operationList[index].check+1;
+			this.getSortGoods();
+		},
 		// 加入购物车start
 		touchOnGoods(e, id) {
 			console.log('点击的坐标:', id);
@@ -300,8 +323,8 @@ export default {
 					q: {
 						cid: that.sortCurrentId,
 						keyword: '',
-						priceOrder: that.priceOrder == 0 ? '' : that.priceOrder == 1 ? 'desc' : 'asc',
-						salesOrder: that.salesOrder == 0 ? '' : that.salesOrder == 1 ? 'desc' : 'asc',
+						priceOrder: that.operationList[2].check==0?'':that.operationList[2].check == 1 ? 'asc' : 'desc',
+						salesOrder: that.operationList[1].check==0?'':that.operationList[1].check == 1 ? 'asc' : 'desc',
 						news: '',
 						page: '',
 						limit: ''
@@ -345,6 +368,9 @@ export default {
 </script>
 
 <style scoped>
+	.has-border-orange{
+		border: 2rpx solid #f37b1d;
+	}
 	.img-has-size {
 		width: 180upx;
 		height: 170upx;

@@ -444,14 +444,14 @@ __webpack_require__.r(__webpack_exports__);
     /*****************************/
     // 立即购买
     purchase: function purchase(e) {
-      if (this.differentStore) {
-        uni.showToast({
-          title: '只能在同一个店铺进行下单~',
-          position: 'bottom',
-          icon: 'none' });
-
-        return;
-      }
+      // if(this.differentStore){
+      // 	uni.showToast({
+      // 		title: '只能在同一个店铺进行下单~',
+      // 		position: 'bottom',
+      // 		icon: 'none'
+      // 	});
+      // 	return ;
+      // }
       if (this.listId.length > 0) {
         uni.navigateTo({
           url: '/pages/user/confirm_order/confirm_order?listId=' + this.listId });

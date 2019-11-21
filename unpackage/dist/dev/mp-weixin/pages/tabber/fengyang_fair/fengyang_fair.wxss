@@ -1,4 +1,7 @@
 
+.has-border-orange.data-v-4155a8de{
+		border: 2rpx solid #f37b1d;
+}
 .img-has-size.data-v-4155a8de {
 		width: 180rpx;
 		height: 170rpx;

@@ -1,5 +1,117 @@
 <template>
-	<view class="content">
+	<view>
+		<!-- 收货地址信息 -->
+		<view class="margin-sm padding bg-white has-radius">
+			<view class="flex align-center">
+				<view class="bg-gradual-orange round has-padding-sm"><text class="cuIcon-locationfill text-white " style="font-size: 32rpx;"></text></view>
+				<view class="flex flex-direction flex-sub margin-left-sm ">
+					<view class="flex align-center">
+						<text class="text-df margin-right-sm">张媛媛</text>
+						<text class="text-sm self-end text-grey">13075976237</text>
+					</view>
+					<view class="flex justify-between margin-top-sm">
+						<text class="text-black text-sm">福建省福州市马尾区阳光学院</text>
+						<text class="cuIcon-right text-grey"></text>
+					</view>
+					<text class="margin-top-sm text-orange text-xs">收货不便时，可选择免费暂存服务</text>
+				</view>
+			</view>
+		</view>
+		<!-- 收货地址信息 end-->
+	
+		<!-- 商品确认信息 -->
+		<view class="margin-sm padding bg-white has-radius">
+			<view class="flex flex-direction">
+				<!-- 店铺名称 -->
+				<view class="flex align-center">
+					<text class="cuIcon-taoxiaopu text-red "></text>
+					<text class="text-sm text-black margin-left-xs text-bold">英雄联盟官方旗舰店</text>
+				</view>
+				<!-- 店铺名称 end-->
+				<!-- 商品信息 -->
+				<view class="flex justify-between margin-top-sm">
+					<image class="radius" src="http://image4.xyzs.com/upload/cc/c0/922/20150505/143080319236335_0.jpg" mode="" style="width: 160rpx; height: 160rpx;"></image>
+					<view class="flex flex-direction margin-bottom-xs">
+						<text class="text-black text-sm">2019年首款蔚限定皮肤，中秋官网出售</text>
+						<view class="flex margin-top-xs">
+							<view class="bg-gray light padding-xs radius"><text class="text-xs">蔚限定皮肤:虎痴之拳,2019中秋首款</text></view>
+						</view>
+					</view>
+					<view class="flex flex-direction margin-bottom-sm">
+						<text class="text-price text-black text-xs">138</text>
+						<view class="flex justify-end"><text class="text-grey text-xs margin-top-xs">x1</text></view>
+					</view>
+				</view>
+				<!-- 商品信息 end-->
+				<!-- 购买提示信息 -->
+				<view class="flex justify-end margin-top-sm">
+					<view class="bg-orange light margin-right-xs radius padding-lr-xs"><text class="text-orange text-xs">皮肤商品出售一概不能进行退款</text></view>
+					<view class="bg-orange light radius  padding-lr-xs"><text class="text-orange text-xs">Vip专享9.5折</text></view>
+				</view>
+				<!-- 购买提示信息 end-->
+	
+				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">服务类型</text></view>
+					<view class="flex flex-treble justify-between text-grey align-center">
+						<text>2小时内完成皮肤充值</text>
+						<text class="cuIcon-right"></text>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">专享折扣</text></view>
+					<view class="flex flex-treble justify-end text-black align-center">
+						<text>省6.90元；88vip专享9.5折</text>
+						<text class="cuIcon-right"></text>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">配送方式</text></view>
+					<view class="flex flex-treble justify-between text-grey align-center">
+						<text>网上充值</text>
+						<view class="flex">
+							<text>其他类型</text>
+							<text class="cuIcon-right"></text>
+						</view>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">店铺优惠</text></view>
+					<view class="flex flex-treble justify-between text-grey align-center">
+						<text>省69元；小型钜惠活动</text>
+						<text class="cuIcon-right"></text>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center text-sm">
+					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">订单备注</text></view>
+					<view class="flex flex-treble justify-start text-grey align-center">
+						<input type="text" value="" placeholder="选填,请先和卖家进行商量"/>
+					</view>
+				</view>
+				
+				<view class="flex margin-top align-center justify-end text-sm">
+					<text class="text-grey margin-right-xs">共1件</text>
+					<text class="text-black">小计：</text>
+					<text class="text-price text-orange">62.10</text>
+				</view>
+			</view>
+		</view>
+		<!-- 商品确认信息 end-->
+		<view class="flex justify-end bg-white cu-bar foot align-center padding-lr">
+			<view class="flex align-center">
+				<text class="text-grey">共1件，</text>
+				<view class="margin-right-sm text-black">
+					合计
+					<text class="text-price text-red text-df margin-left-xs">599</text>
+				</view>
+				<view class="bg-gradual-green round  cu-btn">提交订单</view>
+			</view>
+		</view>
+	</view>
+	<!-- <view>
 		<view class="address_info" @tap="address">
 			<image src="/static/address.png" mode=""></image>
 			<view class="info">
@@ -70,13 +182,14 @@
 				<button class="btn_pur_green" @tap="settlement">结算</button>
 			</view>
 		</view>
-	</view>
+	</view> -->
 </template>
 
 <script>
 	export default {
 		data() {
 			return {
+				chooseAddressFlag:false,
 				open_address:[],
 				date:'',
 				array: [
@@ -119,14 +232,15 @@
 			this.getUserChooseTime();
 		},
 		methods: {
+			//选择地址之后，跳转回确认订单页面，时获取刚选地址的信息
 			getUserChooseTime(){
-				let pages = getCurrentPages();  //获取所有页面栈实例列表
-				let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
-				this.date=prevPage.$vm.date;
-				this.open_address=prevPage.$vm.goodsInfo.storeInfo.open_address;
-				console.log(prevPage.$vm);
+				if(this.chooseAddressFlag){
+					let pages = getCurrentPages();  //获取所有页面栈实例列表
+					let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
+					this.date=prevPage.$vm.date;
+					this.open_address=prevPage.$vm.goodsInfo.storeInfo.open_address;
+				}
 			},
-		
 			// 处理接口数据将价钱转成浮点型
 			dealData(data){
 				for(let i=0;i<data.length;i++){
@@ -219,6 +333,7 @@
 			},
 			// 选择地址
 			address(){
+				this.chooseAddressFlag=true;
 				uni.navigateTo({
 					url:"/pages/user/admin_address/admin_address?clickFlag=1"
 				}) 
@@ -261,164 +376,11 @@
 	}
 </script>
 
-<style>
-	page{
-		background-color: #F2F2F2;
-	}
-	.content{
-		text-align: center;
-	}
-	.address_info{
-		width: 700upx;
-		/* height: 170upx; */
-		margin: 25upx auto;
-		background-color: #FFFFFF;
-		border-radius: 10upx;
-		display: flex;
-		align-items: center;
-	}
-	.address_info image{
-		width: 40upx;
-		height: 40upx;
-		margin: 0upx 20upx 0upx 25upx;
-	}
-	.address_info .info_top{
-		display: block;
-		width: 540upx;
-		text-align:left;
-		margin-bottom: 15upx;
-	}
-	.address_info .info_top text{
-		margin-right: 25upx;
-	}
-	.order_list {
-		width: 700upx;
-		margin: 0 auto;
-		background-color: #FFFFFF;
-		border-radius: 10upx;
-		padding-bottom: 25upx;
-		margin-bottom: 25upx;
-	}
-	
-	.order_list .list_top {
-		width: 650upx;
-		height: 90upx;
-		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-bottom: 1upx solid #e5e5e5;
-	}
-	
-	.order_list .list_info {
-		width: 650upx;
-		margin: 20upx auto;
-		display: flex;
-		align-content: center;
-		padding-bottom: 20upx;
-		border-bottom: 1upx solid #E5E5E5;
-	}
-	
-	.order_list .list_info image {
-		width: 150upx;
-		height: 150upx;
-		margin-right: 20upx;
-	}
-	
-		.order_list .list_info .info_view .text_info {
-		text-align: left;
-		width: 370upx;
-	}
-	
-	.order_list .list_info .info_view .gray {
-		display: inline-block;
-		text-align: left;
-		width: 240upx;
-	}
-	.order_list .btn{
-		width: 350upx;
-		text-align: right;
-		display: flex;
-		align-items: center;
-		justify-content:flex-end;
-		margin-left: 325upx;
-	}
-	.order_list .list_info .info_view .info_view_cont{
-		width: 480upx;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin: 10upx 0upx;
-	}
-	.order_list button{
-		margin-left: 25upx;
-	}
-	.consumption_info{
-		width: 650upx;
-		margin: 0 auto;
-		margin-bottom: 20upx;
-	}
-	.consumption_info .info_list{
-		width: 650upx;
-		height: 70upx;
-		display: flex;
-		align-items: center;
-	}
-		.text_limit_two{
-		height: 40upx;
-		text-overflow: ellipsis;
-		display: -webkit-box;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-	}
-	.consumption_info text{
-		display: inline-block;
-		text-align: left;
-		width: 325upx;
-		margin: 5upx 0upx;
-	}
-	.consumption_info input{
-		display: inline-block;
-		text-align: left;
-		width: 325upx;
-	}
-	.consumption_info picker{
-		display: inline-block;
-		text-align: left;
-		width: 325upx;
-	}
-	.order_info{
-		width: 700upx;
-		margin: 0 auto;
-		background-color: #FFFFFF;
-		border-radius: 10upx;
-		padding: 20upx 0upx;
-	}
-	.order_info text{
-		text-align: left;
-		display: block;
-		width: 650upx;
-		margin: 10upx auto;
-	}
-	.order_btn{
-		width: 100%;
-		background-color: #FFFFFF;
-		height: 120upx;
-		line-height: 120upx;
-		display: flex;
-		align-items: center;
-		position: fixed;
-		bottom: 0upx;
-	}
-	.order_btn .btn{
-		text-align: right;
-		display: flex;
-		align-items: center;
-		justify-content:flex-end;
-		margin-left: 400upx;
-	}
-	.order_btn button{
-		margin-left: 25upx;
-	}
+<style scoped>
+.has-radius {
+	border-radius: 18rpx;
+}
+.has-padding-sm {
+	padding: 7rpx 11rpx;
+}
 </style>

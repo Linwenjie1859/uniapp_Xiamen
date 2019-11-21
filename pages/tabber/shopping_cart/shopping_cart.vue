@@ -32,7 +32,7 @@
 						<!-- 商品信息 -->
 						<view class="goods-info margin-lr-sm">
 							<!-- checkbox -->
-							<view class="checkbox-box" @tap="setCheckedItem(index, ind)">
+							<view class="checkbox-box margin-right-xs" @tap="setCheckedItem(index, ind)">
 								<view class="checkbox"><view :class="[rows.checked ? 'on' : '']"></view></view>
 							</view>
 							<image class="margin-left-xs radius" :src="rows.productInfo.image" @tap="goodDetail(rows.productInfo.id)"></image>
@@ -304,14 +304,14 @@ export default {
 		/*****************************/
 		// 立即购买
 		purchase(e) {
-			if(this.differentStore){
-				uni.showToast({
-					title: '只能在同一个店铺进行下单~',
-					position: 'bottom',
-					icon: 'none'
-				});
-				return ;
-			}
+			// if(this.differentStore){
+			// 	uni.showToast({
+			// 		title: '只能在同一个店铺进行下单~',
+			// 		position: 'bottom',
+			// 		icon: 'none'
+			// 	});
+			// 	return ;
+			// }
 			if(this.listId.length>0){
 				uni.navigateTo({
 					url: '/pages/user/confirm_order/confirm_order?listId='+this.listId
