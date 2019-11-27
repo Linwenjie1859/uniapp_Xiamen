@@ -289,7 +289,6 @@ page {
 .order_list .list_info .info_view .gray {
   display: inline-block;
   text-align: left;
-  width: 240rpx;
   margin: 20rpx 0rpx;
 }
 .order_list .btn {

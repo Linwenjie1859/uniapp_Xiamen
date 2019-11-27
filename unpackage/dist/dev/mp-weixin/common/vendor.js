@@ -1510,9 +1510,9 @@ uni$1;exports.default = _default;
 /***/ }),
 
 /***/ 12:
-/*!***********************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/common/util.js ***!
-  \***********************************************************/
+/*!*********************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/common/util.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3082,9 +3082,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 17:
-/*!***********************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/store/index.js ***!
-  \***********************************************************/
+/*!*********************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/store/index.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9121,9 +9121,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!*******************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/pages.json ***!
-  \*******************************************************/
+/*!*****************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/pages.json ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9132,10 +9132,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 420:
-/*!**********************************************************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/components/mpvue-citypicker/city-data/province.js ***!
-  \**********************************************************************************************/
+/***/ 416:
+/*!********************************************************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/components/mpvue-citypicker/city-data/province.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9282,10 +9282,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 421:
-/*!******************************************************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/components/mpvue-citypicker/city-data/city.js ***!
-  \******************************************************************************************/
+/***/ 417:
+/*!****************************************************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/components/mpvue-citypicker/city-data/city.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10796,10 +10796,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 422:
-/*!******************************************************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/components/mpvue-citypicker/city-data/area.js ***!
-  \******************************************************************************************/
+/***/ 418:
+/*!****************************************************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/components/mpvue-citypicker/city-data/area.js ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24248,21 +24248,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!************************************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/pages.json?{"type":"style"} ***!
-  \************************************************************************/
+/*!**********************************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/pages.json?{"type":"style"} ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabber/home/home": { "enablePullDownRefresh": true, "navigationStyle": "custom", "usingComponents": {} }, "pages/login/code_login/code_login": { "navigationStyle": "custom", "usingComponents": {} }, "pages/login/pwd_login/pwd_login": { "navigationStyle": "custom", "usingComponents": {} }, "pages/shop/shop_commodity/shop_commodity": { "navigationStyle": "custom", "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/tabber/user/user": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/search_list/search_list": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/search/search": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/line_details/line_details": { "navigationBarTitleText": "线路详情", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tabs": "/components/wiszx-tabs/tabs", "mx-date-picker": "/components/mx-datepicker/mx-datepicker" } }, "pages/list/goode_details/goode_details": { "navigationStyle": "custom", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/tabber/fengyang_fair/fengyang_fair": { "navigationStyle": "custom", "usingComponents": {} }, "pages/tabber/benefit_products/benefit_products": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/ideal_life/ideal_life": { "navigationBarTitleText": "理想生活", "usingComponents": {} }, "pages/list/agricultural_specialty/agricultural_specialty": { "navigationBarTitleText": "农土特产", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/tabber/shopping_cart/shopping_cart": { "navigationBarTitleText": "购物车", "enablePullDownRefresh": true, "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/list/flowering_seasons/flowering_seasons": { "navigationBarTitleText": "花开四季", "usingComponents": {} }, "pages/list/fruit_garden/fruit_garden": { "navigationBarTitleText": "果香满园", "usingComponents": {} }, "pages/list/fengyang_scenery/fengyang_scenery": { "navigationBarTitleText": "漫游厦门", "usingComponents": {} }, "pages/list/more_list/more_list": { "navigationBarTitleText": "凤阳风光", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/my_evaluation/my_evaluation": { "navigationBarTitleText": "发布评价", "usingComponents": { "robby-image-upload": "/components/robby-image-upload/robby-image-upload" } }, "pages/user/my_coupon/my_coupon": { "navigationBarTitleText": "优惠券", "enablePullDownRefresh": true, "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/user/get_coupon/get_coupon": { "navigationBarTitleText": "领取优惠券", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/shop/comments_details/comments_details": { "navigationBarTitleText": "评论详情", "enablePullDownRefresh": true, "usingComponents": { "axb-check-box": "/components/axb-checkbox/axb-checkbox" } }, "pages/shop/shop_collection_coupon/shop_collection_coupon": { "navigationBarTitleText": "优惠券详情", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/confirmation_transaction/confirmation_transaction": { "navigationBarTitleText": "确认交易", "usingComponents": {} }, "pages/user/confirm_payment/confirm_payment": { "navigationBarTitleText": "确认支付", "usingComponents": {} }, "pages/user/add_address/add_address": { "navigationBarTitleText": "添加新地址", "usingComponents": { "mpvue-city-picker": "/components/mpvue-citypicker/mpvueCityPicker" } }, "pages/user/confirm_order/confirm_order": { "navigationBarTitleText": "确认订单", "usingComponents": {} }, "pages/user/admin_address/admin_address": { "navigationBarTitleText": "管理收货地址", "usingComponents": {} }, "pages/user/order_details/order_details": { "navigationBarTitleText": "订单详情", "usingComponents": {} }, "pages/user/my_order/my_order": { "navigationBarTitleText": "我的订单", "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/user/my_news/my_news": { "navigationBarTitleText": "我的消息", "usingComponents": {} }, "pages/shop/shop_logistics/shop_logistics": { "navigationBarTitleText": "查看物流", "usingComponents": { "ali": "/components/WuLiu-step" } }, "pages/shop/my_collection/my_collection": { "navigationBarTitleText": "我的收藏", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/shop/shop_collection/shop_collection": { "navigationBarTitleText": "关注店铺", "usingComponents": {} }, "pages/login/modify_nicknames/modify_nicknames": { "navigationBarTitleText": "修改昵称", "usingComponents": {} }, "pages/login/safety_monitoring/safety_monitoring": { "navigationBarTitleText": "安全监测", "usingComponents": {} }, "pages/login/reset_password/reset_password": { "navigationBarTitleText": "重置密码", "usingComponents": {} }, "pages/user/info_edit/info_edit": { "navigationBarTitleText": "编辑信息", "usingComponents": {} }, "pages/login/register/register": { "navigationBarTitleText": "注册", "usingComponents": {} }, "pages/user/my_info/my_info": { "navigationBarTitleText": "设置", "usingComponents": {} }, "pages/shop/successful_payment/successful_payment": { "navigationBarTitleText": "支付", "usingComponents": {} }, "pages/list/news_detail/news_detail": { "navigationBarTitleText": "消息", "usingComponents": {} }, "pages/list/list_detail/list_detail": { "navigationBarTitleText": "文章详情", "usingComponents": {} }, "pages/map/map": { "navigationBarTitleText": "地图导航", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#39b54a", "backgroundColor": "#39b54a", "backgroundTextStyle": "light" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabber/home/home": { "enablePullDownRefresh": true, "navigationStyle": "custom", "usingComponents": {} }, "pages/login/code_login/code_login": { "navigationStyle": "custom", "usingComponents": {} }, "pages/login/pwd_login/pwd_login": { "navigationStyle": "custom", "usingComponents": {} }, "pages/tabber/user/user": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/search_list/search_list": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/search/search": { "navigationStyle": "custom", "usingComponents": {} }, "pages/shop/shop_commodity/shop_commodity": { "navigationBarTitleText": "店铺详情", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/list/line_details/line_details": { "navigationBarTitleText": "线路详情", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tabs": "/components/wiszx-tabs/tabs", "mx-date-picker": "/components/mx-datepicker/mx-datepicker" } }, "pages/list/goode_details/goode_details": { "navigationStyle": "custom", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup" } }, "pages/tabber/fengyang_fair/fengyang_fair": { "navigationStyle": "custom", "usingComponents": {} }, "pages/tabber/benefit_products/benefit_products": { "navigationStyle": "custom", "usingComponents": {} }, "pages/list/ideal_life/ideal_life": { "navigationBarTitleText": "理想生活", "usingComponents": {} }, "pages/list/agricultural_specialty/agricultural_specialty": { "navigationBarTitleText": "热门商品", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/tabber/shopping_cart/shopping_cart": { "navigationBarTitleText": "购物车", "enablePullDownRefresh": true, "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/list/flowering_seasons/flowering_seasons": { "navigationBarTitleText": "花开四季", "usingComponents": {} }, "pages/list/fruit_garden/fruit_garden": { "navigationBarTitleText": "果香满园", "usingComponents": {} }, "pages/list/fengyang_scenery/fengyang_scenery": { "navigationBarTitleText": "漫游厦门", "usingComponents": {} }, "pages/list/more_list/more_list": { "navigationBarTitleText": "漫游厦门", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/my_evaluation/my_evaluation": { "navigationBarTitleText": "发布评价", "usingComponents": { "robby-image-upload": "/components/robby-image-upload/robby-image-upload" } }, "pages/user/my_coupon/my_coupon": { "navigationBarTitleText": "优惠券", "enablePullDownRefresh": true, "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/user/get_coupon/get_coupon": { "navigationBarTitleText": "领取优惠券", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/shop/comments_details/comments_details": { "navigationBarTitleText": "评论详情", "enablePullDownRefresh": true, "usingComponents": { "axb-check-box": "/components/axb-checkbox/axb-checkbox" } }, "pages/shop/shop_collection_coupon/shop_collection_coupon": { "navigationBarTitleText": "优惠券详情", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/confirmation_transaction/confirmation_transaction": { "navigationBarTitleText": "确认交易", "usingComponents": {} }, "pages/user/confirm_payment/confirm_payment": { "navigationBarTitleText": "确认支付", "usingComponents": {} }, "pages/user/add_address/add_address": { "navigationBarTitleText": "添加新地址", "usingComponents": { "mpvue-city-picker": "/components/mpvue-citypicker/mpvueCityPicker" } }, "pages/user/confirm_order/confirm_order": { "navigationBarTitleText": "确认订单", "usingComponents": {} }, "pages/user/admin_address/admin_address": { "navigationBarTitleText": "管理收货地址", "usingComponents": {} }, "pages/user/order_details/order_details": { "navigationBarTitleText": "订单详情", "usingComponents": {} }, "pages/user/my_order/my_order": { "navigationBarTitleText": "我的订单", "usingComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/user/my_news/my_news": { "navigationBarTitleText": "我的消息", "usingComponents": {} }, "pages/shop/shop_logistics/shop_logistics": { "navigationBarTitleText": "查看物流", "usingComponents": { "ali": "/components/WuLiu-step" } }, "pages/shop/my_collection/my_collection": { "navigationBarTitleText": "我的收藏", "enablePullDownRefresh": true, "usingComponents": {} }, "pages/shop/shop_collection/shop_collection": { "navigationBarTitleText": "关注店铺", "usingComponents": {} }, "pages/login/modify_nicknames/modify_nicknames": { "navigationBarTitleText": "修改昵称", "usingComponents": {} }, "pages/login/safety_monitoring/safety_monitoring": { "navigationBarTitleText": "安全监测", "usingComponents": {} }, "pages/login/reset_password/reset_password": { "navigationBarTitleText": "重置密码", "usingComponents": {} }, "pages/user/info_edit/info_edit": { "navigationBarTitleText": "编辑信息", "usingComponents": {} }, "pages/login/register/register": { "navigationBarTitleText": "注册", "usingComponents": {} }, "pages/user/my_info/my_info": { "navigationBarTitleText": "设置", "usingComponents": {} }, "pages/shop/successful_payment/successful_payment": { "navigationBarTitleText": "支付", "usingComponents": {} }, "pages/list/news_detail/news_detail": { "navigationBarTitleText": "消息", "usingComponents": {} }, "pages/list/list_detail/list_detail": { "navigationBarTitleText": "文章详情", "usingComponents": {} }, "pages/map/map": { "navigationBarTitleText": "地图导航", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#39b54a", "backgroundColor": "#39b54a", "backgroundTextStyle": "light" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!***********************************************************************!*\
-  !*** D:/Users/59716/Desktop/六和材料/Vineyard/pages.json?{"type":"stat"} ***!
-  \***********************************************************************/
+/*!*********************************************************************!*\
+  !*** D:/Users/59716/Desktop/六和材料/xiamen/pages.json?{"type":"stat"} ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

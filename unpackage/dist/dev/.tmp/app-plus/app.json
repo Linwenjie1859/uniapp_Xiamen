@@ -3,10 +3,10 @@
     "pages/tabber/home/home",
     "pages/login/code_login/code_login",
     "pages/login/pwd_login/pwd_login",
-    "pages/shop/shop_commodity/shop_commodity",
     "pages/tabber/user/user",
     "pages/list/search_list/search_list",
     "pages/list/search/search",
+    "pages/shop/shop_commodity/shop_commodity",
     "pages/list/line_details/line_details",
     "pages/list/goode_details/goode_details",
     "pages/tabber/fengyang_fair/fengyang_fair",
@@ -70,16 +70,16 @@
         "text": "分类栏"
       },
       {
-        "pagePath": "pages/tabber/shopping_cart/shopping_cart",
-        "iconPath": "/static/cart_default.png",
-        "selectedIconPath": "/static/cart_check.png",
-        "text": "购物车"
-      },
-      {
         "pagePath": "pages/list/fengyang_scenery/fengyang_scenery",
         "iconPath": "/static/play_default.png",
         "selectedIconPath": "/static/play_check.png",
         "text": "漫游厦门"
+      },
+      {
+        "pagePath": "pages/tabber/shopping_cart/shopping_cart",
+        "iconPath": "/static/cart_default.png",
+        "selectedIconPath": "/static/cart_check.png",
+        "text": "购物车"
       },
       {
         "pagePath": "pages/tabber/user/user",

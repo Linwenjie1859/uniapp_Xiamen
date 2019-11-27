@@ -1,18 +1,18 @@
 
-.bg-gray.data-v-3702dc78{
+.bg-gray.data-v-736cf7c2{
 	background-color: #f0f0f0;
 	color: #333333;
 }
-.bg-orange.data-v-3702dc78{
+.bg-orange.data-v-736cf7c2{
 		background-color: #f37b1d;
 		color: #ffffff;
 }
-.has-bg.data-v-3702dc78{
+.has-bg.data-v-736cf7c2{
 		padding: 10rpx 30rpx;
 		border-radius: 500rpx;
 		font-size: 29rpx;
 }
-.has-flex.data-v-3702dc78{
+.has-flex.data-v-736cf7c2{
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: -ms-flexbox;
@@ -26,17 +26,17 @@
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
 }
-page.data-v-3702dc78 {
+page.data-v-736cf7c2 {
 	background-color: #f2f2f2;
 }
-.comments_info.data-v-3702dc78 {
+.comments_info.data-v-736cf7c2 {
 	width: 700rpx;
 	background-color: #ffffff;
 	border-radius: 10rpx;
 	margin: 25rpx auto;
 	padding-bottom: 25rpx;
 }
-.title.data-v-3702dc78 {
+.title.data-v-736cf7c2 {
 	height: 100rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -52,13 +52,13 @@ page.data-v-3702dc78 {
 	        justify-content: space-between;
 	margin: 0 auto;
 }
-.info_list.data-v-3702dc78 {
+.info_list.data-v-736cf7c2 {
 	width: 650rpx;
 	margin: 0 auto;
 	border-bottom: 1rpx solid #e5e5e5;
 	margin-top: 10rpx;
 }
-.list_top.data-v-3702dc78 {
+.list_top.data-v-736cf7c2 {
 	width: 650rpx;
 	margin: 0 auto;
 	display: -webkit-box;
@@ -70,22 +70,22 @@ page.data-v-3702dc78 {
 	    -ms-flex-align: center;
 	        align-items: center;
 }
-.list_top image.data-v-3702dc78 {
+.list_top image.data-v-736cf7c2 {
 	width: 80rpx;
 	height: 80rpx;
 	border-radius: 50%;
 	margin-right: 20rpx;
 }
-.list_top text.data-v-3702dc78 {
+.list_top text.data-v-736cf7c2 {
 	width: 270rpx;
 }
-.comments_cont.data-v-3702dc78 {
+.comments_cont.data-v-736cf7c2 {
 	display: block;
 	width: 650rpx;
 	margin: 5rpx auto;
 	margin-bottom: 20rpx;
 }
-.pic_list.data-v-3702dc78 {
+.pic_list.data-v-736cf7c2 {
 	width: 700rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -96,7 +96,7 @@ page.data-v-3702dc78 {
 	    -ms-flex-align: center;
 	        align-items: center;
 }
-.pic_list image.data-v-3702dc78 {
+.pic_list image.data-v-736cf7c2 {
 	width: 140rpx;
 	height: 140rpx;
 	margin: 0rpx 25rpx 25rpx 4rpx;

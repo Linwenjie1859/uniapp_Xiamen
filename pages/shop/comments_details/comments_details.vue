@@ -1,6 +1,5 @@
 <template>
 	<view class="content">
-		
 		<view class="comments_info">
 			<view class="has-flex">
 				<text @tap="radioChangeType(index+1)" :class="[(index+1==currentIndex)?'bg-orange':'bg-gray']" class="has-bg" v-for="(item , index) in sartTime" :key="index">

@@ -88,6 +88,7 @@
 						:src="goodsInfo.merInfo.store_logo"
 						mode="scaleToFill"
 						style="width: 140rpx; height: 140rpx;"
+						@tap="commodity"
 					></image>
 					<view class="flex flex-direction margin-left-sm">
 						<text class="text-df text-bold">{{goodsInfo.merInfo.store_name}}</text>
@@ -251,7 +252,7 @@ export default {
 					that.U({ c: 'auth_api', a: 'set_cart' }),
 					{
 						productId: that.goodsInfo.storeInfo.id,
-						merId: that.goodsInfo.mer_id,
+						merId: that.goodsInfo.merInfo.id,
 						cartNum: that.currentNum
 					},
 					function(res) {
@@ -351,12 +352,11 @@ export default {
 					a: 'now_buy',
 					q: {
 						productId: that.goodsInfo.storeInfo.id,
-						merId: that.goodsInfo.mer_id,
+						merId: that.goodsInfo.merInfo.id,
 						cartNum: that.currentNum
 					}
 				}),
 				function(res) {
-					console.log();
 					uni.navigateTo({
 						url: '/pages/user/confirm_order/confirm_order?listId=' + res.data.cartId
 					});
@@ -370,9 +370,8 @@ export default {
 			);
 		},
 		commodity() {
-			console.log(this.goodsInfo.mer_id);
 			uni.navigateTo({
-				url: '/pages/shop/shop_commodity/shop_commodity?storeId=' + this.goodsInfo.mer_id
+				url: '/pages/shop/shop_commodity/shop_commodity?storeId=' + this.goodsInfo.merInfo.id
 			});
 		},
 		cart() {

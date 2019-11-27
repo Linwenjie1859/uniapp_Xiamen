@@ -1,42 +1,39 @@
 <template>
-	<view class="list">
-		<!-- 收藏列表 -->
-		<view class="sub-list valid" :class="subState">
-			<view class="no_data" v-if="noDateFlag">
-				<image src="/static/no_data.png" mode=""></image>
-				<text class="font-28 gray">没有找到相关收藏~</text>
-			</view>
-			<view class="row" v-for="(row, index) in collectList" :key="index">
-				<!-- 删除按钮 -->
-				<view class="menu" @tap.stop="collectDelete(index)"><image src="/static/del_white.png" mode=""></image></view>
-				<!-- content -->
-				<view
-					class="carrier"
-					:class="[typeClass == 'valid' ? (theIndex == index ? 'open' : oldIndex == index ? 'close' : '') : '']"
-					@touchstart="touchStart(index, $event)"
-					@touchmove="touchMove(index, $event)"
-					@touchend="touchEnd(index, $event)"
-				>
-					<view class="top_content">
-						<image :src="row.image" mode="" @tap="purchase(row.pid,row.type)"></image>
-						<view class="shop_info">
-							<text class="font-32 block text-cut" @tap="purchase(row.pid,row.type)">{{ row.store_name }}</text>
-							<view class="weight_view">
-								<text class="font-24 weight">已售{{ row.sales }}件</text>
+	<!-- 收藏列表 -->
+	<view class="flex flex-direction bg-white">
+		<view class="flex has-radius view-is-position margin-sm " v-for="(row, index) in collectList" :key="index">
+			<!-- 删除按钮 -->
+			<view class="delete" @tap.stop="collectDelete(index)"><text class="cuIcon-delete text-xl"></text></view>
+			<view class="delete store" @tap="purchase(row.pid,row.type)"><text class="cuIcon-shop text-xl"></text></view>
+			<!-- content -->
+			<view
+				class="carrier"
+				:class="[typeClass == 'valid' ? (theIndex == index ? 'open' : oldIndex == index ? 'close' : '') : '']"
+				@touchstart="touchStart(index, $event)"
+				@touchmove="touchMove(index, $event)"
+				@touchend="touchEnd(index, $event)"
+			>
+				<view class="flex">
+					<view class="flex margin-right-sm">
+						<image :src="row.image" class="radius" mode="scaleToFill" style="height: 260rpx; width: 270rpx;" @tap="purchase(row.pid,row.type)"></image>
+					</view>
+					<view class="flex flex-direction justify-between padding-tb-xs" style="width: 430rpx;">
+						<view class="flex flex-direction">
+							<text class="text-cut-two">{{ row.store_name }}</text>
+							<view class="flex justify-between margin-tb-xs text-grey">
+								<text>{{row.sum_collect}}人收藏</text>
+								<text>已售{{ row.ficti }}件</text>
 							</view>
-							<view class="num">
-								<view class="">
-									<text class="font-24 orange">￥{{ row.price }}</text>
-									<text class="font-24 gray" style="text-decoration:line-through">￥{{ row.ot_price }}</text>
-								</view>
-								<button class="btn_purchase_green" @tap="purchase(row.pid,row.type)">立即购买</button>
-							</view>
+						</view>
+						<view class="flex">
+							<text class="text-orange text-price text-xl">{{row.price}}</text>
 						</view>
 					</view>
 				</view>
+				
 			</view>
-			<uni-load-more :status="loadingMore" v-if="loadingMoreFlag" />
 		</view>
+		<uni-load-more :status="loadingMore" v-if="loadingMoreFlag" />
 	</view>
 </template>
 
@@ -250,51 +247,30 @@ export default {
 };
 </script>
 <style lang="scss">
-page {
-	position: relative;
-	background-color: #f2f2f2;
-}
-.text-center {
-	text-align: center;
-}
-.text-cut {
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-}
 
-.list {
-	width: 100%;
-	display: block;
-	position: relative;
-}
-
-.row {
-	width: 700upx;
-	height: 170upx;
-	margin: 25upx auto;
-	border-radius: 10upx;
+ .view-is-position {
+	height: 260upx;
 	position: relative;
 	overflow: hidden;
 	z-index: 4;
 }
-
-.row .menu {
-	width: 195upx;
-	height: 170upx;
+.delete {
+	width: 98upx;
+	height: 255upx;
 	position: absolute;
 	right: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: red;
+	background-color: #e54d42;
 	color: #fff;
 	z-index: 2;
+	margin: 4rpx 0;
 }
 
-.menu image {
-	width: 35upx;
-	height: 35upx;
+.store {
+	right: 98rpx;
+	background-color: #f37b1d;
 }
 
 .row .carrier {
@@ -340,76 +316,7 @@ page {
 	z-index: 3;
 	flex-wrap: nowrap;
 }
-// 列表
-.top_content {
-	width: 700upx;
-	height: 170upx;
-	background-color: #ffffff;
-	// margin: 25upx auto;
-	border-radius: 10upx;
-	display: flex;
-	align-items: center;
-}
 
-.top_content image {
-	width: 115upx;
-	height: 115upx;
-	margin-left: 25upx;
-}
 
-.top_content .shop_info {
-	width: 510upx;
-	height: 115upx;
-	margin: 0upx 25upx;
-}
 
-.top_content .block {
-	display: block;
-	text-align: left;
-}
-.top_content .weight_view {
-	text-align: left;
-}
-.top_content .weight {
-	display: block;
-	width: 80upx;
-	height: 30upx;
-	background-color: #e5e5e5;
-	color: #ffffff;
-	border-radius: 10upx;
-	line-height: 30upx;
-	text-align: center;
-}
-
-.top_content .num {
-	display: block;
-	text-align: left;
-	display: flex;
-	align-items: flex-end;
-	justify-content: space-between;
-	margin-top: -6upx;
-}
-
-.top_content .num text {
-	margin-right: 25upx;
-}
-.no_data {
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-	margin-top: 300upx;
-}
-
-.no_data image {
-	width: 200upx;
-	height: 200upx;
-	margin: 0 auto;
-}
-
-.no_data text {
-	display: block;
-	width: 700upx;
-	margin: 0 auto;
-	text-align: center;
-}
 </style>

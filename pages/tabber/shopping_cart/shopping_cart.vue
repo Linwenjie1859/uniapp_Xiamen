@@ -10,7 +10,7 @@
 						<view class="checkbox-box" @tap="setCheckedList(index)">
 							<view class="checkbox"><view :class="[checkedList.indexOf(index) != -1 ? 'on' : '']"></view></view>
 						</view>
-						<text class="cuIcon-shop margin-lr-xs" style="font-size: 44rpx;" ></text>
+						<text class="cuIcon-shop margin-lr-xs text-orange" style="font-size: 44rpx;" ></text>
 						<text class="text-lg">{{ row.name }}</text>
 					</view>
 					<text class="text-df" @tap="getCupon">领券</text>

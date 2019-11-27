@@ -25,7 +25,7 @@
 				<!-- 店铺名称 -->
 				<view class="flex align-center">
 					<text class="cuIcon-shop text-red text-xxl"></text>
-					<text class="text-lg text-black margin-left-xs text-bold text-cut">{{item.data[0].productInfo.store_name}}</text>
+					<text class="text-lg text-black margin-left-xs text-bold text-cut">{{item.data[0].merchant_name}}</text>
 				</view>
 				<!-- 店铺名称 end-->
 				<!-- 商品信息 -->
@@ -49,7 +49,7 @@
 	
 				<view class="flex margin-top align-center text-sm">
 					<view class="flex flex-sub justify-end margin-right-sm"><text class="text-black">服务类型</text></view>
-					<view class="flex flex-treble justify-between text-grey align-center">
+					<view class="flex flex-treble  justify-end text-grey align-center">
 						<text>2小时内完成皮肤充值</text>
 						<text class="cuIcon-right"></text>
 					</view>
@@ -90,9 +90,9 @@
 				</view>
 				
 				<view class="flex margin-top align-center justify-end text-df">
-					<text class="text-grey margin-right-xs">共{{sumNum}}件</text>
+					<text class="text-grey margin-right-xs">共{{item.count_num}}件</text>
 					<text class="text-black">小计：</text>
-					<text class="text-price text-orange">{{sumPrice}}</text>
+					<text class="text-price text-orange">{{item.count_price}}</text>
 				</view>
 			</view>
 		</view>
@@ -100,7 +100,7 @@
 		<!-- 商品确认信息 end-->
 		<view class="flex justify-end bg-white cu-bar foot align-center padding-lr" >
 			<view class="flex align-center">
-				<text class="text-grey">共1件，</text>
+				<text class="text-grey">共{{sumNum}}件，</text>
 				<view class="margin-right-sm text-black">
 					合计
 					<text class="text-price text-red text-df margin-left-xs">{{sumPrice}}</text>
@@ -115,9 +115,6 @@
 	export default {
 		data() {
 			return {
-				chooseAddressFlag:false,
-				open_address:[],
-				date:'',
 				array: [
 					{
 						coupon_title:'未选择',
@@ -146,27 +143,34 @@
 					userIntegral:'',
 					mark:''
 				},
-				sumPrice:0,
 				orderKey:"",
-				sumNum:0,	//商品数量
+				mer_id:0,	//店铺id
 			}
 		},
 		onLoad(e) {
-			this.listId=e.listId;
-			this.getAddressList();
+			this.listId=e.listId;	//1、直接购买就是一个id 2、购物车结算就可以是多个id
+			this.getAddressList();	
 			this.getOrderInfo();
-			this.getUserChooseTime();
+		},
+		computed:{
+			//计算总的商品个数
+			sumNum (){
+				let temp=0;
+				for(let i=0;i<this.cartInfo.length;i++){
+					 temp += parseInt(this.cartInfo[i].count_num);
+				}
+				return temp
+			},
+			//计算总价钱
+			sumPrice (){
+				let temp=0;
+				for(let i=0;i<this.cartInfo.length;i++){
+					 temp += this.cartInfo[i].count_price;
+				}
+				return temp
+			},
 		},
 		methods: {
-			//选择地址之后，跳转回确认订单页面，时获取刚选地址的信息
-			getUserChooseTime(){
-				if(this.chooseAddressFlag){
-					let pages = getCurrentPages();  //获取所有页面栈实例列表
-					let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
-					this.date=prevPage.$vm.date;
-					this.open_address=prevPage.$vm.goodsInfo.storeInfo.open_address;
-				}
-			},
 			// 处理接口数据将价钱转成浮点型
 			dealData(data){
 				for(let i=0;i<data.length;i++){
@@ -210,6 +214,8 @@
 					var temp=data[i];
 					if(!map[temp.mer_id]){
 						array.push({
+							count_price:temp.productInfo.price*temp.cart_num,	// 价钱*个数=单个总价
+							count_num:temp.cart_num,
 							mer_id:temp.mer_id,
 							data:[temp],
 						})
@@ -218,6 +224,8 @@
 						for(var j = 0; j < array.length; j++){
 							var existData = array[j];
 							if(existData.mer_id == temp.mer_id){
+								existData.count_price+=temp.productInfo.price*temp.cart_num,
+								existData.count_num+=temp.cart_num
 								existData.data.push(temp);
 								break;
 							}
@@ -236,12 +244,6 @@
 					},
 					function(res) { 
 						that.cartInfo = that.SortData(res.data.cartInfo);
-						for(let j=0;j<that.cartInfo.length;j++){
-							that.sumNum+=that.cartInfo[j].data.length;
-							for (let i=0;i<that.cartInfo[j].data.length;i++) {
-								that.sumPrice+=that.cartInfo[j].data[i].cart_num*that.cartInfo[j].data[i].productInfo.price;
-							}
-						}
 						that.orderKey=res.data.orderKey;
 						that.getCanUseCoupon(that.sumPrice);
 					},
@@ -259,7 +261,6 @@
 			},
 			// 选择地址
 			address(){
-				this.chooseAddressFlag=true;
 				uni.navigateTo({
 					url:"/pages/user/admin_address/admin_address?clickFlag=1"
 				}) 
@@ -267,36 +268,33 @@
 			// 结算
 			settlement(){
 				//创建订单编号
-				let that = this;
-				let pages = getCurrentPages();  //获取所有页面栈实例列表
-				let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
-				
-				that.basePost(
-					that.U({ c: 'auth_api', a: 'create_order'}),
-					{
-						mer_id:prevPage.$vm.goodsInfo.mer_id,
-						key:that.orderKey,
-						addressId:that.defaultAddress.id,
-						couponId:that.array[that.couponIndex].id,
-						userIntegral:that.createOrder.userIntegral,
-						mark:that.createOrder.mark,
-						type:that.open_address?2:1,
-						date:that.date,
-						open_address:that.open_address?that.open_address[0]+","+that.open_address[1]:''
-					},
-					function(res) { 
-						let orderInfo={
-							order_id:res.data.result.orderId,
-							total_price:that.sumPrice
+				let that=this;
+				// for(let i=0;i<that.cartInfo.length;i++){
+					that.basePost(
+						that.U({ c: 'auth_api', a: 'create_order'}),
+						{
+							mer_id:that.cartInfo[0].mer_id,
+							key:that.orderKey,
+							addressId:that.defaultAddress.id,
+							couponId:that.array[that.couponIndex].id,
+							userIntegral:that.createOrder.userIntegral,
+							mark:that.createOrder.mark,
+							type:that.open_address?2:1,
+						},
+						function(res) { 
+							let orderInfo={
+								order_id:res.data.result.orderId,
+								total_price:that.sumPrice
+							}
+							uni.redirectTo({
+								url:"/pages/user/confirm_payment/confirm_payment?orderInfo="+JSON.stringify(orderInfo)
+							})
+						},  
+						function(res) {
+							console.log(res);
 						}
-						uni.redirectTo({
-							url:"/pages/user/confirm_payment/confirm_payment?orderInfo="+JSON.stringify(orderInfo)
-						})
-					},  
-					function(res) {
-						console.log(res);
-					}
-				);
+					);
+				// }
 			},
 		}
 	}

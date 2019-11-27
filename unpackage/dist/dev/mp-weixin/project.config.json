@@ -1,37 +1,39 @@
 {
-  "description": "项目配置文件。",
-  "packOptions": {
-    "ignore": []
-  },
-  "setting": {
-    "urlCheck": false
-  },
-  "compileType": "miniprogram",
-  "libVersion": "2.9.2",
-  "appid": "wx8432a51d55925797",
-  "projectname": "Vineyard",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": 0,
-      "list": [
-        {
-          "name": "Vineyard",
-          "id": 0,
-          "pathName": "pages/user/my_info/my_info"
-        }
-      ]
-    }
-  }
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.2",
+	"appid": "wx8432a51d55925797",
+	"projectname": "Vineyard",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"name": "Vineyard",
+					"id": 0,
+					"pathName": "pages/tabber/fengyang_fair/fengyang_fair"
+				}
+			]
+		}
+	}
 }

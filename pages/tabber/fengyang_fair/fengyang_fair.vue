@@ -10,7 +10,7 @@
 		<view :style="{'margin-top':StatusAddNav+'px'}" class="bg-green">
 			<view class="flex justify-end padding-lr-sm padding-tb-sm">
 				<view class="flex align-center round margin-left-xl padding-lr-xs" @tap="changeOperation(index)" :class="[{'bg-white text-orange':currentOperation==index}]" v-for="(item,index) in operationList" :key="index">
-					<text class="text-df">{{item.name}}</text>
+					<text class="text-df padding-left-xs">{{item.name}}</text>
 					<view class="flex flex-direction">
 						<text class="cuIcon-triangleupfill" :class="[{'text-grey':item.check==2,'text-white':item.check==0}]" style="height: 10rpx;"></text>
 						<text class="cuIcon-triangledownfill" :class="[{'text-grey':item.check==1,'text-white':item.check==0}]" style="height: 24rpx;"></text>
@@ -257,7 +257,7 @@ export default {
 							that.U({ c: 'auth_api', a: 'set_cart' }),
 							{
 								productId: gId,
-								merId: res.data.mer_id,
+								merId: res.data.merInfo.id,
 								cartNum: 1
 							},
 							function(res) {

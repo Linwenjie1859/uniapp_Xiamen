@@ -36,15 +36,15 @@
 							<view class="list_info" @tap="details(item.order_id)" v-for="(ite, ind) in item.cartInfo" :key="ind">
 								<image :src="ite.productInfo.image" mode=""></image>
 								<view class="info_view">
-									<text class="text_limit font-28">{{ ite.productInfo.store_name }}</text>
+									<text class=" font-28 text-cut-two">{{ ite.productInfo.store_info }}</text>
 									<text class="gray  font-24" v-if="item.open_address" style="margin: 10rpx 0 0 0;">地点:{{item.open_address}}</text>
-									<text class="gray  font-24" v-if="!item.open_address" style="margin: 10rpx 0 0 0;">规格:500g</text>
+									<text class="gray  font-24  text_right" v-if="!item.open_address" style="margin: 10rpx 0 0 0;">x{{ite.cart_num}}</text>
 									<text class="gray text_right  font-24" style="margin: 10rpx 0 0 0;">￥{{ ite.productInfo.price }}</text>
 									<text class="font-24 gray" style="margin: 0;" v-if="item.date">出发日期:{{item.date}}</text> 
 								</view>
 							</view>
 							<view style="display: flex; justify-content:flex-end;">
-								<text class="font-28" style="margin:0 20rpx 10rpx;">共{{ item.cartInfo.length }}件商品 合计￥{{item.pay_price}}</text>
+								<text class="font-28" style="margin:0 20rpx 10rpx;">共{{ item.cartInfo.length }}件商品 合计<text class="text-price text-orange">{{item.pay_price}}</text></text>
 							</view>
 							<!-- 待发货 -->
 							<view class="btn" v-if="item.status == 0 && item.paid == 1"><button class="btn_purchase_green">提醒发货</button></view>
@@ -504,7 +504,6 @@ page {
 .order_list .list_info .info_view .gray {
 	display: inline-block;
 	text-align: left;
-	width: 240upx;
 	margin: 20upx 0upx;
 }
 

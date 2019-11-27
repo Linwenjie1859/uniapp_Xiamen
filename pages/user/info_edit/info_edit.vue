@@ -53,7 +53,9 @@ export default {
 						success: function(res) {
 							var data = JSON.parse(res.data);
 							console.log(data.data.url);
-							_self.userInfo.avatar= data.data.url;
+							// _self.userInfo.avatar= data.data.url;	//服务器
+							
+							_self.userInfo.avatar= _self.url+data.data.url;	//本地
 							uni.showToast({
 								title: '上传进度：' + 1 + '/' + imagePathArr.length,
 								icon: 'none',

@@ -1,6 +1,5 @@
 {
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "uni-load-more": "/components/uni-load-more/uni-load-more"
-  }
+  "navigationBarTitleText": "店铺详情",
+  "enablePullDownRefresh": true,
+  "usingComponents": {}
 }

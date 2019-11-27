@@ -81,7 +81,7 @@
         }
       }
     },
-    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/shopping_cart/shopping_cart\"}",
+    "arguments": "{\"name\":\"Vineyard\",\"id\":0,\"pathName\":\"pages/tabber/fengyang_fair/fengyang_fair\"}",
     "allowsInlineMediaPlayback": true,
     "safearea": {
       "background": "#ffffff",
@@ -117,16 +117,16 @@
           "text": "分类栏"
         },
         {
-          "pagePath": "pages/tabber/shopping_cart/shopping_cart",
-          "iconPath": "/static/cart_default.png",
-          "selectedIconPath": "/static/cart_check.png",
-          "text": "购物车"
-        },
-        {
           "pagePath": "pages/list/fengyang_scenery/fengyang_scenery",
           "iconPath": "/static/play_default.png",
           "selectedIconPath": "/static/play_check.png",
           "text": "漫游厦门"
+        },
+        {
+          "pagePath": "pages/tabber/shopping_cart/shopping_cart",
+          "iconPath": "/static/cart_default.png",
+          "selectedIconPath": "/static/cart_check.png",
+          "text": "购物车"
         },
         {
           "pagePath": "pages/tabber/user/user",
@@ -139,7 +139,7 @@
       "child": [
         "lauchwebview"
       ],
-      "selected": 2
+      "selected": 1
     }
   }
 }

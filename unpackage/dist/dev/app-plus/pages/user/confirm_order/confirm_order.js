@@ -1,2 +1,2 @@
-setCssToHead([".",[1],"has-radius.",[1],"data-v-70939959 { border-radius: ",[0,18],"; }\n.",[1],"has-padding-sm.",[1],"data-v-70939959 { padding: ",[0,7]," ",[0,11],"; }\n",],undefined,{path:"./pages/user/confirm_order/confirm_order.wxss"})();
+setCssToHead([".",[1],"has-radius.",[1],"data-v-58645452 { border-radius: ",[0,18],"; }\n.",[1],"has-padding-sm.",[1],"data-v-58645452 { padding: ",[0,7]," ",[0,11],"; }\n",],undefined,{path:"./pages/user/confirm_order/confirm_order.wxss"})();
 document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/user/confirm_order/confirm_order.wxml') } }));

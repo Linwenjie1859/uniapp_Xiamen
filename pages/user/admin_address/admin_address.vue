@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="flex flex-direction bg-white" style="height: 100vh; position: relative;">
-			<view class="flex justify-between padding align-center margin-bottom-sm solid-bottom"  v-for="(item,index) in addressList" :key="index" @tap="chooseAdd(item)">
-				<view class="flex align-center"  @click="changeDefault(index,item.id)">
-					<view class="flex justify-center round bg-grey" style="height: 70rpx; width: 70rpx;">
+			<view class="flex justify-between padding align-center margin-bottom-sm solid-bottom"  v-for="(item,index) in addressList" :key="index" >
+				<view class="flex align-center"  @click="changeDefault(index,item.id)" @tap="chooseAdd(item)">
+					<view class="flex flex-direction justify-center align-center round bg-grey" style="height: 70rpx; width: 70rpx;">
 						<text class="text-xxl">{{item.real_name | subString}}</text>
 					</view>
 					<view class="flex flex-direction margin-left-sm">
@@ -59,6 +59,7 @@
 			},
 			//改变默认
 			changeDefault(index,id){
+				if(this.clickFlag)return;
 				console.log("修改");
 				let that=this;
 				that.currentDefault=index;
