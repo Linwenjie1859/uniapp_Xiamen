@@ -6,19 +6,18 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
 	state: {
 		account: '',
-		phone: '',
 		uid: '',
 		token: '',
 		isLog: '',
 		navHeight: '',
-		
+		phone:""
 	},
 	mutations: {
 		loginStore(state, provider) {
 			state.account = provider.account;
-			state.phone = provider.phone;
 			state.uid = provider.uid;
 			state.token = provider.token;
+			state.phone = provider.phone;
 			state.isLog = true;
 		},
 		logoutStore(state) {
